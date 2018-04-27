@@ -2,6 +2,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    post.title_picture: '%kernel.project_dir%/public/uploads/post/images'
 
 services:
     # default configuration for services in *this* file
@@ -26,3 +27,8 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\EventListener\UploadSubscriber:
+        arguments: ['%post.title_picture%']
+        tags:
+            - { name: doctrine.event_subscriber }
