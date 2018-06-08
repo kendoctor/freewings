@@ -1,0 +1,16 @@
+<ul>
+
+    {% for category in categories %}
+        <li>
+            <h5>
+               <span>{{ category.name }}</span>
+                <a class="btn-sm btn-primary pull-right " href="{{ path('admin_category_new', { 'parentId' : category.id, 'postType': postType }) }}">category.add_child</a>
+                <a class="btn-sm btn-primary pull-right " href="{{ path('admin_category_edit', { 'id' : category.id, 'postType': postType }) }}">category.edit</a>
+            </h5>
+
+            {% if category.children | length > 0 %}
+                {% include 'category/admin/_render_category.html.twig' with { 'categories' : category.children, 'postType': postType } %}
+            {% endif  %}
+        </li>
+    {% endfor %}
+</ul>

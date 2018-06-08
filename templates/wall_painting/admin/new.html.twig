@@ -1,0 +1,11 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}New WallPainting{% endblock %}
+
+{% block body %}
+    <h1>Create new WallPainting</h1>
+
+    {{ include('wall_painting/admin/_form.html.twig') }}
+
+    <a href="{{ path('admin_wall_painting_index') }}">back to list</a>
+{% endblock %}

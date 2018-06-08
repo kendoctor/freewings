@@ -16,6 +16,10 @@
         "build": "encore production"
     },
     "dependencies": {
-        "popper.js": "^1.14.3"
+        "filewatcher-webpack-plugin": "^1.2.0",
+        "jstree": "^3.3.5",
+        "popper.js": "^1.14.3",
+        "select2": "^4.0.6-rc.1",
+        "slick-carousel": "^1.8.1"
     }
 }

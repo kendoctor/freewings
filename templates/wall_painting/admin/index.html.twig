@@ -1,0 +1,47 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}WallPainting index{% endblock %}
+
+{% block body %}
+    <h1>WallPainting index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>TitlePicture</th>
+                <th>Brief</th>
+                <th>Weight</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for wall_painting in wall_paintings %}
+            <tr>
+                <td>{{ wall_painting.id }}</td>
+                <td>{{ wall_painting.title }}</td>
+                <td>{{ wall_painting.content }}</td>
+                <td>{{ wall_painting.createdAt ? wall_painting.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ wall_painting.updatedAt ? wall_painting.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ wall_painting.titlePicture }}</td>
+                <td>{{ wall_painting.brief }}</td>
+                <td>{{ wall_painting.weight }}</td>
+                <td>
+                    <a href="{{ path('admin_wall_painting_show', {'id': wall_painting.id}) }}">show</a>
+                    <a href="{{ path('admin_wall_painting_edit', {'id': wall_painting.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_wall_painting_new') }}">Create new</a>
+{% endblock %}

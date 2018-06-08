@@ -1,0 +1,45 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Customer index{% endblock %}
+
+{% block body %}
+    <h1>Customer index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Mobile</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for customer in customers %}
+            <tr>
+                <td>{{ customer.id }}</td>
+                <td>{{ customer.title }}</td>
+                <td>{{ customer.mobile }}</td>
+                <td>{{ customer.createdAt ? customer.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ customer.updatedAt ? customer.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ customer.description }}</td>
+                <td>{{ customer.type }}</td>
+                <td>
+                    <a href="{{ path('admin_customer_show', {'id': customer.id}) }}">show</a>
+                    <a href="{{ path('admin_customer_edit', {'id': customer.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_customer_new') }}">Create new</a>
+{% endblock %}

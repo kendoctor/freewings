@@ -1,0 +1,11 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}New Branch{% endblock %}
+
+{% block body %}
+    <h1>Create new Branch</h1>
+
+    {{ include('branch/admin/_form.html.twig') }}
+
+    <a href="{{ path('admin_branch_index') }}">back to list</a>
+{% endblock %}

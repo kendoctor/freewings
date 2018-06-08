@@ -114,7 +114,7 @@ class UploadSubscriber implements EventSubscriber
      */
     private function removePostTitlePicture(Post $entity)
     {
-        //delete previous uploaded file if exist
+        //delete previous uploaded file if exists
         if ($entity->getTitlePicture()) {
             //get absolute path of the image
             $previousTitlePictureFile = $this->postTitlePictureUploadDir . '/' . $entity->getTitlePicture();

@@ -1,0 +1,11 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}New Customer{% endblock %}
+
+{% block body %}
+    <h1>Create new Customer</h1>
+
+    {{ include('customer/admin/_form.html.twig') }}
+
+    <a href="{{ path('admin_customer_index') }}">back to list</a>
+{% endblock %}

@@ -1,6 +1,8 @@
 framework:
     secret: '%env(APP_SECRET)%'
-    #default_locale: en
+    default_locale: 'zh_CN'
+    translator:
+        fallbacks: ['zh_CN']
     #csrf_protection: true
     #http_method_override: true
 
@@ -13,6 +15,9 @@ framework:
     #fragments: true
     php_errors:
         log: true
+
+    assets:
+        json_manifest_path: '%kernel.project_dir%/public/build/manifest.json'
 
     cache:
         # Put the unique name of your app here: the prefix seed
@@ -28,3 +33,51 @@ framework:
 
         # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)
         #app: cache.adapter.apcu
+
+knp_paginator:
+    template:
+        pagination: 'sliding.html.twig'
+
+stof_doctrine_extensions:
+    default_locale: zh_CN
+    translation_fallback: true
+    orm:
+        default:
+            tree: true
+            timestampable: true
+            blameable: true
+            translatable: true
+            sortable: true
+
+liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
+
+    filter_sets:
+        cache: ~
+
+        # the name of the "filter set"
+        post_listImage:
+
+            # adjust the image quality to 75%
+            quality: 75
+
+            # list of transformations to apply (the "filters")
+            filters:
+
+                # create a thumbnail: set size to 120x90 and use the "outbound" mode
+                # to crop the image when the size ratio of the input differs
+                thumbnail: { size: [120, 90], mode: outbound }
+
+                # create a 2px black border: center the thumbnail on a black background
+                # 4px larger to create a 2px border around the final image
+                background: { size: [124, 94], position: center, color: '#555555' }
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        media_file:
+            uri_prefix: /media
+            upload_destination: '%kernel.project_dir%/public/media'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer

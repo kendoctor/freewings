@@ -3,25 +3,48 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="symfans cms backend" name="description" />
+        <meta content="kendoctor" name="author" />
+
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/select2/css/select2.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/slick/slick.css') }}">
         <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+
+        {#<--link href="http://keenthemes.com/preview/metronic/theme/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" / -->#}
+        {#<link href="http://keenthemes.com/preview/metronic/theme/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />#}
+        {#<link href="http://keenthemes.com/preview/metronic/theme/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />#}
+        {#<link href="http://keenthemes.com/preview/metronic/theme/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />#}
+        {#<!-- END THEME GLOBAL STYLES -->#}
+        {#<!-- BEGIN THEME LAYOUT STYLES -->#}
+        {#<link href="http://keenthemes.com/preview/metronic/theme/assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />#}
+        {#<link href="http://keenthemes.com/preview/metronic/theme/assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />#}
+        {#<link href="http://keenthemes.com/preview/metronic/theme/assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />#}
+
         {% block stylesheets %}{% endblock %}
 
     </head>
-    <body>
+    <body class="">
 
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <nav class="navbar navbar-expand navbar-dark bg-dark flex-md-nowrap p-0 sticky-top">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Symfans CMS</a>
-        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-        <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                {% if is_granted('ROLE_ADMIN') %}
-                    <a class="nav-link" href="{{ path('logout') }}">Logout</a>
-                {% else %}
-                    <a class="nav-link" href="{{ path('login') }}">Login</a>
-                {% endif %}
+        <ul class="navbar-nav flex-row d-md-flex ml-md-auto px-3">
+            <li class="nav-item dropdown mr-md-2">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;" aria-haspopup="true" aria-expanded="false">
+                    <img class="rounded-circle" src="{{ asset('assets/images/avatar3_small.jpg') }}" alt="">
+                    <span class="username">{{ app.user.email }}</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">{{ 'user.profile'|trans }}</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="dropdown-item" href="{{ path('logout') }}">{{ 'authentication.logout'|trans }}</a>
+                    {% else %}
+                        <a class="dropdown-item" href="{{ path('login') }}">{{ 'authentication.login'|trans }}</a>
+                    {% endif %}
+                </div>
             </li>
-
         </ul>
     </nav>
 
@@ -29,48 +52,123 @@
     <div class="container-fluid">
         <div class="row">
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="text-center p-2 bg-info">
+                    {% set params = app.request.attributes.get('_route_params')|merge(app.request.query.all()) %}
+                    {% set cnParams = params|merge({'_locale': 'zh_CN'}) %}
+                    {% set enParams = params|merge({'_locale': 'en'}) %}
+                    <a class="btn btn-sm btn-info"  href="{{ path(app.request.attributes.get('_route'), cnParams) }}">Chinese</a>
+                    <a class="btn btn-sm btn-info"  href="{{ path(app.request.attributes.get('_route'), enParams) }}">English</a>
+                </div>
                 <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                                <span data-feather="home"></span>
-                                Dashboard <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('post_index') }}">
-                                <span data-feather="file"></span>
-                                Posts
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('user_index') }}">
-                                <span data-feather="shopping-cart"></span>
-                                Users
-                            </a>
-                        </li>
-                    </ul>
+                    <div class="side-menu">
+                        <div class="menu-item">
+                            <div class="panel">
+                                <div class="hd">WallPainting Management</div>
+                                <div class="bd">
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('admin_wall_painting_index') }}">WallPaintings</a>
+                                            <a href="{{ path('admin_wall_painting_new') }}">{{ 'wall_painting.new'|trans }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('admin_category_index', {'postType': 'wall_painting'}) }}">Categories</a>
+                                            <a href="{{ path('admin_category_new', {'postType': 'wall_painting'}) }}">{{ 'wall_painting_category.new'|trans }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('admin_customer_index') }}">Customers</a>
+                                            <a href="{{ path('admin_customer_new') }}">{{ 'customer.new'|trans }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('admin_user_index') }}">Artists</a>
+                                            <a href="{{ path('admin_user_new') }}">{{ 'artist.new' }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="panel">
+                                <div class="hd">Message Management</div>
+                                <div class="bd">
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('admin_message_index') }}">Messages</a>
+                                            <a href="{{ path('admin_message_new') }}">New</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('admin_category_index', {'postType': 'message'}) }}">Categories</a>
+                                            <a href="{{ path('admin_category_new', {'postType': 'message'}) }}">{{ 'messsage.new'|trans }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="panel">
+                                <div class="hd">Album Management</div>
+                                <div class="bd">
+                                    <ul>
+                                        <li>
+                                            <a href="">Albums</a>
+                                            <a href="">New</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="panel">
+                                <div class="hd">Branch Management</div>
+                                <div class="bd">
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('admin_branch_index') }}">Branches</a>
+                                            <a href="{{ path('admin_branch_new') }}">New</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="panel">
+                                <div class="hd">Media Management</div>
+                                <div class="bd">
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('admin_media_index') }}">Images & Files</a>
+                                            <a href="{{ path('admin_media_new') }}">New</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="panel">
+                                <div class="hd">Tag Management</div>
+                                <div class="bd">
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('admin_tag_index') }}">Tags</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="panel">
+                                <div class="hd">User Management</div>
+                                <div class="bd">
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('admin_user_index') }}">Users</a>
+                                            <a href="{{ path('admin_user_new') }}">new</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
 
 
                 </div>
             </nav>
-
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Dashboard</h1>
-                    <div class="btn-toolbar mb-2 mb-md-0">
-                        <div class="btn-group mr-2">
-                            <button class="btn btn-sm btn-outline-secondary">Share</button>
-                            <button class="btn btn-sm btn-outline-secondary">Export</button>
-                        </div>
-                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                            <span data-feather="calendar"></span>
-                            This week
-                        </button>
-                    </div>
-                </div>
-
-
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10">
                 {% block body %}{% endblock %}
             </main>
         </div>
@@ -78,6 +176,11 @@
 
 
         {% block javascripts %}{% endblock %}
+        <script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/popper/popper.min.js') }}"></script>
+        <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/select2/js/select2.min.js') }}"></script>
+        <script src="{{ asset('assets/slick/slick.min.js') }}"></script>
         <script src="{{ asset('build/js/app.js') }}"></script>
     </body>
 </html>

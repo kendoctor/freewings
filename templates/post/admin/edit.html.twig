@@ -1,0 +1,29 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Edit Post{% endblock %}
+
+
+
+{% block body %}
+    <div class="page">
+
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ 'admin.home'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'post.edit'|trans }}</a> - <em>{{ post.title }}</em> </li>
+            </ol>
+        </nav>
+
+        <h1 >{{ 'post.edit_title'|trans }}</h1>
+
+        {{ include('post/admin/_form.html.twig', {'button_label': 'post.update'}) }}
+
+        <hr>
+
+        <a class="btn btn-primary" href="{{ path('admin_post_index') }}">back to list</a>
+
+
+
+    </div>
+{% endblock %}

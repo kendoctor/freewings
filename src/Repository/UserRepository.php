@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\User;
+use App\Entity\UserMedia;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -17,6 +18,43 @@ class UserRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, User::class);
+    }
+
+    public function create()
+    {
+        $user = new User();
+//
+//        $tokens = ['icon', 'figure'];
+//
+//        foreach ($tokens as $token) {
+//            $image = new UserMedia();
+//            $image->setToken($token);
+//            $user->addImage($image);
+//        }
+
+        return $user;
+    }
+
+    public function getCreatorByName($username = 'kendoctor')
+    {
+
+        return $this->createQueryBuilder('u')
+            ->where('u.username = :username')
+            ->setParameter('username', $username)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
+
+    public function getArtists()
+    {
+        return $this->createQueryBuilder('u')
+            ->where('BIT_AND(u.type, :type) > 0')
+            ->setParameter('type', User::TYPE_ARTIST)
+            ->indexBy('u', 'u.id')
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
 //    /**

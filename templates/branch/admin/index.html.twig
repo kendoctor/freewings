@@ -1,0 +1,47 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Branch index{% endblock %}
+
+{% block body %}
+    <h1>Branch index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Mobile</th>
+                <th>Qq1</th>
+                <th>Qq2</th>
+                <th>Qq3</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for branch in branches %}
+            <tr>
+                <td>{{ branch.id }}</td>
+                <td>{{ branch.address }}</td>
+                <td>{{ branch.phone }}</td>
+                <td>{{ branch.mobile }}</td>
+                <td>{{ branch.qq1 }}</td>
+                <td>{{ branch.qq2 }}</td>
+                <td>{{ branch.qq3 }}</td>
+                <td>{{ branch.email }}</td>
+                <td>
+                    <a href="{{ path('admin_branch_show', {'id': branch.id}) }}">show</a>
+                    <a href="{{ path('admin_branch_edit', {'id': branch.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_branch_new') }}">Create new</a>
+{% endblock %}

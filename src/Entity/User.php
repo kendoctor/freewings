@@ -13,6 +13,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface, \Serializable
 {
+    const TYPE_NORMAL =  1;
+    const TYPE_ARTIST =  4;
+    const TYPE_ADMIN =  8;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -49,13 +53,77 @@ class User implements UserInterface, \Serializable
      */
     private $posts;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Category", mappedBy="createdBy", orphanRemoval=true)
+     */
+    private $categories;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Media", mappedBy="createdBy")
+     */
+    private $media;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\WallPaintingArtist", mappedBy="artist")
+     */
+    private $wallPaintingArtists;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\UserGroup", mappedBy="users")
+     */
+    private $groups;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $type;
+
+
+    protected static $typeName = [
+        self::TYPE_NORMAL => 'user.normal',
+        self::TYPE_ARTIST => 'user.artist',
+        self::TYPE_ADMIN => 'user.admin'
+    ];
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserMedia", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $images;
 
     public function __construct()
     {
         $this->isActive = true;
         $this->posts = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+        $this->media = new ArrayCollection();
+        $this->wallPaintingArtists = new ArrayCollection();
+        $this->groups = new ArrayCollection();
+        $this->type = self::TYPE_NORMAL;
+        $this->images = new ArrayCollection();
     }
 
+
+    public static function getTypeName($type)
+    {
+        if (!isset(static::$typeName[$type])) {
+            return "Unknown type ($type)";
+        }
+        return static::$typeName[$type];
+    }
+
+    public static function getAvailableTypes()
+    {
+        return [
+            self::TYPE_NORMAL,
+            self::TYPE_ARTIST,
+            self::TYPE_ADMIN
+        ];
+    }
 
     public function getId()
     {
@@ -229,6 +297,224 @@ class User implements UserInterface, \Serializable
             // set the owning side to null (unless already changed)
             if ($post->getCreatedBy() === $this) {
                 $post->setCreatedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->contains($category)) {
+            $this->categories->removeElement($category);
+            // set the owning side to null (unless already changed)
+            if ($category->getCreatedBy() === $this) {
+                $category->setCreatedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->username . '|'. $this->email;
+    }
+
+    /**
+     * @return Collection|Media[]
+     */
+    public function getMedia(): Collection
+    {
+        return $this->media;
+    }
+
+    public function addMedium(Media $medium): self
+    {
+        if (!$this->media->contains($medium)) {
+            $this->media[] = $medium;
+            $medium->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedium(Media $medium): self
+    {
+        if ($this->media->contains($medium)) {
+            $this->media->removeElement($medium);
+            // set the owning side to null (unless already changed)
+            if ($medium->getCreatedBy() === $this) {
+                $medium->setCreatedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|WallPaintingArtist[]
+     */
+    public function getWallPaintingArtists(): Collection
+    {
+        return $this->wallPaintingArtists;
+    }
+
+    public function addWallPaintingArtist(WallPaintingArtist $wallPaintingArtist): self
+    {
+        if (!$this->wallPaintingArtists->contains($wallPaintingArtist)) {
+            $this->wallPaintingArtists[] = $wallPaintingArtist;
+            $wallPaintingArtist->setArtist($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWallPaintingArtist(WallPaintingArtist $wallPaintingArtist): self
+    {
+        if ($this->wallPaintingArtists->contains($wallPaintingArtist)) {
+            $this->wallPaintingArtists->removeElement($wallPaintingArtist);
+            // set the owning side to null (unless already changed)
+            if ($wallPaintingArtist->getArtist() === $this) {
+                $wallPaintingArtist->setArtist(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserGroup[]
+     */
+    public function getGroups(): Collection
+    {
+        return $this->groups;
+    }
+
+    public function addGroup(UserGroup $group): self
+    {
+        if (!$this->groups->contains($group)) {
+            $this->groups[] = $group;
+            $group->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGroup(UserGroup $group): self
+    {
+        if ($this->groups->contains($group)) {
+            $this->groups->removeElement($group);
+            $group->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    public function getType(): ?int
+    {
+        return $this->type;
+    }
+
+    public function setType(int $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getImageByToken($token = 'icon')
+    {
+        /** @var UserMedia $image */
+        foreach ($this->images as $image) {
+            if( $image->getToken() === $token)
+                return $image->getMedia();
+        }
+
+        return null;
+    }
+
+    public function getIconImage()
+    {
+        return $this->getImageByToken('icon');
+    }
+
+    public function getFigureImage()
+    {
+        return $this->getImageByToken('figure');
+    }
+
+
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    /**
+     * @return Collection|UserMedia[]
+     */
+    public function getImages(): Collection
+    {
+        $tokens = ['icon', 'figure'];
+
+        foreach ($tokens as $token) {
+            if ($this->getImageByToken($token) === null) {
+                $image = new UserMedia();
+                $image->setToken($token);
+                $this->addImage($image);
+            }
+        }
+
+        return $this->images;
+    }
+
+    public function addImage(UserMedia $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(UserMedia $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getUser() === $this) {
+                $image->setUser(null);
             }
         }
 

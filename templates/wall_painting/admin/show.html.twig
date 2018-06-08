@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WallPainting{% endblock %}
+
+{% block body %}
+    <h1>WallPainting</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ wall_painting.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ wall_painting.title }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ wall_painting.content }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ wall_painting.createdAt ? wall_painting.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ wall_painting.updatedAt ? wall_painting.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>TitlePicture</th>
+                <td>{{ wall_painting.titlePicture }}</td>
+            </tr>
+            <tr>
+                <th>Brief</th>
+                <td>{{ wall_painting.brief }}</td>
+            </tr>
+            <tr>
+                <th>Weight</th>
+                <td>{{ wall_painting.weight }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('wall_painting_index') }}">back to list</a>
+
+    <a href="{{ path('wall_painting_edit', {'id': wall_painting.id}) }}">edit</a>
+
+    {{ include('wall_painting/_delete_form.html.twig') }}
+{% endblock %}

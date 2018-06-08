@@ -1,0 +1,66 @@
+{% block select2_widget %}
+    {% spaceless %}
+        <select class="form-control" {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+            {% if value is iterable %}
+                {% for id, label in value %}
+                    <option value="{{ id }}" selected="selected">{{ label }}</option>
+                {% endfor %}
+            {% endif %}
+        </select>
+
+    {% endspaceless %}
+
+{% endblock %}
+
+{% form_theme form _self %}
+
+{% macro collection_ex_entry_row(form) %}
+    {% spaceless %}
+        <div id="{{ form.vars.id ~ '_entry' }}" class="col collection-ex-type-entry">
+            {{ form_widget(form) }}
+            {{ form_errors(form) }}
+            {% if form.parent.vars.allow_delete %}
+            <a class="btn btn-secondary" data-remove="collection-ex-type-entry" href="#">{{ 'collection_ex_type_entry.remove'|trans }}</a>
+            {% endif %}
+        </div>
+    {% endspaceless %}
+{% endmacro %}
+
+{% block collection_ex_widget %}
+    {% import _self as forms %}
+    {% if prototype is defined %}
+
+    {% endif %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' row collection-ex-type')|trim }) %}
+
+    <div {{ block('widget_container_attributes') }} {% if prototype is defined %}data-prototype="{{ forms.collection_ex_entry_row(prototype)|e }}"{% endif %}>
+        {%- if form is rootform -%}
+            {{ form_errors(form) }}
+        {%- endif -%}
+
+        {% for child in form %}
+            {{ forms.collection_ex_entry_row(child) }}
+        {% endfor %}
+        {{- form_rest(form) -}}
+    </div>
+{% endblock %}
+
+{% block collection_ex_label %}
+    <div class="collection-ex-hd d-flex">
+        {{ block('form_label') }}
+        {% if allow_add %}
+        <a class="btn-sm float-right btn-secondary" data-add="collection-ex-type-entry" href="#">{{ 'collection_ex_type_entry.add'|trans }}</a>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block collection_ex_row %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-group collection-ex-type-row')|trim }) %}
+
+    <div {{ block('widget_container_attributes') }}>
+        {{ form_label(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+    </div>
+
+{% endblock %}

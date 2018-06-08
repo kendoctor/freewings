@@ -1,0 +1,22 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Edit Category{% endblock %}
+
+{% block body %}
+    <div class="page">
+
+        <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">{{ 'admin.home' | trans }}</a></li>
+            <li class="breadcrumb-item"><a href="#">{{ 'category.index'|trans }}</a></li>
+            <li class="breadcrumb-item"><a href="#">{{ postType }}</a></li>
+            <li class="breadcrumb-item"><a href="#">{{ 'category.edit'|trans }}</a></li>
+        </ol>
+    </nav>
+        <h1>{{ 'category.edit_title' | trans }}</h1>
+
+            {{ include('category/admin/_form.html.twig', {'button_label': 'Update'}) }}
+        <hr>
+        <a class="btn btn-secondary" href="{{ path('admin_category_index', {'postType' : postType }) }}">back to list</a>
+    </div>
+{% endblock %}

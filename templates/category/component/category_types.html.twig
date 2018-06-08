@@ -1,0 +1,7 @@
+<ul class="nav">
+    {% for root in roots %}
+    <li class="nav-item">
+        <a class="nav-link" href="{{ path('admin_category_index', {'postType' : root.name }) }}">{{ root.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
