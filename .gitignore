@@ -8,8 +8,7 @@
 
 ###> symfony/webpack-encore-pack ###
 /node_modules/
-/public/build/
-npm-debug.log
+pm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-pack ###
 
