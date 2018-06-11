@@ -35,3 +35,7 @@ services:
         arguments: ['%post.title_picture%']
         tags:
             - { name: doctrine.event_subscriber }
+
+    vich.date_directory_namer:
+        class: App\Vich\DateDirectoryNamer
+        public: true

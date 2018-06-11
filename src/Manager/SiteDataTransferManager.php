@@ -10,7 +10,9 @@ namespace App\Manager;
 
 
 use App\Entity\Category;
+use App\Entity\Media;
 use App\Entity\PostTag;
+use App\Entity\WallPaintingPhoto;
 use App\Repository\CategoryRepository;
 use App\Repository\CustomerRepository;
 use App\Repository\TagRepository;
@@ -71,6 +73,7 @@ class SiteDataTransferManager
     const SELECTOR_CUSTOMER_LOGO = '#customer_logo';
     const SELECTOR_CUSTOMER_COVER = '#customer_cover';
     const SELECTOR_CUSTOMER_EMAIL = '#customer_email';
+    const SELECTOR_CUSTOMER_CREATED_AT = 'td.sf_admin_list_td_created_at';
 
 
     const SELECTOR_TAG_EDIT_LINK = 'li.sf_admin_action_edit a';
@@ -141,6 +144,8 @@ class SiteDataTransferManager
             'info' => 'End'
         ];
 
+        $this->transferPortfolioToWallPainting();
+        exit;
         while(true) {
             switch ($state->getPhase()) {
                 case SiteDataTransferState::PHASE_PORTFOLIO_CATEGORY:
@@ -187,23 +192,6 @@ class SiteDataTransferManager
 
     }
 
-
-    public function reset()
-    {
-
-
-    }
-
-    public function resume()
-    {
-
-    }
-
-    public function stop()
-    {
-
-    }
-
     function getExtension($path) {
         $tokens = explode(".", $path);
         $extension = end($tokens);
@@ -229,6 +217,7 @@ class SiteDataTransferManager
     {
         return $this->getUploadedFile('/uploads/portfolio/' . $path);
     }
+
 
     public function getUploadedFile($path)
     {
@@ -349,6 +338,7 @@ class SiteDataTransferManager
 
             $category->setOldId($node->id);
             $category->setName(trim($node->name));
+            $category->setCreatedBy($this->creator);
             $this->io->text([
                 sprintf('Category %s', $category->getName()),
                 sprintf('Is update %s', $update),
@@ -373,8 +363,6 @@ class SiteDataTransferManager
     }
 
 
-
-
     /**
      * 所有分类返回结果
      * @param Client $client
@@ -393,7 +381,7 @@ class SiteDataTransferManager
 
 
 
-        $root = $this->categoryRepository->getRoot('wall_painting');
+        $root = $this->categoryRepository->getRoot('wall_painting', $this->creator);
         $this->buildWallPaintingCategories($root, $tree->children);
 
         $this->categoryRepository->persist($root);
@@ -418,10 +406,16 @@ class SiteDataTransferManager
         $customerIndexCrawler = $this->request(sprintf(self::PORTFOLIO_CUSTOMER_INDEX_URL, $this->state->getPage()));
 
         $this->io->title(sprintf('Start transferring customers in page %d', $this->state->getPage()));
-        $count = 0;
+        $index = 0;
+        $createdAts = $customerIndexCrawler->filter(self::SELECTOR_CUSTOMER_CREATED_AT);
+
+
+
         foreach($customerIndexCrawler->filter(self::SELECTOR_CUSTOMER_EDIT_LINK) as $node)
         {
-            $count ++;
+            $strCreatedAt = $createdAts->getNode($index)->textContent;
+            $createdAt = \DateTime::createFromFormat('Y-m-d', trim($strCreatedAt));
+
             $customerEditUrl = 'http://www.freewings.me' . $node->getAttribute('href');
             $crawlerCustomerEdit = $this->client->request('GET', $customerEditUrl);
             $id = $this->firstNode($crawlerCustomerEdit, self::SELECTOR_CUSTOMER_ID)->getAttribute('value');
@@ -449,23 +443,21 @@ class SiteDataTransferManager
             $customer->setFax($fax);
             $customer->setAddress($address);
             $customer->setIsAlbum($isAlbum);
+            $customer->setCreatedAt($createdAt);
 
 
-            //$listImagePath = $this->firstNode($crawlerCustomerEdit, self::SELECTOR_PORTFOLIO_SMALLICON)->getAttribute('value');
 
+            $customer->getCoverImage()->setCreatedAt($createdAt);
             $customer->getCoverImage()->setFile($this->getPortfolioImageUploadedFile($logo));
 
-
+            $customer->getListImage()->setCreatedAt($createdAt);
             $customer->getListImage()->setFile($this->getPortfolioImageUploadedFile($cover));
-
-
-            // $thumbImagePath = $this->firstNode($crawlerCustomerEdit, self::SELECTOR_PORTFOLIO_ICON)->getAttribute('value');
-            // $wallPainting->getThumbImage()->setFile($this->getPortfolioImageUploadedFile($thumbImagePath));
 
             $this->customerRepository->persist($customer);
             $this->customerRepository->flush();
 
             $this->io->title(sprintf('Customer %s id(%d) oldId(%d) transferred.', $customer->getTitle(), $customer->getId(), $customer->getOldId()));
+            $index++;
         }
 
         $this->io->title(sprintf('Finish transferring customers in page %d', $this->state->getPage()));
@@ -552,7 +544,7 @@ class SiteDataTransferManager
         foreach($portfolioIndexCrawler->filter(self::SELECTOR_PORTFOLIO_EDIT_LINK) as $node)
         {
             $portfolioEditUrl = 'http://www.freewings.me' . $node->getAttribute('href');
-            $crawlerPortfolioEdit = $this->client->request('GET', $portfolioEditUrl);
+            $crawlerPortfolioEdit = $this->request( $portfolioEditUrl);
             $id = $this->firstNode($crawlerPortfolioEdit, self::SELECTOR_PORTFOLIO_ID)->getAttribute('value');
             //find by the id of portfolio in WallPaintings
             $wallPainting = $this->wallPaintingRepository->getByOldId($id);
@@ -572,20 +564,43 @@ class SiteDataTransferManager
             $customer = $this->customerRepository->getByOldId($customerId);
             if($customer !== $wallPainting->getCustomer())
                 $wallPainting->setCustomer($customer);
+            $wallPainting->setCreatedAt($customer->getCreatedAt());
 
-           // $wallPainting->setContent($this->firstNode($crawlerPortfolioEdit, self::SELECTOR_PORTFOLIO_DESCRIPTION)->textContent);
+            $content = $this->firstNode($crawlerPortfolioEdit, self::SELECTOR_PORTFOLIO_DESCRIPTION)->textContent;
+
+            preg_match_all('/<img alt="" src="([^"]*)"\s[^>]*>/', $content, $matches);
+            $content = preg_replace('/<img\s[^>]*>/', '___tmpsp___', $content);
+            $tokens = explode('___tmpsp___', $content);
+
+            if(isset($tokens[0]))
+                $wallPainting->setContent($tokens[0]);
+            $cnt = $wallPainting->getPhotos()->count();
+
+            for ($i = $cnt+1; $i < count($tokens); $i++) {
+                $photo = new WallPaintingPhoto();
+                $media = new Media();
+                $media->setCreatedAt($customer->getCreatedAt());
+                $media->setFile($this->getUploadedFile($matches[1][$i - 1]));
+                $photo->setDescription($tokens[$i]);
+                $photo->setMedia($media);
+                $wallPainting->addPhoto($photo);
+            }
+
+
             $weight = $this->firstNode($crawlerPortfolioEdit, self::SELECTOR_PORTFOLIO_WEIGHT)->getAttribute('value');
             $wallPainting->setWeight((int)$weight);
             $wallPainting->setOldId($this->firstNode($crawlerPortfolioEdit, self::SELECTOR_PORTFOLIO_ID)->getAttribute('value'));
-            $wallPainting->setIsPublished($this->firstNode($crawlerPortfolioEdit, self::SELECTOR_PORTFOLIO_IS_PUBLISHED)->getAttribute('value') == 'checked');
+            $wallPainting->setIsPublished($this->firstNode($crawlerPortfolioEdit, self::SELECTOR_PORTFOLIO_IS_PUBLISHED)->getAttribute('checked') == 'checked');
 
             $listImagePath = $this->firstNode($crawlerPortfolioEdit, self::SELECTOR_PORTFOLIO_SMALLICON)->getAttribute('value');
-            if(!empty($listImagePath))
-                $wallPainting->getListImage()->setFile($this->getPortfolioImageUploadedFile($listImagePath));
+
+            $wallPainting->getListImage()->setCreatedAt($customer->getCreatedAt());
+            $wallPainting->getListImage()->setFile($this->getPortfolioImageUploadedFile($listImagePath));
 
             $thumbImagePath = $this->firstNode($crawlerPortfolioEdit, self::SELECTOR_PORTFOLIO_ICON)->getAttribute('value');
-            if(!empty($thumbImagePath))
-                $wallPainting->getThumbImage()->setFile($this->getPortfolioImageUploadedFile($thumbImagePath));
+
+            $wallPainting->getThumbImage()->setCreatedAt($customer->getCreatedAt());
+            $wallPainting->getThumbImage()->setFile($this->getPortfolioImageUploadedFile($thumbImagePath));
 
             $tags = $this->firstNode($crawlerPortfolioEdit, self::SELECTOR_PORTFOLIO_TAGS_LIST)->getAttribute('value');
 
@@ -642,13 +657,6 @@ class SiteDataTransferManager
         $this->io->error(sprintf('Request failed after retrying %d times', $retry));
         die();
     }
-
-
-
-
-
-
-
 
 
 }

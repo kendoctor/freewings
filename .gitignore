@@ -1,4 +1,4 @@
-
+/.transfer.log
 ###> symfony/framework-bundle ###
 /.env
 /public/bundles/

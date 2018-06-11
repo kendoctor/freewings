@@ -10,6 +10,7 @@ use App\Form\Type\CollectionExType;
 use App\Repository\CategoryRepository;
 use App\Repository\UserRepository;
 use App\Repository\WallPaintingArtistRepository;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
@@ -54,7 +55,9 @@ class WallPaintingType extends AbstractType
                 'label' => 'wall_painting.images'
             ])
             ->add('brief')
-            ->add('content')
+            ->add('content', CKEditorType::class, [
+                'config'=> ['toolbar' => 'basic']
+            ])
             ->add('weight')
             ->add('wallPaintingArtists', ChoiceType::class, [
                 'choices' => $this->userRepository->getArtists(),

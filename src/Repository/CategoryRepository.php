@@ -85,7 +85,7 @@ class CategoryRepository extends NestedTreeRepository implements ServiceEntityRe
      * @return mixed
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function getRoot($postType = 'post')
+    public function getRoot($postType = 'post', $creator = null)
     {
 
         $root = $this->getRootNodesQueryBuilder()
@@ -97,6 +97,8 @@ class CategoryRepository extends NestedTreeRepository implements ServiceEntityRe
 
         if (null === $root) {
             $root = new Category();
+            if($creator)
+                $root->setCreatedBy($creator);
             $root->setName($postType);
             $this->_em->persist($root);
             $this->_em->flush();

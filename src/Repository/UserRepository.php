@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\UserMedia;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -15,8 +16,11 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class UserRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    private $userPasswordEncoder;
+
+    public function __construct(RegistryInterface $registry, UserPasswordEncoderInterface $userPasswordEncoder)
     {
+        $this->userPasswordEncoder = $userPasswordEncoder;
         parent::__construct($registry, User::class);
     }
 
@@ -38,12 +42,24 @@ class UserRepository extends ServiceEntityRepository
     public function getCreatorByName($username = 'kendoctor')
     {
 
-        return $this->createQueryBuilder('u')
+        $creator = $this->createQueryBuilder('u')
             ->where('u.username = :username')
             ->setParameter('username', $username)
             ->getQuery()
             ->getOneOrNullResult()
             ;
+
+        if(null === $creator)
+        {
+            $creator = $this->create();
+            $creator->setUsername('kendoctor');
+            $creator->setPlainPassword('kendoctor');
+            $password = $this->userPasswordEncoder->encodePassword($creator, $creator->getPlainPassword());
+            $creator->setPassword($password);
+            $this->_em->persist($creator);
+            $this->_em->flush();
+        }
+        return $creator;
     }
 
     public function getArtists()
