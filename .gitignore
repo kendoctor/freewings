@@ -6,6 +6,8 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
+/public/media
+
 ###> symfony/webpack-encore-pack ###
 /node_modules/
 pm-debug.log
