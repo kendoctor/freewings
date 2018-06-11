@@ -144,8 +144,7 @@ class SiteDataTransferManager
             'info' => 'End'
         ];
 
-        $this->transferPortfolioToWallPainting();
-        exit;
+
         while(true) {
             switch ($state->getPhase()) {
                 case SiteDataTransferState::PHASE_PORTFOLIO_CATEGORY:
