@@ -47,6 +47,15 @@ class CustomerRepository extends ServiceEntityRepository
         $this->_em->flush();
     }
 
+    public function getRecommended($limit = 4)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.isRecommended = true')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     public function getByOldId($oldId)
     {
         return $this->createQueryBuilder('c')

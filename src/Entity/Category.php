@@ -115,6 +115,16 @@ class Category
      */
     private $images;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isRecommended;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $weight;
+
 
     public function __construct()
     {
@@ -371,7 +381,35 @@ class Category
      */
     public function getImages(): Collection
     {
+        $tokens = ['icon', 'thumb', 'list'];
+
+        foreach ($tokens as $token) {
+
+            if($this->getImageByToken($token) === null) {
+                $image = new CategoryMedia();
+                $image->setMedia(new Media());
+                $image->setToken($token);
+                $this->addImage($image);
+            }
+        }
+
         return $this->images;
+    }
+
+    public function getImageByToken($token = 'cover')
+    {
+        /** @var PostMedia $image */
+        foreach ($this->images as $image) {
+            if( $image->getToken() === $token)
+                return $image->getMedia();
+        }
+
+        return null;
+    }
+
+    public function getThumbImage()
+    {
+        return $this->getImageByToken('thumb');
     }
 
     public function addImage(CategoryMedia $image): self
@@ -393,6 +431,30 @@ class Category
                 $image->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsRecommended(): ?bool
+    {
+        return $this->isRecommended;
+    }
+
+    public function setIsRecommended(bool $isRecommended): self
+    {
+        $this->isRecommended = $isRecommended;
+
+        return $this;
+    }
+
+    public function getWeight(): ?int
+    {
+        return $this->weight;
+    }
+
+    public function setWeight(int $weight): self
+    {
+        $this->weight = $weight;
 
         return $this;
     }

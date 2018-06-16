@@ -84,6 +84,7 @@ class Media
 
     public function __construct()
     {
+        $this->createdAt = new \DateTime();
         $this->postMedia = new ArrayCollection();
         $this->wallPaintingPhotos = new ArrayCollection();
         $this->customerMedia = new ArrayCollection();

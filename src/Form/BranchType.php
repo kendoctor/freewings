@@ -12,6 +12,7 @@ class BranchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('title')
             ->add('address')
             ->add('phone')
             ->add('mobile')

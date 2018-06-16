@@ -51,6 +51,11 @@ class Branch
      */
     private $email;
 
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $title;
+
     public function getId()
     {
         return $this->id;
@@ -136,6 +141,18 @@ class Branch
     public function setEmail(?string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
 
         return $this;
     }

@@ -1,12 +1,12 @@
 {
-  "build/js/app.js": "http://localhost:8080/build/js/app.js",
-  "build/css/login.css": "http://localhost:8080/build/css/login.css",
-  "build/css/frontend.css": "http://localhost:8080/build/css/frontend.css",
-  "build/css/app.css": "http://localhost:8080/build/css/app.css",
-  "build/images/programming.jpg": "http://localhost:8080/build/images/programming.1279fbbb.jpg",
-  "build/images/ajax-loader.gif": "http://localhost:8080/build/images/ajax-loader.c5cd7f53.gif",
-  "build/fonts/slick.eot": "http://localhost:8080/build/fonts/slick.ced611da.eot",
-  "build/images/slick.svg": "http://localhost:8080/build/images/slick.f97e3bbf.svg",
-  "build/fonts/slick.ttf": "http://localhost:8080/build/fonts/slick.d41f55a7.ttf",
-  "build/fonts/slick.woff": "http://localhost:8080/build/fonts/slick.b7c9e1e4.woff"
+  "build/js/app.js": "/build/js/app.js",
+  "build/css/login.css": "/build/css/login.css",
+  "build/css/frontend.css": "/build/css/frontend.css",
+  "build/css/app.css": "/build/css/app.css",
+  "build/fonts/slick.eot": "/build/fonts/slick.ced611da.eot",
+  "build/images/ajax-loader.gif": "/build/images/ajax-loader.c5cd7f53.gif",
+  "build/fonts/slick.woff": "/build/fonts/slick.b7c9e1e4.woff",
+  "build/images/programming.jpg": "/build/images/programming.1279fbbb.jpg",
+  "build/images/slick.svg": "/build/images/slick.f97e3bbf.svg",
+  "build/fonts/slick.ttf": "/build/fonts/slick.d41f55a7.ttf"
 }

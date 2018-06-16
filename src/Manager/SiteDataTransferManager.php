@@ -144,7 +144,6 @@ class SiteDataTransferManager
             'info' => 'End'
         ];
 
-
         while(true) {
             switch ($state->getPhase()) {
                 case SiteDataTransferState::PHASE_PORTFOLIO_CATEGORY:

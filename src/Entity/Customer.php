@@ -126,6 +126,11 @@ class Customer
      */
     private $isAlbum;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isRecommended;
+
 
     public function __construct()
     {
@@ -423,6 +428,18 @@ class Customer
     public function setIsAlbum(?bool $isAlbum): self
     {
         $this->isAlbum = $isAlbum;
+
+        return $this;
+    }
+
+    public function getIsRecommended(): ?bool
+    {
+        return $this->isRecommended;
+    }
+
+    public function setIsRecommended(bool $isRecommended): self
+    {
+        $this->isRecommended = $isRecommended;
 
         return $this;
     }

@@ -1,5 +1,239 @@
 @import '~bootstrap/scss/bootstrap.scss';
 
+body {
+  background:black;
+}
+
+
+.topbar {
+  background: #515151;
+  height:68px;
+}
+.topbar .slogan {
+  color: #adadad;
+  font-size: large;
+  font-weight: bold;
+  align-self: center;
+  padding:0 ($spacer)
+
+}
+/**shared**/
+
+@media (min-width: 1200px) {
+  .container {
+    width: 960px;
+  }
+}
+
+.main-menu {
+  background: #474747;
+  margin: 0 auto 0 0;
+  padding: 0;
+  flex-grow: 1;
+  @include clearfix;
+}
+.main-menu li {
+  @include float-left;
+  @include list-unstyled;
+}
+
+.main-menu li.first {
+  margin-left:auto;
+}
+
+.main-menu li a {
+  color: #adadad;
+  padding: 0  ($spacer );
+  display: inline-block;
+  text-decoration: none;
+  line-height:68px;
+  height:68px;
+}
+.main-menu li a:hover {
+
+  color:#3f8ae5;
+  border-bottom: 3px solid white;
+}
+
+.branches .branch {
+  background: #232323;
+  color:white;
+  padding:2rem;
+  height:100%;
+  text-align: center;
+}
+
+.branches .col:nth-child(odd) .branch
+{
+  background: #181818;
+}
+
+.branches .col
+{
+  align-items: stretch;
+}
+
+
+.bottom-menu {
+  @include clearfix;
+  margin:0;
+  padding:0;
+}
+
+.bottom-menu li {
+  float:left;
+  list-style: none;
+}
+.bottom-menu li a {
+  color: #adadad;
+  display: inline-block;
+  padding:0 .75rem;
+  border-right:1px solid #adadad;
+}
+
+.bottom-menu li.last a {
+  border:none;
+}
+
+.bottom-bar {
+  background: #333333;
+  padding: 5rem 0;
+}
+
+.copyright
+{
+  background: #1e1e1e;
+}
+
+.copyright p
+{
+  color: #4f4f51;
+  text-align: center;
+  font-size:14px;
+  padding:.5rem;
+}
+
+/**homepage**/
+#wall-paintings-recommended .col-3
+{
+  margin-bottom: 10px;
+}
+
+#wall-paintings-recommended .wall-painting
+{
+  background:#222222;
+  text-align: center;
+  color: #adadad;
+  margin: auto;
+  font-size:12px;
+  padding:.5rem 0 .3rem 0;
+}
+
+#wall-paintings-recommended .wall-painting img
+{
+  margin-bottom: 6px;
+}
+
+#wall-paintings-recommended .wall-painting h3
+{
+  font-size:14px;
+}
+
+#wall-painting-categroies-recommended .wall-painting-category
+{
+  font-size:12px;
+  position: relative;
+}
+
+#wall-painting-categroies-recommended .col-3
+{
+  margin-bottom: 10px;
+}
+
+#wall-painting-categroies-recommended .wall-painting-category h3 {
+  position: absolute;
+  top: 10px;
+  font-size: 16px;
+  padding: .5rem;
+  opacity: .85;
+  background: #212121;
+  color: #adadad;
+  width: 100%;
+}
+
+.customer-recommended-header
+{
+  background: #989898;
+  padding:1rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+#customer-recommended
+{
+  margin-bottom: 10px;
+}
+
+#customer-recommended .col-2
+{
+
+}
+
+#customer-recommended .customer {
+  height: 100%;
+  display: flex;
+  background: white;
+}
+
+
+#customer-recommended .customer img
+{
+  display: block;
+  align-self: center;
+  margin: auto;
+}
+
+
+/**wallPaintingShowPage**/
+.slider-for
+{
+
+  margin-top: 1rem;
+}
+
+.slider-for p
+{
+  margin-top: 1rem;
+}
+
+.slider-for .wall-painting-photo
+{
+  color: #adadad;
+}
+
+.wall-painting-page {
+  background: #222222;
+  padding-top:2rem;
+  padding-bottom: 2rem;
+}
+
+.wall-painting-show
+{
+  color: #adadad;
+  max-width:850px;
+  margin:auto;
+}
+
+.wall-painting-show h3
+{
+
+  font-size:18px;
+}
+
+.wall-painting-show hr
+{
+  border-top:1px solid #adadad;
+}
+
 $slick-font-path: '~slick-carousel/slick/fonts/';
 $slick-loader-path: '~slick-carousel/slick/';
 
@@ -63,6 +297,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 2.75rem;
   overflow-y: hidden;
 }
+
 
 .nav-scroller .nav {
   display: -ms-flexbox;

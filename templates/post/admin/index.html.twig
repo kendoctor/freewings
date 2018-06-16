@@ -34,7 +34,7 @@
                             <td >
                                 <h5>{{ post.title }}</h5>
                                 {% if post.listImage and post.listImage.filename %}
-                                    <div><img src="{{ vich_uploader_asset(post.listImage, 'file') | imagine_filter('post_listImage') }}" alt=""></div>
+                                    <div><img class="img-responsive" src="{{ vich_uploader_asset(post.listImage, 'file') | imagine_filter('post_listImage') }}" alt=""></div>
                                 {% endif %}
                             </td>
                             <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>

@@ -15,6 +15,7 @@ class CustomerType extends AbstractType
     {
         $builder
             ->add('title')
+            ->add('isRecommended')
             ->add('images', CollectionExType::class, [
                 'entry_type' => CustomerMediaType::class,
                 'entry_options' => ['label'=>false],

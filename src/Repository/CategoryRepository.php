@@ -108,7 +108,22 @@ class CategoryRepository extends NestedTreeRepository implements ServiceEntityRe
 
     }
 
-
+    /**
+     * @param int $limit
+     * @return mixed
+     */
+    public function getRecommendedByRootAndOrderByWeight($rootId, $limit = 7)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.isRecommended = true')
+            ->andWhere('IDENTITY(c.root) = :rootId')
+            ->setParameter('rootId', $rootId)
+            ->setMaxResults($limit)
+            ->orderBy('c.weight', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
     public function findUniqueByIdWithTag($id)
     {

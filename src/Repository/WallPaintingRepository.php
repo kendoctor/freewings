@@ -58,6 +58,16 @@ class WallPaintingRepository extends ServiceEntityRepository
             ;
     }
 
+    public function getRecommended($limit  = 12)
+    {
+        return $this->createQueryBuilder('w')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()
+            ;
+
+    }
+
 
 //    /**
 //     * @return WallPainting[] Returns an array of WallPainting objects

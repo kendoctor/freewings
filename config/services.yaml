@@ -39,3 +39,13 @@ services:
     vich.date_directory_namer:
         class: App\Vich\DateDirectoryNamer
         public: true
+
+    app.menu.builder:
+        class: App\Menu\Builder
+        arguments: ['@knp_menu.factory']
+
+    app.main_menu:
+        class: Knp\Menu\Item
+        factory: ['@app.menu.builder', createMainMenu]
+        tags:
+            - { name: knp_menu.menu, alias: main }

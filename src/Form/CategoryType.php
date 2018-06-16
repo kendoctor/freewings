@@ -28,6 +28,7 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('isRecommended')
             ->add('images', CollectionExType::class, [
                 'entry_type' => CategoryMediaType::class,
                 'entry_options' => ['label'=>false],
