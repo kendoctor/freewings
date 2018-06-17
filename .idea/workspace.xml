@@ -218,7 +218,7 @@
       <file leaf-file-name="frontend.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/css/frontend.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="80">
               <caret line="69" selection-start-line="69" selection-end-line="69" />
             </state>
           </provider>
@@ -670,16 +670,15 @@
       <workItem from="1528889623564" duration="55000" />
       <workItem from="1528889843935" duration="28844000" />
       <workItem from="1529118605219" duration="26000" />
-      <workItem from="1529118650026" duration="14318000" />
+      <workItem from="1529118650026" duration="14625000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="675824000" />
+    <option name="totallyTimeSpent" value="676131000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="75" y="24" width="1644" height="948" extended-state="4" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5016234" side_tool="true" weight="0.39166668" />
@@ -687,8 +686,8 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49837664" visible="true" weight="0.24047619" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17639902" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49837664" visible="true" weight="0.6166667" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17639902" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1074,7 +1073,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/frontend.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
+        <state relative-caret-position="80">
           <caret line="69" selection-start-line="69" selection-end-line="69" />
         </state>
       </provider>
