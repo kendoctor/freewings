@@ -24,6 +24,9 @@
 
     {% block body %}{% endblock %}
 
+    <div class="container">
+        {{ render(controller('App\\Controller\\DefaultController::componentBranches')) }}
+    </div>
     <div class="bottom-bar">
         <div class="container">
             <ul class="bottom-menu">

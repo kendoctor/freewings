@@ -85,23 +85,7 @@
               </div>
           {% endfor %}
       </div>
-      <div class="customer-recommended-header">隐形翅膀各地团队</div>
-      <div class="branches row no-gutters">
-          {% for branch in branches %}
-              <div class="col">
-                  <div class="branch">
-                      {{ branch.title }}
-                  </div>
-              </div>
-          {% endfor %}
-          {% for i in 0..(8-branches|length) %}
-              <div class="col">
-                  <div class="branch">
 
-                  </div>
-              </div>
-          {% endfor %}
-      </div>
   </main>
 
 {% endblock %}

@@ -63,6 +63,12 @@ body {
   text-align: center;
 }
 
+.branches-header {
+  background: #989898;
+  padding:1rem;
+  text-align: center;
+}
+
 .branches .col:nth-child(odd) .branch
 {
   background: #181818;
@@ -232,6 +238,41 @@ body {
 .wall-painting-show hr
 {
   border-top:1px solid #adadad;
+}
+
+.wall-painting-artists
+{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.wall-painting-artists .header
+{
+  background: #006dbc;
+  color: white;
+  font-size:14px;
+  padding:.5rem;
+  text-align: center;
+}
+
+.wall-painting-tags
+{
+  @include clearfix;
+  margin:0;
+  padding:0;
+}
+
+.wall-painting-tags li {
+  list-style: none;
+  float:left;
+  background: #656565;
+  margin-right: .5rem;
+  padding:.5rem;
+}
+
+.wall-painting-tags li a
+{
+  color: white;
 }
 
 $slick-font-path: '~slick-carousel/slick/fonts/';

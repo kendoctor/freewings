@@ -23,6 +23,23 @@
                         </div>
                     {% endfor %}
                 </div>
+                <div class="wall-painting-artists">
+                    <div class="row no-gutters">
+                        <div class="col-1 header">
+                            本案例艺术家
+                        </div>
+                    {% for wallPaintingArtist in wallPainting.wallPaintingArtists %}
+                        <div class="col-1">
+                            <img class="img-fluid" src="{{ vich_uploader_asset(wallPaintingArtist.artist.figureImage, 'file')}}" alt="{{ wallPaintingArtist.artist.username }}">
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+                <ul class="wall-painting-tags">
+                    {% for postTag in wallPainting.postTags %}
+                        <li><a href="">{{ postTag.tag.name }}</a></li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>

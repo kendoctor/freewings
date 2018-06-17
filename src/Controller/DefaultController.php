@@ -43,4 +43,11 @@ class DefaultController extends Controller
         ]);
     }
 
+    public function componentBranches(BranchRepository $branchRepository)
+    {
+        return $this->render('components/branches.html.twig', [
+            'branches' => $branchRepository->findAll()
+        ]);
+    }
+
 }

@@ -23,7 +23,9 @@ class WallPaintingController extends Controller
      */
     public function index()
     {
+        return $this->render('wall_painting/index.html.twig', [
 
+        ]);
     }
 
     /**
