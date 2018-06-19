@@ -33,7 +33,7 @@ class PostAdminController extends Controller
         $pagination = $paginator->paginate(
             $postRepository->findIt(),
             $page,
-            10
+            18
         );
 
         return $this->render('post/admin/index.html.twig', [

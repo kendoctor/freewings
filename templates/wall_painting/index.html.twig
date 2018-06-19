@@ -1,5 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-3 d-flex">
+                {% include 'wall_painting/_render_category.html.twig' with { 'categories' : categories } %}
+            </div>
+            <div class="col-9">
+                <div id="wall-paintings-recommended" class="row">
+                    {% for wallPainting in pagination %}
+                        <div class="col-3">
+                            {% if wallPainting.thumbImage and wallPainting.thumbImage.filename %}
+                                <div class="wall-painting">
+                                    <a href="{{ path('wall_painting_show', {id : wallPainting.id}) }}"><img class="img-fluid" src="{{ vich_uploader_asset(wallPainting.thumbImage, 'file')}}" alt=""></a>
+                                    <h3>{{ wallPainting.title }}</h3>
+                                    <p>{{ wallPainting.brief }}</p>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            </div>
+        </div>
 
+    </div>
 {% endblock %}

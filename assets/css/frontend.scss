@@ -275,6 +275,49 @@ body {
   color: white;
 }
 
+/**wallPaintingIndexPage**/
+.wall-painting-categories-root
+{
+
+  margin:0;
+  padding:1rem;
+  background: #222222;
+  color:#adadad;
+
+}
+
+.wall-painting-categories-root li
+{
+  list-style: none;
+  font-size:16px;
+}
+
+.wall-painting-categories-root li a
+{
+  color:#adadad;
+}
+
+.page-link
+{
+  background: #111111;
+  color: #adadad;
+  border-color: #222222;
+}
+
+.page-item.disabled .page-link
+{
+  background: gray;
+  border-color: #222222;
+  color: #adadad;
+}
+.page-link:hover
+{
+  background: #757374;
+  color: #adadad;
+  border: #adadad;
+}
+
+
 $slick-font-path: '~slick-carousel/slick/fonts/';
 $slick-loader-path: '~slick-carousel/slick/';
 

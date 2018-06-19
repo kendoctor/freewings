@@ -68,6 +68,21 @@ class WallPaintingRepository extends ServiceEntityRepository
 
     }
 
+    public function getList($category = 'all', $limit = 18)
+    {
+        $builder = $this->createQueryBuilder('w')
+            ->leftJoin('w.category', 'c')
+            ->setMaxResults($limit)
+            ;
+        if($category !== 'all')
+        {
+            $builder->where('c.id = :category')
+                ->setParameter('category', $category);
+        }
+
+        return $builder->getQuery();
+    }
+
 
 //    /**
 //     * @return WallPainting[] Returns an array of WallPainting objects

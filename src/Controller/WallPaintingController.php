@@ -10,21 +10,35 @@ namespace App\Controller;
 
 
 use App\Entity\WallPainting;
+use App\Repository\CategoryRepository;
+use App\Repository\WallPaintingRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("wall-painting/{_locale}", defaults={"_locale"="zh_CN"}, requirements={"_locale"="en|zh_CN"})
+ * @Route("{_locale}/wall-painting", defaults={"_locale"="zh_CN"}, requirements={"_locale"="en|zh_CN"})
  */
 class WallPaintingController extends Controller
 {
     /**
-     * @Route("/", name="wall_painting_index", methods="GET")
+     * @Route("/{category}/{page}/index", name="wall_painting_index", methods="GET")
      */
-    public function index()
+    public function index(CategoryRepository $categoryRepository, WallPaintingRepository $wallPaintingRepository,
+                          PaginatorInterface $paginator,
+                          $category = 'all',
+                          $page = 1)
     {
-        return $this->render('wall_painting/index.html.twig', [
+        $pagination = $paginator->paginate(
+            $wallPaintingRepository->getList($category),
+            $page,
+            10
+        );
 
+
+        return $this->render('wall_painting/index.html.twig', [
+            'pagination' => $pagination,
+            'categories' => $categoryRepository->getCategoryTreeByType()
         ]);
     }
 
@@ -37,4 +51,6 @@ class WallPaintingController extends Controller
             'wallPainting' => $wallPainting
         ]);
     }
+
+    
 }

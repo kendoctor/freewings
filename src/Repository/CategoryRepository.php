@@ -166,6 +166,12 @@ class CategoryRepository extends NestedTreeRepository implements ServiceEntityRe
 
     }
 
+    public function getCategoryTreeByType($type = 'wall_painting')
+    {
+        $root = $this->getRoot($type);
+        return $this->getCategoryTree($root);
+    }
+
 //    /**
 //     * @return Category[] Returns an array of Category objects
 //     */

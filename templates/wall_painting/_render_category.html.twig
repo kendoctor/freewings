@@ -1,0 +1,10 @@
+<ul class="wall-painting-categories-root align-items-stretch">
+    {% for category in categories %}
+        <li>
+                <a href="{{ path('wall_painting_index', { category : category.id } ) }}">{{ category.name }}</a>
+            {% if category.children | length > 0 %}
+                {% include 'wall_painting/_render_category.html.twig' with { 'categories' : category.children } %}
+            {% endif  %}
+        </li>
+    {% endfor %}
+</ul>
