@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Category;
 use App\Entity\Media;
 use App\Entity\PostMedia;
 use App\Entity\WallPainting;
@@ -70,17 +71,20 @@ class WallPaintingRepository extends ServiceEntityRepository
 
     public function getList($category = 'all', $limit = 18)
     {
-        $builder = $this->createQueryBuilder('w')
+        $qb = $this->createQueryBuilder('w')
             ->leftJoin('w.category', 'c')
             ->setMaxResults($limit)
+            ->orderBy('w.createdBy','DESC')
             ;
-        if($category !== 'all')
+        if($category instanceof Category)
         {
-            $builder->where('c.id = :category')
-                ->setParameter('category', $category);
+
+               $qb->where($qb->expr()->gte('c.lft', $category->getLft()))
+                   ->andWhere($qb->expr()->lte('c.rgt', $category->getRgt()))
+               ;
         }
 
-        return $builder->getQuery();
+        return $qb->getQuery();
     }
 
 

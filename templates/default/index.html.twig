@@ -54,7 +54,7 @@
               <div class="col-3">
                   {% if wallPaintingCategory.thumbImage and wallPaintingCategory.thumbImage.filename %}
                       <div class="wall-painting-category">
-                          <img class="img-fluid" src="{{ vich_uploader_asset(wallPaintingCategory.thumbImage, 'file')}}" alt="">
+                          <a href="{{ path('wall_painting_index', { category : wallPaintingCategory.id }) }}"><img class="img-fluid" src="{{ vich_uploader_asset(wallPaintingCategory.thumbImage, 'file')}}" alt=""></a>
                           <h3>{{ wallPaintingCategory.name }}</h3>
                       </div>
                   {% endif %}
@@ -67,7 +67,7 @@
           {% for customer in customersRecommended %}
               <div class="col-2">
                   <div class="customer">
-                      <img class="img-fluid" src="{{ vich_uploader_asset(customer.thumbImage, 'file')}}" alt="{{ customer.title }}">
+                      <a href="{{ path('customer_show', { id: customer.id }) }}"><img class="img-fluid" src="{{ vich_uploader_asset(customer.thumbImage, 'file')}}" alt="{{ customer.title }}"></a>
                   </div>
               </div>
           {% endfor %}
@@ -79,7 +79,7 @@
               <div class="col">
                   {%  if artist.figureImage %}
                   <div class="customer">
-                      <img class="img-fluid" src="{{ vich_uploader_asset(artist.figureImage, 'file')}}" alt="{{ artist.username }}">
+                      <a href="{{ path('artist_show', { id: artist.id }) }}"><img class="img-fluid" src="{{ vich_uploader_asset(artist.figureImage, 'file')}}" alt="{{ artist.username }}"></a>
                   </div>
                   {% endif %}
               </div>

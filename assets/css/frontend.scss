@@ -318,6 +318,37 @@ body {
 }
 
 
+
+/** contact page ***/
+
+.contact-page
+{
+  background: #222222;
+}
+
+.branch-list
+{
+  padding:1rem 0;
+  color: #adadad;
+  max-width:850px;
+  margin:auto;
+}
+
+
+.contact-page .branch-list .branch
+{
+  margin-bottom: 10px;
+
+}
+
+/**customer show page**/
+.customer-intro
+{
+  background: #222222;
+  margin-bottom: 10px;
+  color:#adadad;
+}
+
 $slick-font-path: '~slick-carousel/slick/fonts/';
 $slick-loader-path: '~slick-carousel/slick/';
 

@@ -29,10 +29,15 @@ class WallPaintingController extends Controller
                           $category = 'all',
                           $page = 1)
     {
+        if($category !== 'all')
+        {
+            $category = $categoryRepository->find($category);
+        }
+
         $pagination = $paginator->paginate(
             $wallPaintingRepository->getList($category),
             $page,
-            10
+            12
         );
 
 

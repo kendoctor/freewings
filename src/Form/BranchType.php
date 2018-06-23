@@ -16,10 +16,9 @@ class BranchType extends AbstractType
             ->add('address')
             ->add('phone')
             ->add('mobile')
-            ->add('qq1')
-            ->add('qq2')
-            ->add('qq3')
+            ->add('qq')
             ->add('email')
+            ->add('map', MediaType::class)
         ;
     }
 

@@ -3,7 +3,7 @@
     {% for branch in branches %}
         <div class="col">
             <div class="branch">
-                {{ branch.title }}
+                <a href="{{ path('contact', { id : branch.id }) }}">{{ branch.title }}</a>
             </div>
         </div>
     {% endfor %}

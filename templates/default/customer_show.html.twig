@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="customer-show-page">
+        <div class="customer-intro">
+            <div class="row">
+                <div class="col-3">
+                    <img class="img-fluid" src="{{ vich_uploader_asset(customer.listImage, 'file')}}" alt="">
+                    <h3>{{ customer.title }}</h3>
+                    <p>{{ customer.description }}</p>
+                </div>
+                <div class="col-9">
+                    <img class="img-fluid" src="{{ vich_uploader_asset(customer.coverImage, 'file')}}" alt="">
+                </div>
+            </div>
+        </div>
+        <div id="wall-paintings-recommended" class="row">
+            {% for wallPainting in customer.wallPaintings %}
+                <div class="col-3">
+                    {% if wallPainting.thumbImage and wallPainting.thumbImage.filename %}
+                        <div class="wall-painting">
+                            <a href="{{ path('wall_painting_show', {id : wallPainting.id}) }}"><img class="img-fluid" src="{{ vich_uploader_asset(wallPainting.thumbImage, 'file')}}" alt=""></a>
+                            <h3>{{ wallPainting.title }}</h3>
+                            <p>{{ wallPainting.brief }}</p>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

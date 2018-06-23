@@ -95,6 +95,16 @@ class User implements UserInterface, \Serializable
      */
     private $images;
 
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $nickname;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $positionTitle;
+
     public function __construct()
     {
         $this->isActive = true;
@@ -519,6 +529,30 @@ class User implements UserInterface, \Serializable
                 $image->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNickname(): ?string
+    {
+        return $this->nickname;
+    }
+
+    public function setNickname(?string $nickname): self
+    {
+        $this->nickname = $nickname;
+
+        return $this;
+    }
+
+    public function getPositionTitle(): ?string
+    {
+        return $this->positionTitle;
+    }
+
+    public function setPositionTitle(?string $positionTitle): self
+    {
+        $this->positionTitle = $positionTitle;
 
         return $this;
     }

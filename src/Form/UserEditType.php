@@ -16,6 +16,8 @@ class UserEditType extends AbstractType
     {
         $builder
             ->add('username')
+            ->add('nickname')
+            ->add('positionTitle')
             ->add('email')
             ->add('type', ChoiceType::class, [
                 'expanded' => true,

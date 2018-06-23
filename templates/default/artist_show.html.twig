@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="artist-show-page">
+            <div class="row">
+                <div class="col-4">
+                    <img class="img-fluid" src="{{ vich_uploader_asset(artist.figureImage, 'file')}}" alt="">
+
+                </div>
+                <div class="col-8">
+                    <h3>{{ artist.nickname }}</h3>
+                    <p>{{ artist.positionTitle }}</p>
+                    <p>{{ artist.description }}</p>
+                </div>
+            </div>
+
+            <div class="wall-painting-list">
+                {% for wallPaintingArtist in artist.wallPaintingArtists %}
+                    {% set wallPainting =  wallPaintingArtist.wallPainting %}
+                    {% if wallPainting.thumbImage and wallPainting.thumbImage.filename %}
+                        <div class="wall-painting">
+                            <a href="{{ path('wall_painting_show', {id : wallPainting.id}) }}"><img class="img-fluid" src="{{ vich_uploader_asset(wallPainting.thumbImage, 'file')}}" alt=""></a>
+                            <h3>{{ wallPainting.title }}</h3>
+                            <p>{{ wallPainting.brief }}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
