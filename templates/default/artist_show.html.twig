@@ -3,29 +3,37 @@
 {% block body %}
     <div class="container">
         <div class="artist-show-page">
-            <div class="row">
-                <div class="col-4">
-                    <img class="img-fluid" src="{{ vich_uploader_asset(artist.figureImage, 'file')}}" alt="">
-
+            <div class="artist-profile">
+                <div class="hd">
+                    全部案例 共{{ pagination.totalItemCount }}组作品
                 </div>
-                <div class="col-8">
-                    <h3>{{ artist.nickname }}</h3>
-                    <p>{{ artist.positionTitle }}</p>
-                    <p>{{ artist.description }}</p>
+                <div class="bd">
+                    <div class="caption">
+                        艺术家
+                    </div>
+                    <img class="figure img-fluid" src="{{ vich_uploader_asset(artist.figureImage, 'file')}}" alt="">
+                    <div class="intro">
+                        <div class="nickname">{{ artist.nickname }} 作品集</div>
+                        <div class="position-title">{{ artist.positionTitle }}</div>
+                        <div class="description">{{ artist.description }}</div>
+                    </div>
                 </div>
             </div>
 
-            <div class="wall-painting-list">
-                {% for wallPaintingArtist in artist.wallPaintingArtists %}
+            <div class="wall-painting-list row">
+                {% for wallPaintingArtist in pagination %}
                     {% set wallPainting =  wallPaintingArtist.wallPainting %}
                     {% if wallPainting.thumbImage and wallPainting.thumbImage.filename %}
-                        <div class="wall-painting">
+                        <div class="wall-painting col-lg-3">
                             <a href="{{ path('wall_painting_show', {id : wallPainting.id}) }}"><img class="img-fluid" src="{{ vich_uploader_asset(wallPainting.thumbImage, 'file')}}" alt=""></a>
                             <h3>{{ wallPainting.title }}</h3>
                             <p>{{ wallPainting.brief }}</p>
                         </div>
                     {% endif %}
                 {% endfor %}
+            </div>
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
             </div>
         </div>
     </div>

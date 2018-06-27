@@ -6,9 +6,11 @@
         <div class="customer-intro">
             <div class="row">
                 <div class="col-3">
-                    <img class="img-fluid" src="{{ vich_uploader_asset(customer.listImage, 'file')}}" alt="">
-                    <h3>{{ customer.title }}</h3>
-                    <p>{{ customer.description }}</p>
+                    <div class="customer-intro-logo">
+                        <img class="img-fluid" src="{{ vich_uploader_asset(customer.listImage, 'file') | imagine_filter('customer_logo')}} " alt="">
+                        <div class="customer-title">{{ customer.title }}</div>
+                        <p>{{ customer.description }}</p>
+                    </div>
                 </div>
                 <div class="col-9">
                     <img class="img-fluid" src="{{ vich_uploader_asset(customer.coverImage, 'file')}}" alt="">

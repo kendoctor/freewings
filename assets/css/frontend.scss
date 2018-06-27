@@ -17,6 +17,7 @@ body {
   padding:0 ($spacer)
 
 }
+
 /**shared**/
 
 @media (min-width: 1200px) {
@@ -53,6 +54,20 @@ body {
 
   color:#3f8ae5;
   border-bottom: 3px solid white;
+}
+
+.locale-switch
+{
+  line-height: 68px;
+  background: #474747;
+}
+
+.locale-switch a
+{
+  color:#7a7a7a;
+  background: #1c1c1c;
+  padding:5px;
+  //display: inline-block;
 }
 
 .branches .branch {
@@ -348,6 +363,76 @@ body {
   margin-bottom: 10px;
   color:#adadad;
 }
+
+.customer-intro-logo
+{
+  max-width:188px;
+  padding:1rem;
+  margin: auto;
+  text-align: center;
+}
+
+.customer-intro .customer-title
+{
+  padding:.5rem 0;
+}
+
+
+
+
+/**artist show page**/
+.artist-profile
+{
+  margin-bottom: 1rem;
+}
+.artist-profile .hd
+{
+  background: #2d2d2d;
+  color:#5f5f5f;
+  padding:.5rem 1rem;
+}
+
+.artist-profile .bd
+{
+  padding:3rem;
+  background: #222222;
+}
+
+.artist-profile .nickname
+{
+  color:#adadad;
+  font-size:18px;
+}
+
+.artist-profile .caption
+{
+  color :#bacbe5;
+  background: #006dbc;
+  width: 120px;
+  line-height:120px;
+  height:120px;
+  text-align: center;
+  font-size:18px;
+
+}
+
+.artist-profile .bd
+{
+  display: flex;
+}
+
+.artist-profile .bd .intro
+{
+  padding:.5rem 1rem;
+  color: #888888;
+}
+
+.artist-show-page .wall-painting-list
+{
+
+}
+
+
 
 $slick-font-path: '~slick-carousel/slick/fonts/';
 $slick-loader-path: '~slick-carousel/slick/';

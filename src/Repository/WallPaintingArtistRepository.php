@@ -22,6 +22,17 @@ class WallPaintingArtistRepository extends ServiceEntityRepository
         $this->userRepository = $userRepository;
     }
 
+    public function getQueryByArtist($artistId)
+    {
+        return $this->createQueryBuilder('wpa')
+            ->addSelect('wp')
+            ->leftJoin('wpa.wallPainting', 'wp')
+            ->leftJoin('wpa.artist', 'a')
+            ->where('a.id = :artistId')
+            ->setParameter('artistId', $artistId)
+            ->getQuery();
+    }
+
     public function getAvailableArtists($wallPaintingId)
     {
         $artists = $this->userRepository->getArtists();

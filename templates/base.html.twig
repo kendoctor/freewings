@@ -15,6 +15,17 @@
                 <img class="" src="{{ asset('assets/freewings/freewings_logo.gif') }}"/>
                 <div class="slogan">墙绘壁画的创作与绘画</div>
                 {{ knp_menu_render('main') }}
+                <div class="locale-switch">
+                {% set params = app.request.attributes.get('_route_params')|merge(app.request.query.all()) %}
+                {% if app.request.locale == 'en' %}
+                    {% set params = params|merge({'_locale': 'zh_CN'}) %}
+                    <a  href="{{ path(app.request.attributes.get('_route'), params) }}">中文</a>
+                {% else %}
+                    {% set params = params|merge({'_locale': 'en'}) %}
+                    <a  href="{{ path(app.request.attributes.get('_route'), params) }}">En</a>
+                {% endif %}
+                </div>
+
             </div>
         </div>
     </div>
@@ -30,12 +41,10 @@
     <div class="bottom-bar">
         <div class="container">
             <ul class="bottom-menu">
-                <li><a href="">网站地图</a></li>
                 <li><a href="">客户</a></li>
                 <li><a href="">招聘</a></li>
                 <li><a href="">彩绘培训</a></li>
                 <li><a href="">团队</a></li>
-                <li><a href="">留言</a></li>
                 <li class="last"><a href="">新闻</a></li>
             </ul>
         </div>

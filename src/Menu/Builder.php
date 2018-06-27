@@ -11,6 +11,7 @@ namespace App\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class Builder
 {
@@ -23,8 +24,10 @@ class Builder
         $this->factory = $factory;
     }
 
-    public function createMainMenu()
+    public function createMainMenu(RequestStack $requestStack)
     {
+        $request = $requestStack->getCurrentRequest();
+
         $menu = $this->factory->createItem('root', [
             'childrenAttributes' => ['class' => 'main-menu']
         ]);

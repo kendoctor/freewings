@@ -9,7 +9,9 @@ use App\Repository\BranchRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\CustomerRepository;
 use App\Repository\UserRepository;
+use App\Repository\WallPaintingArtistRepository;
 use App\Repository\WallPaintingRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,7 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/{_locale}", defaults={"_locale"="zh_CN"}, name="home")
      * @param WallPaintingRepository $wallPaintingRepository
      * @param CategoryRepository $categoryRepository
      * @param CustomerRepository $customerRepository
@@ -67,12 +69,17 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/artist/{id}/show", name="artist_show")
+     * @Route("/artist/{id}/page-{page}/show", name="artist_show")
      */
-    public function artistShow(User $artist)
+    public function artistShow(User $artist, WallPaintingArtistRepository $wallPaintingArtistRepository, PaginatorInterface $paginator, $page = 1)
     {
+        $pagination = $paginator->paginate(
+            $wallPaintingArtistRepository->getQueryByArtist($artist->getId()),
+            $page
+        );
         return $this->render('default/artist_show.html.twig', [
-            'artist' => $artist
+            'artist' => $artist,
+            'pagination' => $pagination
         ]);
     }
 

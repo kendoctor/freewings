@@ -67,7 +67,7 @@
           {% for customer in customersRecommended %}
               <div class="col-2">
                   <div class="customer">
-                      <a href="{{ path('customer_show', { id: customer.id }) }}"><img class="img-fluid" src="{{ vich_uploader_asset(customer.thumbImage, 'file')}}" alt="{{ customer.title }}"></a>
+                      <a href="{{ path('customer_show', { id: customer.id }) }}"><img class="img-fluid" src="{{ vich_uploader_asset(customer.thumbImage, 'file') | imagine_filter('customer_logo')}}" alt="{{ customer.title }}"></a>
                   </div>
               </div>
           {% endfor %}
@@ -76,7 +76,7 @@
       <div class="customer-recommended-header">隐形翅膀团队只专注做一件事情，在墙上画画</div>
       <div id="customer-recommended" class="row">
           {% for artist in artistsRecommended %}
-              <div class="col">
+              <div class="col-2">
                   {%  if artist.figureImage %}
                   <div class="customer">
                       <a href="{{ path('artist_show', { id: artist.id }) }}"><img class="img-fluid" src="{{ vich_uploader_asset(artist.figureImage, 'file')}}" alt="{{ artist.username }}"></a>

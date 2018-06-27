@@ -47,5 +47,6 @@ services:
     app.main_menu:
         class: Knp\Menu\Item
         factory: ['@app.menu.builder', createMainMenu]
+        arguments: ['@request_stack']
         tags:
             - { name: knp_menu.menu, alias: main }
