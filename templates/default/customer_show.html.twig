@@ -7,26 +7,28 @@
             <div class="row">
                 <div class="col-3">
                     <div class="customer-intro-logo">
-                        <img class="img-fluid" src="{{ vich_uploader_asset(customer.listImage, 'file') | imagine_filter('customer_logo')}} " alt="">
+                        <img class="img-fluid" src="{{ vich_uploader_asset(customer.logo, 'file') | imagine_filter('customer_logo')}} " alt="">
                         <div class="customer-title">{{ customer.title }}</div>
                         <p>{{ customer.description }}</p>
                     </div>
                 </div>
                 <div class="col-9">
-                    <img class="img-fluid" src="{{ vich_uploader_asset(customer.coverImage, 'file')}}" alt="">
+                    <img class="img-fluid" src="{{ vich_uploader_asset(customer.cover, 'file')}}" alt="">
                 </div>
             </div>
         </div>
         <div id="wall-paintings-recommended" class="row">
             {% for wallPainting in customer.wallPaintings %}
                 <div class="col-3">
-                    {% if wallPainting.thumbImage and wallPainting.thumbImage.filename %}
-                        <div class="wall-painting">
-                            <a href="{{ path('wall_painting_show', {id : wallPainting.id}) }}"><img class="img-fluid" src="{{ vich_uploader_asset(wallPainting.thumbImage, 'file')}}" alt=""></a>
-                            <h3>{{ wallPainting.title }}</h3>
-                            <p>{{ wallPainting.brief }}</p>
-                        </div>
-                    {% endif %}
+                    <div class="wall-painting">
+                        <a href="{{ path('wall_painting_show', {id : wallPainting.id}) }}">
+                            {% if wallPainting.cover %}
+                            <img class="img-fluid" src="{{ vich_uploader_asset(wallPainting.cover, 'file')}}" alt="">
+                            {% endif %}
+                        </a>
+                        <h3>{{ wallPainting.title }}</h3>
+                        <p>{{ wallPainting.brief }}</p>
+                    </div>
                 </div>
             {% endfor %}
         </div>

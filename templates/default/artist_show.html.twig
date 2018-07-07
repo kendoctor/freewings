@@ -11,7 +11,7 @@
                     <div class="caption">
                         艺术家
                     </div>
-                    <img class="figure img-fluid" src="{{ vich_uploader_asset(artist.figureImage, 'file')}}" alt="">
+                    <img class="figure img-fluid" src="{{ vich_uploader_asset(artist.figure, 'file')|imagine_filter('artist_figure_sm')}}" alt="">
                     <div class="intro">
                         <div class="nickname">{{ artist.nickname }} 作品集</div>
                         <div class="position-title">{{ artist.positionTitle }}</div>

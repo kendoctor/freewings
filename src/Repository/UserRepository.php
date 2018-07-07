@@ -39,6 +39,13 @@ class UserRepository extends ServiceEntityRepository
         return $user;
     }
 
+    public function getListQuery()
+    {
+        return $this->createQueryBuilder('u')
+            ->getQuery()
+            ;
+    }
+
     public function getCreatorByName($username = 'kendoctor')
     {
 
@@ -62,7 +69,7 @@ class UserRepository extends ServiceEntityRepository
         return $creator;
     }
 
-    public function getArtistsRecommended($limit = 10)
+    public function getArtistsRecommended($limit = 8)
     {
         return $this->createQueryBuilder('u')
             ->where('BIT_AND(u.type, :type) > 0')

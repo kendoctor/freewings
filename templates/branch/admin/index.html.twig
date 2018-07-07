@@ -3,10 +3,19 @@
 {% block title %}Branch index{% endblock %}
 
 {% block body %}
-    <h1>Branch index</h1>
+    <div class="page">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ 'admin.home'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'category.index'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ postType |trans }}</a></li>
+            </ol>
+        </nav>
 
-    <table class="table">
-        <thead>
+        <h1>Branch index</h1>
+
+        <table class="table">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Address</th>
@@ -16,28 +25,30 @@
                 <th>Email</th>
                 <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for branch in branches %}
-            <tr>
-                <td>{{ branch.id }}</td>
-                <td>{{ branch.address }}</td>
-                <td>{{ branch.phone }}</td>
-                <td>{{ branch.mobile }}</td>
-                <td>{{ branch.qq }}</td>
-                <td>{{ branch.email }}</td>
-                <td>
-                    <a href="{{ path('admin_branch_show', {'id': branch.id}) }}">show</a>
-                    <a href="{{ path('admin_branch_edit', {'id': branch.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for branch in branches %}
+                <tr>
+                    <td>{{ branch.id }}</td>
+                    <td>{{ branch.address }}</td>
+                    <td>{{ branch.phone }}</td>
+                    <td>{{ branch.mobile }}</td>
+                    <td>{{ branch.qq }}</td>
+                    <td>{{ branch.email }}</td>
+                    <td>
+                        <a href="{{ path('admin_branch_show', {'id': branch.id}) }}">show</a>
+                        <a href="{{ path('admin_branch_edit', {'id': branch.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="9">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('admin_branch_new') }}">Create new</a>
+        <a href="{{ path('admin_branch_new') }}">Create new</a>
+    </div>
+
 {% endblock %}

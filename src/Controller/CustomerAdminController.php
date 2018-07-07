@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Customer;
 use App\Form\CustomerType;
 use App\Repository\CustomerRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,11 +17,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class CustomerAdminController extends Controller
 {
     /**
-     * @Route("/", name="customer_index", methods="GET")
+     * @Route("/{page}", requirements={"page"="\d+"}, name="customer_index", methods="GET")
      */
-    public function index(CustomerRepository $customerRepository): Response
+    public function index(CustomerRepository $customerRepository, PaginatorInterface $paginator, $page = 1): Response
     {
-        return $this->render('customer/admin/index.html.twig', ['customers' => $customerRepository->findAll()]);
+        return $this->render('customer/admin/index.html.twig', [
+            'customers' => $customerRepository->findAll(),
+            'pagination' => $paginator->paginate($customerRepository->getListQuery(), $page)
+        ]);
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Entity\WallPaintingArtist;
 use App\Form\WallPaintingType;
 use App\Repository\WallPaintingRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,11 +19,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class WallPaintingAdminController extends Controller
 {
     /**
-     * @Route("/", name="wall_painting_index", methods="GET")
+     * @Route("/{page}", name="wall_painting_index", requirements={"page"="\d+"}, methods="GET")
      */
-    public function index(WallPaintingRepository $wallPaintingRepository): Response
+    public function index(WallPaintingRepository $wallPaintingRepository, PaginatorInterface $paginator, $page = 1 ): Response
     {
-        return $this->render('wall_painting/admin/index.html.twig', ['wall_paintings' => $wallPaintingRepository->findAll()]);
+        return $this->render('wall_painting/admin/index.html.twig', [
+            'wall_paintings' => $wallPaintingRepository->findAll(),
+            'pagination' => $paginator->paginate( $wallPaintingRepository->getList(), $page)
+        ]);
     }
 
     /**

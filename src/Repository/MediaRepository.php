@@ -19,6 +19,18 @@ class MediaRepository extends ServiceEntityRepository
         parent::__construct($registry, Media::class);
     }
 
+
+    public function persist($entity)
+    {
+        $this->_em->persist($entity);
+
+    }
+
+    public function flush()
+    {
+        $this->_em->flush();
+    }
+
 //    /**
 //     * @return Media[] Returns an array of Media objects
 //     */

@@ -15,6 +15,7 @@ use App\Entity\PostTag;
 use App\Entity\WallPaintingPhoto;
 use App\Repository\CategoryRepository;
 use App\Repository\CustomerRepository;
+use App\Repository\MediaRepository;
 use App\Repository\TagRepository;
 use App\Repository\UserRepository;
 use App\Repository\WallPaintingRepository;
@@ -25,6 +26,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 class SiteDataTransferManager
 {
@@ -92,7 +94,9 @@ class SiteDataTransferManager
     private $customerRepository;
     private $tagRepository;
     private $userRepository;
+    private $mediaRepository;
     private $creator;
+    private $uploaderHelper;
 
     /** @var SiteDataTransferState */
     private $state;
@@ -111,7 +115,9 @@ class SiteDataTransferManager
                                 CategoryRepository $categoryRepository,
                                 CustomerRepository $customerRepository,
                                 TagRepository $tagRepository,
-                                UserRepository $userRepository
+                                UserRepository $userRepository,
+                                MediaRepository $mediaRepository,
+                                UploaderHelper $uploaderHelper
     )
     {
         $this->wallPaintingRepository = $wallPaintingRepository;
@@ -122,6 +128,8 @@ class SiteDataTransferManager
         $this->state = SiteDataTransferState::instance();
         $this->userRepository = $userRepository;
         $this->creator = $userRepository->getCreatorByName();
+        $this->uploaderHelper = $uploaderHelper;
+        $this->mediaRepository = $mediaRepository;
 
     }
 
@@ -417,7 +425,7 @@ class SiteDataTransferManager
             $customerEditUrl = 'http://www.freewings.me' . $node->getAttribute('href');
             $crawlerCustomerEdit = $this->client->request('GET', $customerEditUrl);
             $id = $this->firstNode($crawlerCustomerEdit, self::SELECTOR_CUSTOMER_ID)->getAttribute('value');
-            $isAlbum = $this->firstNode($crawlerCustomerEdit, self::SELECTOR_CUSTOMER_IS_ALBUM)->getAttribute('value') == 'checked';
+            $isAlbum = $this->firstNode($crawlerCustomerEdit, self::SELECTOR_CUSTOMER_IS_ALBUM)->getAttribute('checked') == 'checked';
             $name = $this->firstNode($crawlerCustomerEdit, self::SELECTOR_CUSTOMER_NAME)->getAttribute('value');
             $address = $this->firstNode($crawlerCustomerEdit, self::SELECTOR_CUSTOMER_ADDRESS)->textContent;
             $fax = $this->firstNode($crawlerCustomerEdit, self::SELECTOR_CUSTOMER_FAX)->getAttribute('value');
@@ -441,15 +449,28 @@ class SiteDataTransferManager
             $customer->setFax($fax);
             $customer->setAddress($address);
             $customer->setIsAlbum($isAlbum);
+            $customer->setIsRecommended($isAlbum);
             $customer->setCreatedAt($createdAt);
 
 
 
-            $customer->getCoverImage()->setCreatedAt($createdAt);
-            $customer->getCoverImage()->setFile($this->getPortfolioImageUploadedFile($logo));
+            if(!empty($logo))
+            {
+                if(!$customer->getCover()) {
+                    $customer->setCover(new Media());
+                }
+                $customer->getCover()->setCreatedAt($createdAt);
+                $customer->getCover()->setFile($this->getPortfolioImageUploadedFile($logo));
+            }
 
-            $customer->getListImage()->setCreatedAt($createdAt);
-            $customer->getListImage()->setFile($this->getPortfolioImageUploadedFile($cover));
+            if(!empty($cover))
+            {
+                if(!$customer->getLogo()) {
+                    $customer->setLogo(new Media());
+                }
+                $customer->getLogo()->setCreatedAt($createdAt);
+                $customer->getLogo()->setFile($this->getPortfolioImageUploadedFile($cover));
+            }
 
             $this->customerRepository->persist($customer);
             $this->customerRepository->flush();
@@ -468,7 +489,6 @@ class SiteDataTransferManager
         }
 
         $this->state->save();
-
 
     }
 
@@ -567,22 +587,32 @@ class SiteDataTransferManager
             $content = $this->firstNode($crawlerPortfolioEdit, self::SELECTOR_PORTFOLIO_DESCRIPTION)->textContent;
 
             preg_match_all('/<img alt="" src="([^"]*)"\s[^>]*>/', $content, $matches);
-            $content = preg_replace('/<img\s[^>]*>/', '___tmpsp___', $content);
-            $tokens = explode('___tmpsp___', $content);
+            $parts = preg_split('/<img alt="" src="[^"]*"\s[^>]*>/', $content);
 
-            if(isset($tokens[0]))
-                $wallPainting->setContent($tokens[0]);
-            $cnt = $wallPainting->getPhotos()->count();
-
-            for ($i = $cnt+1; $i < count($tokens); $i++) {
-                $photo = new WallPaintingPhoto();
+           // $content = preg_replace('/<img\s[^>]*>/', '___tmpsp___', $content);
+           // $tokens = explode('___tmpsp___', $content);
+            $srcs = [];
+            for($i=0;$i<count($matches[1]);$i++)
+            {
                 $media = new Media();
-                $media->setCreatedAt($customer->getCreatedAt());
-                $media->setFile($this->getUploadedFile($matches[1][$i - 1]));
-                $photo->setDescription($tokens[$i]);
-                $photo->setMedia($media);
-                $wallPainting->addPhoto($photo);
+                $media->setFile($this->getUploadedFile($matches[1][$i]));
+                $this->mediaRepository->persist($media);
+                $this->mediaRepository->flush();
+                $src = $this->uploaderHelper->asset($media, 'file');
+                $srcs[] = $src;
             }
+
+            $content = "";
+            for($i=0;$i<count($parts);$i++)
+            {
+                $content .= $parts[$i];
+                if(isset($srcs[$i]))
+                {
+                    $content .= sprintf('<img alt="" src="%s"/>', $srcs[$i]);
+                }
+            }
+
+            $wallPainting->setContent($content);
 
 
             $weight = $this->firstNode($crawlerPortfolioEdit, self::SELECTOR_PORTFOLIO_WEIGHT)->getAttribute('value');
@@ -590,15 +620,25 @@ class SiteDataTransferManager
             $wallPainting->setOldId($this->firstNode($crawlerPortfolioEdit, self::SELECTOR_PORTFOLIO_ID)->getAttribute('value'));
             $wallPainting->setIsPublished($this->firstNode($crawlerPortfolioEdit, self::SELECTOR_PORTFOLIO_IS_PUBLISHED)->getAttribute('checked') == 'checked');
 
-            $listImagePath = $this->firstNode($crawlerPortfolioEdit, self::SELECTOR_PORTFOLIO_SMALLICON)->getAttribute('value');
+           // $listImagePath = $this->firstNode($crawlerPortfolioEdit, self::SELECTOR_PORTFOLIO_SMALLICON)->getAttribute('value');
 
-            $wallPainting->getListImage()->setCreatedAt($customer->getCreatedAt());
-            $wallPainting->getListImage()->setFile($this->getPortfolioImageUploadedFile($listImagePath));
+            //$wallPainting->getListImage()->setCreatedAt($customer->getCreatedAt());
+            //$wallPainting->getListImage()->setFile($this->getPortfolioImageUploadedFile($listImagePath));
 
             $thumbImagePath = $this->firstNode($crawlerPortfolioEdit, self::SELECTOR_PORTFOLIO_ICON)->getAttribute('value');
 
-            $wallPainting->getThumbImage()->setCreatedAt($customer->getCreatedAt());
-            $wallPainting->getThumbImage()->setFile($this->getPortfolioImageUploadedFile($thumbImagePath));
+            if(!empty($thumbImagePath))
+            {
+                if(!$wallPainting->getCover()) {
+                    $wallPainting->setCover(new Media());
+                }
+
+                $wallPainting->getCover()->setCreatedAt($customer->getCreatedAt());
+                $wallPainting->getCover()->setFile($this->getPortfolioImageUploadedFile($thumbImagePath));
+            }
+
+           // $wallPainting->getThumbImage()->setCreatedAt($customer->getCreatedAt());
+           // $wallPainting->getThumbImage()->setFile($this->getPortfolioImageUploadedFile($thumbImagePath));
 
             $tags = $this->firstNode($crawlerPortfolioEdit, self::SELECTOR_PORTFOLIO_TAGS_LIST)->getAttribute('value');
 
@@ -617,13 +657,10 @@ class SiteDataTransferManager
                 }
             }
 
-
             $wallPainting->setCreatedBy($this->creator);
             $this->wallPaintingRepository->persist($wallPainting);
             $this->wallPaintingRepository->flush();
-
             $this->io->title(sprintf('WallPainting: id(%s) oldId(%s) title(%s)', $wallPainting->getId(), $wallPainting->getOldId(), $wallPainting->getTitle()));
-
         }
 
         $this->io->title(sprintf('Finish transferring portfolio in page %d', $this->state->getPage()));

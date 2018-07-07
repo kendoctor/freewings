@@ -27,11 +27,11 @@ class DefaultController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function index(  WallPaintingRepository $wallPaintingRepository,
-                            CategoryRepository $categoryRepository,
-                            CustomerRepository $customerRepository,
-                            UserRepository $userRepository,
-                            BranchRepository $branchRepository
+    public function index(WallPaintingRepository $wallPaintingRepository,
+                          CategoryRepository $categoryRepository,
+                          CustomerRepository $customerRepository,
+                          UserRepository $userRepository,
+                          BranchRepository $branchRepository
     )
     {
         $em = $this->getDoctrine()->getManager();
@@ -49,7 +49,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/contact", name="contact")
+     * @Route("/{_locale}/contact", defaults={"_locale"="zh_CN"}, name="contact")
      */
     public function contact(BranchRepository $branchRepository)
     {
@@ -59,7 +59,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/customer/{id}/show", name="customer_show")
+     * @Route("/{_locale}/customer/{id}/show", defaults={"_locale"="zh_CN"}, name="customer_show")
      */
     public function customerShow(Customer $customer)
     {
@@ -69,7 +69,18 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/artist/{id}/page-{page}/show", name="artist_show")
+     * @Route("/{_locale}/customer", defaults={"_locale"="zh_CN"}, name="customer_index")
+     */
+    public function customerIndex(CustomerRepository $customerRepository)
+    {
+
+        return $this->render('default/customer_index.html.twig', [
+            'customers' => $customerRepository->getRecommended(0)
+        ]);
+    }
+
+    /**
+     * @Route("/{_locale}/artist/{id}/page-{page}/show", defaults={"_locale"="zh_CN"}, name="artist_show")
      */
     public function artistShow(User $artist, WallPaintingArtistRepository $wallPaintingArtistRepository, PaginatorInterface $paginator, $page = 1)
     {
@@ -83,10 +94,16 @@ class DefaultController extends Controller
         ]);
     }
 
-    public function artistIndex()
+    /**
+     * @Route("/{_locale}/team", defaults={"_locale"="zh_CN"}, name="artist_index")
+     */
+    public function artistIndex(UserRepository $userRepository)
     {
-
+        return $this->render('default/artist_index.html.twig', [
+            'artists' => $userRepository->getArtists()
+        ]);
     }
+
 
     public function componentBranches(BranchRepository $branchRepository)
     {

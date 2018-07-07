@@ -9,7 +9,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">{{ 'admin.home'|trans }}</a></li>
-                <li class="breadcrumb-item"><a href="#">{{ 'category.index'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'category.management'|trans }}</a></li>
                 <li class="breadcrumb-item"><a href="#">{{ postType |trans }}</a></li>
             </ol>
         </nav>
@@ -22,7 +22,7 @@
                 {% include 'category/admin/_render_category.html.twig' with { 'categories' : categories, 'postType': postType }%}
             </div>
 
-            <a class="btn btn-primary" href="{{ path('admin_category_new', {'postType': postType }) }}">category.create</a>
+            <a class="btn btn-primary" href="{{ path('admin_category_new', {'postType': postType }) }}">{{ 'category.new_top_level' | trans }}</a>
         </div>
 
 

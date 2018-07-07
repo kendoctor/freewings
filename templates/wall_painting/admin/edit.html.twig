@@ -3,11 +3,21 @@
 {% block title %}Edit WallPainting{% endblock %}
 
 {% block body %}
-    <h1>Edit WallPainting</h1>
+    <div class="page">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ 'admin.home'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'wall_painting.management'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'wall_painting.edit'|trans }}</a></li>
+            </ol>
+        </nav>
 
-    {{ include('wall_painting/admin/_form.html.twig', {'button_label': 'Update'}) }}
+        <h1 class="page-header">{{ 'wall_painting.edit_title'|trans }} </h1>
+        <hr>
+        {{ include('wall_painting/admin/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('admin_wall_painting_index') }}">back to list</a>
+        <hr>
+        <a class="btn btn-secondary" href="{{ path('admin_wall_painting_index') }}">{{ 'wall_painting.back_to_list'|trans }}</a>
 
-    {{ include('wall_painting/admin/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

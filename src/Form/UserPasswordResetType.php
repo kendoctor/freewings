@@ -16,8 +16,8 @@ class UserPasswordResetType extends AbstractType
         $builder
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'first_options'  => array('label' => 'Password'),
-                'second_options' => array('label' => 'Repeat Password')
+                'first_options'  => array('label' => 'user.form.password'),
+                'second_options' => array('label' => 'user.form.repeatPassword')
             ])
         ;
     }

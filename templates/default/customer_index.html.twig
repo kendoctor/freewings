@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="customer-index-page">
+        <div class="customers-recommended-header">我们提供高品质的服务，创造有价值的视觉体验</div>
+        <div class="customers-recommended justify-content-between">
+            {% for customer in customers %}
+                <div class="customer{% if loop.index % 4 == 0 %} last{% endif %}">
+                    <a href="{{ path('customer_show', { id: customer.id }) }}">
+                        {% if customer.logo %}
+                            <img class="img-fluid" src="{{ vich_uploader_asset(customer.logo, 'file') | imagine_filter('customer_logo')}}" alt="{{ customer.title }}">
+                        {% else %}
+                            {{ customer.title }}
+                        {% endif %}
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

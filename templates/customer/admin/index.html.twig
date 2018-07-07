@@ -3,43 +3,57 @@
 {% block title %}Customer index{% endblock %}
 
 {% block body %}
-    <h1>Customer index</h1>
+    <div class="page">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ 'admin.home'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'customer.management'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'customer.index'|trans }}</a></li>
+            </ol>
+        </nav>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Mobile</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>Description</th>
-                <th>Type</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for customer in customers %}
-            <tr>
-                <td>{{ customer.id }}</td>
-                <td>{{ customer.title }}</td>
-                <td>{{ customer.mobile }}</td>
-                <td>{{ customer.createdAt ? customer.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ customer.updatedAt ? customer.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ customer.description }}</td>
-                <td>{{ customer.type }}</td>
-                <td>
-                    <a href="{{ path('admin_customer_show', {'id': customer.id}) }}">show</a>
-                    <a href="{{ path('admin_customer_edit', {'id': customer.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <h1 class="mb-3">{{ 'customer.index'|trans }}({{ pagination.totalItemCount }})</h1>
 
-    <a href="{{ path('admin_customer_new') }}">Create new</a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'customer.index.id'|trans, 'c.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'customer.index.title'|trans, 'c.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'customer.index.createdAt'|trans, 'c.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'customer.index.updatedAt'|trans, 'c.updatedAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'customer.index.type'|trans, 'c.type') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'customer.index.isRecommended'|trans, 'c.isRecommended') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'customer.index.weight'|trans, 'c.weight') }}</th>
+                <th>{{ 'admin.actions' | trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for customer in pagination %}
+                <tr>
+                    <td>{{ customer.id }}</td>
+                    <td>{{ customer.title }}</td>
+                    <td>{{ customer.createdAt ? customer.createdAt|date('Y-m-d') : '' }}</td>
+                    <td>{{ customer.updatedAt ? customer.updatedAt|date('Y-m-d') : '' }}</td>
+                    <td>{{ (customer.isRecommended ? 'admin.yes' : 'admin.no')|trans }}</td>
+                    <td>{{ ('customer.index.type.' ~ customer.type )| trans }}</td>
+                    <td>{{ customer.weight }}</td>
+                    <td>
+                        <a href="{{ path('admin_customer_edit', {'id': customer.id}) }}">{{ 'customer.edit' | trans }}</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <a class="btn btn-primary"  href="{{ path('admin_customer_new') }}">{{ 'customer.new'|trans }}</a>
+    </div>
+
 {% endblock %}

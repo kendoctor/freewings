@@ -6,23 +6,8 @@
             <div class="wall-painting-show">
                 <h3>{{ wallPainting.title }}</h3>
                 <hr>
-                {{ wallPainting.content | striptags('<strong><font><a><p></br>') | raw }}
+                {{ wallPainting.content | raw }}
 
-                <div class="slider-for">
-                    {% for photo in wallPainting.photos %}
-                        <div class="wall-painting-photo">
-                            <img class="img-fluid" src="{{ vich_uploader_asset(photo.media, 'file')}}" alt="">
-                            <p>{{ photo.description | striptags }}</p>
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="slider-nav">
-                    {% for photo in wallPainting.photos %}
-                        <div>
-                            <img height="120" src="{{ vich_uploader_asset(photo.media, 'file')}}" alt="">
-                        </div>
-                    {% endfor %}
-                </div>
                 <div class="wall-painting-artists">
                     <div class="row no-gutters">
                         <div class="col-1 header">

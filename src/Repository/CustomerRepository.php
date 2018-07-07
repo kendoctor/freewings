@@ -47,13 +47,16 @@ class CustomerRepository extends ServiceEntityRepository
         $this->_em->flush();
     }
 
-    public function getRecommended($limit = 4)
+    public function getRecommended($limit = 15)
     {
-        return $this->createQueryBuilder('c')
-            ->where('c.isRecommended = true')
-            ->getQuery()
-            ->getResult()
-            ;
+        $qb = $this->createQueryBuilder('c')
+            ->where('c.isRecommended = true');
+        if($limit > 0)
+        {
+            $qb->setMaxResults($limit);
+        }
+
+        return $qb->getQuery()->getResult();
     }
 
     public function getByOldId($oldId)
@@ -63,6 +66,13 @@ class CustomerRepository extends ServiceEntityRepository
             ->setParameter('oldId', $oldId)
             ->getQuery()
             ->getOneOrNullResult()
+            ;
+    }
+
+    public function getListQuery()
+    {
+        return $this->createQueryBuilder('c')
+            ->getQuery()
             ;
     }
 

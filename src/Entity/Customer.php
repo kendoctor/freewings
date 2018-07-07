@@ -72,8 +72,8 @@ class Customer
     }
 
     protected static $typeName = [
-        self::TYPE_PERSONAL    => 'Personal',
-        self::TYPE_ENTERPRISE  => 'Enterprise',
+        self::TYPE_PERSONAL    => 'customer.type.personal',
+        self::TYPE_ENTERPRISE  => 'customer.type.enterprise',
     ];
 
     /**
@@ -130,6 +130,16 @@ class Customer
      * @ORM\Column(type="boolean")
      */
     private $isRecommended;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Media", cascade={"persist", "remove"})
+     */
+    private $logo;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Media", cascade={"persist", "remove"})
+     */
+    private $cover;
 
 
     public function __construct()
@@ -440,6 +450,30 @@ class Customer
     public function setIsRecommended(bool $isRecommended): self
     {
         $this->isRecommended = $isRecommended;
+
+        return $this;
+    }
+
+    public function getLogo(): ?Media
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?Media $logo): self
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    public function getCover(): ?Media
+    {
+        return $this->cover;
+    }
+
+    public function setCover(?Media $cover): self
+    {
+        $this->cover = $cover;
 
         return $this;
     }

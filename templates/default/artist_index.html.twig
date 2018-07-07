@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="artist-index-page">
+            <div class="title-image">
+                <img class="img-fluid" src="{{ asset('assets/images/freewings-team-page.jpg') }}" alt="">
+            </div>
+            <div class="intro">
+                <img src="{{ asset('assets/images/logo-team-page.jpg') }}" alt="">
+                <p class="content">
+                    隐形翅膀成立于
+                </p>
+            </div>
+            <div class="team-header">灵感空间和画室</div>
+            <div class="room-image">
+                <img class="img-fluid" src="{{ asset('assets/images/room-team-page.jpg') }}" alt="">
+            </div>
+            <div class="team-header">我们的团队</div>
+            <div class="team-description">11年来...</div>
+            <div class="artists">
+                {% for artist in artists %}
+                    {% if loop.index <= 6 %}
+                    <div class="artist-highlighted">
+                        {%  if artist.figure %}
+                            <div class="figure-and-nickname">
+                                <a href="{{ path('artist_show', { id: artist.id }) }}"><img class="img-fluid" src="{{ vich_uploader_asset(artist.figure, 'file')|imagine_filter('artist_figure_lg') }}" alt="{{ artist.nickname }}"></a>
+                                <div class="nickname">{{ artist.nickname }}</div>
+                            </div>
+                            <div class="position-title">{{ artist.positionTitle }}</div>
+                            <div class="description">{{ artist.description }}</div>
+                        {% else %}
+                            {{ artist.nickname }}
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    <div class="artist-normal">
+                        {%  if artist.figure %}
+                        <a href="{{ path('artist_show', { id: artist.id }) }}"><img class="img-fluid" src="{{ vich_uploader_asset(artist.figure, 'file')|imagine_filter('artist_figure_sm') }}" alt="{{ artist.nickname }}"></a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

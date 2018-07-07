@@ -3,9 +3,20 @@
 {% block title %}New WallPainting{% endblock %}
 
 {% block body %}
-    <h1>Create new WallPainting</h1>
+    <div class="page">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ 'admin.home'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'wall_painting.management'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'wall_painting.new'|trans }}</a></li>
+            </ol>
+        </nav>
 
-    {{ include('wall_painting/admin/_form.html.twig') }}
+        <h1 class="page-header">{{ 'wall_painting.new_title'|trans }} </h1>
 
-    <a href="{{ path('admin_wall_painting_index') }}">back to list</a>
+        {{ include('wall_painting/admin/_form.html.twig') }}
+        <hr>
+        <a class="btn btn-secondary" href="{{ path('admin_wall_painting_index') }}">{{ 'wall_painting.back_to_list'|trans }}</a>
+    </div>
+
 {% endblock %}

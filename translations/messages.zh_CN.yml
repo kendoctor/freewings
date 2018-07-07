@@ -7,3 +7,130 @@ category.index: 分类
 category.index_title: 分类管理
 menu.homepage: 首页
 menu.wall_painting_index: 案例
+
+admin.actions: 操作
+admin.yes: 是
+admin.no: 否
+
+wall_painting.management: 墙画管理
+wall_painting.index: 墙画列表
+wall_painting.new: 添加
+wall_painting.new_title: 添加墙画
+wall_painting.edit_title: 编辑墙画
+wall_painting.edit: 编辑
+wall_painting.save: 保存
+wall_painting.back_to_list: 返回墙画列表
+wall_painting.category.index: 墙画分类
+wall_painting.category.new: 添加
+wall_painting.index.id: 编号
+wall_painting.index.title: 标题
+wall_painting.index.createdAt: 创建时间
+wall_painting.index.updatedAt: 更新时间
+wall_painting.index.weight: 权重
+
+wall_painting.form.title: 标题
+wall_painting.form.category: 分类
+wall_painting.form.customer: 客户
+wall_painting.form.cover: 封面
+wall_painting.form.brief: 简介
+wall_painting.form.content: 内容
+wall_painting.form.weight: 权重
+wall_painting.form.artists: 艺术家
+wall_painting.form.isPublished: 是否发布
+
+
+
+customer.management: 客户管理
+customer.index: 客户列表
+customer.new: 添加
+customer.new_title: 添加客户
+customer.edit_title: 编辑客户
+customer.edit: 编辑
+customer.save: 保存
+customer.index.id: 编号
+customer.index.title: 抬头
+customer.index.createdAt: 创建时间
+customer.index.updatedAt: 创建时间
+customer.index.weight: 权重
+customer.index.type: 类型
+customer.index.type.personal: 个人
+customer.index.type.enterprise: 企业
+customer.index.isRecommended: 是否首页推荐
+customer.form.title: 抬头
+customer.form.isRecommended: 是否首页推荐
+customer.form.logo: LOGO
+customer.form.cover: 形象封面
+customer.form.description: 介绍
+customer.form.type: 类型
+customer.form.mobile: 手机
+customer.form.telephone: 电话
+customer.form.fax: 传真
+customer.form.qq: QQ
+customer.form.address: 地址
+customer.form.weight: 权重
+customer.back_to_list: 返回客户列表页
+customer.type.personal: 个人
+customer.type.enterprise: 企业
+
+
+
+
+
+
+artist.index: 艺术家列表
+artist.new: 添加
+user.new: 添加
+user.new_title: 添加用户
+user.edit_title: 编辑用户
+user.edit: 编辑
+user.save: 保存
+user.resetPassword: 重置密码
+user.resetPasswordTitle: 重置密码
+user.management: 用户管理
+user.index: 用户列表
+user.index.id: 编号
+user.index.username: 帐号名称
+user.index.nickname: 姓名
+user.index.isActive: 是否激活
+user.index.email: 电子邮箱
+
+user.type.admin: 管理员
+user.type.normal: 普通用户
+user.type.artist: 艺术家
+
+
+user.form.username: 帐号名称
+user.form.figure: 头像
+user.form.password: 密码
+user.form.repeatPassword: 重复密码
+user.form.nickname: 姓名
+user.form.positionTitle: 职位
+user.form.email: 电子邮箱
+user.form.type: 类型
+user.form.description: 介绍
+user.form.weight: 权重
+user.form.isActive: 是否激活
+user.backToList: 返回用户列表
+
+
+
+
+
+wall_painting: 案例根分类
+admin.home: 管理后台首页
+category.management: 分类管理
+category.new_title: 添加分类
+category.new: 添加
+category.edit_title: 编辑分类
+category.edit: 编辑
+category.add_child: 添加子分类
+category.save: 保存
+category.parent_title: 所属分类
+category.back_to_list: 返回分类列表页
+category.new_top_level: 添加一级分类
+category.form.name: 名称
+category.form.is_recommended: 是否首页推荐
+category.form.icon: 图标
+category.form.weight: 权重（只有在分类首页推荐时有效）
+
+media.form.file: 上传文件

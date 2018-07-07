@@ -3,9 +3,21 @@
 {% block title %}New User{% endblock %}
 
 {% block body %}
-    <h1>Create new User</h1>
+    <div class="page">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ 'admin.home'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'user.management'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'user.new'|trans }}</a></li>
+            </ol>
+        </nav>
 
-    {{ include('user/admin/_form.html.twig') }}
+        <h1 class="mb-3">{{ 'user.new_title'|trans }}</h1>
+        <hr>
+        {{ include('user/admin/_form.html.twig') }}
 
-    <a href="{{ path('admin_user_index') }}">back to list</a>
+        <hr>
+        <a class="btn btn-secondary" href="{{ path('admin_user_index') }}">{{ 'user.backToList' | trans }}</a>
+    </div>
+
 {% endblock %}

@@ -6,10 +6,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-
+use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * @ORM\Table(name="`user`")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @Gedmo\TranslationEntity(class="App\Entity\UserTranslation")
  */
 class User implements UserInterface, \Serializable
 {
@@ -80,12 +81,13 @@ class User implements UserInterface, \Serializable
 
 
     protected static $typeName = [
-        self::TYPE_NORMAL => 'user.normal',
-        self::TYPE_ARTIST => 'user.artist',
-        self::TYPE_ADMIN => 'user.admin'
+        self::TYPE_NORMAL => 'user.type.normal',
+        self::TYPE_ARTIST => 'user.type.artist',
+        self::TYPE_ADMIN => 'user.type.admin'
     ];
 
     /**
+     * @Gedmo\Translatable
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
@@ -96,14 +98,31 @@ class User implements UserInterface, \Serializable
     private $images;
 
     /**
+     * @Gedmo\Translatable
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $nickname;
 
     /**
+     * @Gedmo\Translatable
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $positionTitle;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Media", cascade={"persist", "remove"})
+     */
+    private $figure;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $weight;
+
+    /**
+     * @Gedmo\Locale
+     */
+    private $locale;
 
     public function __construct()
     {
@@ -115,6 +134,7 @@ class User implements UserInterface, \Serializable
         $this->groups = new ArrayCollection();
         $this->type = self::TYPE_NORMAL;
         $this->images = new ArrayCollection();
+        $this->weight = 0;
     }
 
 
@@ -490,7 +510,21 @@ class User implements UserInterface, \Serializable
         return $this->translations;
     }
 
+    /**
+     * @param UserTranslation $translation
+     */
+    public function addTranslation(UserTranslation $translation)
+    {
+        if (!$this->translations->contains($translation)) {
+            $this->translations[] = $translation;
+            $translation->setObject($this);
+        }
+    }
 
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
 
     /**
      * @return Collection|UserMedia[]
@@ -553,6 +587,30 @@ class User implements UserInterface, \Serializable
     public function setPositionTitle(?string $positionTitle): self
     {
         $this->positionTitle = $positionTitle;
+
+        return $this;
+    }
+
+    public function getFigure(): ?Media
+    {
+        return $this->figure;
+    }
+
+    public function setFigure(?Media $figure): self
+    {
+        $this->figure = $figure;
+
+        return $this;
+    }
+
+    public function getWeight(): ?int
+    {
+        return $this->weight;
+    }
+
+    public function setWeight(int $weight): self
+    {
+        $this->weight = $weight;
 
         return $this;
     }

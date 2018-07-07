@@ -125,6 +125,17 @@ class Category
      */
     private $weight;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Media", cascade={"persist", "remove"})
+     */
+    private $icon;
+
+    /**
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(type="string", length=128)
+     */
+    private $token;
+
 
     public function __construct()
     {
@@ -132,6 +143,7 @@ class Category
         $this->children = new ArrayCollection();
         $this->translations = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->weight = 0;
     }
 
     public function isRoot()
@@ -455,6 +467,31 @@ class Category
     public function setWeight(int $weight): self
     {
         $this->weight = $weight;
+
+        return $this;
+    }
+
+    public function getIcon(): ?Media
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(?Media $icon): self
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    public function setToken(?string $token): self
+    {
+
+        $this->token = $token;
 
         return $this;
     }

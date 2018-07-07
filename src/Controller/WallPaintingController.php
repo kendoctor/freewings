@@ -22,7 +22,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class WallPaintingController extends Controller
 {
     /**
-     * @Route("/{category}/{page}/index", name="wall_painting_index", methods="GET")
+     * @Route("/{category}/{page}/index", name="wall_painting_index", requirements={"page"="\d+"}, methods="GET")
      */
     public function index(CategoryRepository $categoryRepository, WallPaintingRepository $wallPaintingRepository,
                           PaginatorInterface $paginator,

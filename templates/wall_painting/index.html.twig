@@ -10,13 +10,13 @@
                 <div id="wall-paintings-recommended" class="row">
                     {% for wallPainting in pagination %}
                         <div class="col-3">
-                            {% if wallPainting.thumbImage and wallPainting.thumbImage.filename %}
                                 <div class="wall-painting">
-                                    <a href="{{ path('wall_painting_show', {id : wallPainting.id}) }}"><img class="img-fluid" src="{{ vich_uploader_asset(wallPainting.thumbImage, 'file')}}" alt=""></a>
+                                    {% if wallPainting.cover %}
+                                    <a href="{{ path('wall_painting_show', {id : wallPainting.id}) }}"><img class="img-fluid" src="{{ vich_uploader_asset(wallPainting.cover, 'file')}}" alt=""></a>
+                                    {% endif %}
                                     <h3>{{ wallPainting.title }}</h3>
                                     <p>{{ wallPainting.brief }}</p>
                                 </div>
-                            {% endif %}
                         </div>
                     {% endfor %}
                 </div>

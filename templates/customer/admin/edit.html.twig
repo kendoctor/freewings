@@ -3,11 +3,20 @@
 {% block title %}Edit Customer{% endblock %}
 
 {% block body %}
-    <h1>Edit Customer</h1>
+    <div class="page">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ 'admin.home'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'customer.management'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'customer.edit'|trans }}</a></li>
+            </ol>
+        </nav>
+        <h1 class="page-header">{{ 'customer.edit_title'|trans }} </h1>
+        <hr>
+        {{ include('customer/admin/_form.html.twig', {'button_label': 'Update'}) }}
+        <hr>
+        <a class="btn btn-secondary" href="{{ path('admin_customer_index') }}">{{ 'customer.back_to_list'|trans }}</a>
 
-    {{ include('customer/admin/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('admin_customer_index') }}">back to list</a>
-
-    {{ include('customer/admin/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

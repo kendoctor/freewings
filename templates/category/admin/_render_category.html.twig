@@ -4,8 +4,8 @@
         <li>
             <h5>
                <span>{{ category.name }}</span>
-                <a class="btn-sm btn-primary pull-right " href="{{ path('admin_category_new', { 'parentId' : category.id, 'postType': postType }) }}">category.add_child</a>
-                <a class="btn-sm btn-primary pull-right " href="{{ path('admin_category_edit', { 'id' : category.id, 'postType': postType }) }}">category.edit</a>
+                <a class="btn-sm btn-primary pull-right " href="{{ path('admin_category_new', { 'parentId' : category.id, 'postType': postType }) }}">{{ 'category.add_child' | trans }}</a>
+                <a class="btn-sm btn-primary pull-right " href="{{ path('admin_category_edit', { 'id' : category.id, 'postType': postType }) }}">{{ 'category.edit' | trans }}</a>
             </h5>
 
             {% if category.children | length > 0 %}

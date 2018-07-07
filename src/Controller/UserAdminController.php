@@ -7,6 +7,7 @@ use App\Form\UserEditType;
 use App\Form\UserPasswordResetType;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,11 +20,14 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserAdminController extends Controller
 {
     /**
-     * @Route("/", name="user_index", methods="GET")
+     * @Route("/{page}", name="user_index", requirements={"page"="\d+"}, methods="GET")
      */
-    public function index(UserRepository $userRepository): Response
+    public function index(UserRepository $userRepository, PaginatorInterface $paginator, $page  = 1): Response
     {
-        return $this->render('user/admin/index.html.twig', ['users' => $userRepository->findAll()]);
+        return $this->render('user/admin/index.html.twig', [
+            'users' => $userRepository->findAll(),
+            'pagination' => $paginator->paginate($userRepository->getListQuery(), $page)
+        ]);
     }
 
     /**

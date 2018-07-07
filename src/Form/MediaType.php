@@ -14,7 +14,9 @@ class MediaType extends AbstractType
     {
         $builder
             ->add('file', FileType::class, [
-                'required' => false
+                'required' => false,
+                'upload_field' => 'file',
+                'label' => 'media.form.file'
             ])
         ;
     }

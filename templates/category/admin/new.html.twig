@@ -9,22 +9,22 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">{{ 'admin.home'|trans }}</a></li>
-                <li class="breadcrumb-item"><a href="#">{{ 'category.index'|trans }}</a></li>
-                <li class="breadcrumb-item"><a href="#">{{ postType }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'category.management'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ postType | trans }}</a></li>
                 <li class="breadcrumb-item"><a href="#">{{ 'category.new'|trans }}</a></li>
             </ol>
         </nav>
 
         <h1 class="page-header">{{ 'category.new_title'|trans }} </h1>
         <blockquote class="blockquote">
-            {{ 'category.parent_title'|trans }} : {{ category.parent.name }}
+            {{ 'category.parent_title'|trans }} :  {% if category.parent.lvl > 0 %} {{ category.parent.name }} {% else %}  {{ category.parent.name | trans }} {% endif %}
         </blockquote>
 
         <hr>
         {{ include('category/admin/_form.html.twig') }}
 
         <hr>
-        <a class="btn btn-secondary" href="{{ path('admin_category_index', {'postType': postType}) }}">back to list</a>
+        <a class="btn btn-secondary" href="{{ path('admin_category_index', {'postType': postType}) }}">{{ 'category.back_to_list' | trans }}</a>
 
     </div>
 {% endblock %}

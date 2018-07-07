@@ -48,6 +48,7 @@ stof_doctrine_extensions:
             blameable: true
             translatable: true
             sortable: true
+            sluggable: true
 
 liip_imagine:
     resolvers:
@@ -76,6 +77,12 @@ liip_imagine:
         customer_logo:
             filters:
                 thumbnail: { size: [188, 155], mode: outbound }
+        artist_figure_sm:
+            filters:
+                thumbnail: { size: [120, 120], mode: outbound }
+        artist_figure_lg:
+            filters:
+                thumbnail: { size: [320, 320], mode: outbound }
 
 vich_uploader:
     db_driver: orm

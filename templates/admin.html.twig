@@ -63,24 +63,24 @@
                     <div class="side-menu">
                         <div class="menu-item">
                             <div class="panel">
-                                <div class="hd">WallPainting Management</div>
+                                <div class="hd">{{ 'wall_painting.management' | trans }}</div>
                                 <div class="bd">
                                     <ul>
                                         <li>
-                                            <a href="{{ path('admin_wall_painting_index') }}">WallPaintings</a>
+                                            <a href="{{ path('admin_wall_painting_index') }}">{{ 'wall_painting.index' | trans }}</a>
                                             <a href="{{ path('admin_wall_painting_new') }}">{{ 'wall_painting.new'|trans }}</a>
                                         </li>
                                         <li>
-                                            <a href="{{ path('admin_category_index', {'postType': 'wall_painting'}) }}">Categories</a>
-                                            <a href="{{ path('admin_category_new', {'postType': 'wall_painting'}) }}">{{ 'wall_painting_category.new'|trans }}</a>
+                                            <a href="{{ path('admin_category_index', {'postType': 'wall_painting'}) }}">{{ 'wall_painting.category.index' | trans }}</a>
+                                            <a href="{{ path('admin_category_new', {'postType': 'wall_painting'}) }}">{{ 'wall_painting.category.new'|  trans }}</a>
                                         </li>
                                         <li>
-                                            <a href="{{ path('admin_customer_index') }}">Customers</a>
+                                            <a href="{{ path('admin_customer_index') }}">{{ 'customer.index' | trans }}</a>
                                             <a href="{{ path('admin_customer_new') }}">{{ 'customer.new'|trans }}</a>
                                         </li>
                                         <li>
-                                            <a href="{{ path('admin_user_index') }}">Artists</a>
-                                            <a href="{{ path('admin_user_new') }}">{{ 'artist.new' }}</a>
+                                            <a href="{{ path('admin_user_index') }}">{{ 'artist.index' | trans }}</a>
+                                            <a href="{{ path('admin_user_new') }}">{{ 'artist.new' | trans }}</a>
                                         </li>
                                     </ul>
                                 </div>

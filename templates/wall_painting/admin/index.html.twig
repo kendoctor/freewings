@@ -1,47 +1,57 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}WallPainting index{% endblock %}
+{% block title %}{{ 'wall_painting.index.page_title' | trans }}{% endblock %}
 
 {% block body %}
-    <h1>WallPainting index</h1>
+    <div class="page">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ 'admin.home'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'wall_painting.management'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'wall_painting.index'|trans }}</a></li>
+            </ol>
+        </nav>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>TitlePicture</th>
-                <th>Brief</th>
-                <th>Weight</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for wall_painting in wall_paintings %}
-            <tr>
-                <td>{{ wall_painting.id }}</td>
-                <td>{{ wall_painting.title }}</td>
-                <td>{{ wall_painting.content }}</td>
-                <td>{{ wall_painting.createdAt ? wall_painting.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ wall_painting.updatedAt ? wall_painting.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ wall_painting.titlePicture }}</td>
-                <td>{{ wall_painting.brief }}</td>
-                <td>{{ wall_painting.weight }}</td>
-                <td>
-                    <a href="{{ path('admin_wall_painting_show', {'id': wall_painting.id}) }}">show</a>
-                    <a href="{{ path('admin_wall_painting_edit', {'id': wall_painting.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <h1 class="mb-3">{{ 'wall_painting.index'|trans }}({{ pagination.totalItemCount }})</h1>
 
-    <a href="{{ path('admin_wall_painting_new') }}">Create new</a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'wall_painting.index.id'|trans, 'w.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'wall_painting.index.title'|trans, 'w.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'wall_painting.index.createdAt'|trans, 'w.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'wall_painting.index.updatedAt'|trans, 'w.updatedAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'wall_painting.index.weight'|trans, 'w.weight') }}</th>
+                <th>{{ 'admin.actions' | trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for wall_painting in pagination %}
+                <tr>
+                    <td>{{ wall_painting.id }}</td>
+                    <td>
+                        <h3>{{ wall_painting.title }}</h3>
+                    </td>
+                    <td>{{ wall_painting.createdAt ? wall_painting.createdAt|date('Y-m-d') : '' }}</td>
+                    <td>{{ wall_painting.updatedAt ? wall_painting.updatedAt|date('Y-m-d') : '' }}</td>
+                    <td>{{ wall_painting.weight }}</td>
+                    <td>
+                        {#<a href="{{ path('admin_wall_painting_show', {'id': wall_painting.id}) }}">show</a>#}
+                        <a href="{{ path('admin_wall_painting_edit', {'id': wall_painting.id}) }}">{{ 'wall_painting.edit' | trans }}</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="9">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+        <a class="btn btn-primary" href="{{ path('admin_wall_painting_new') }}">{{ 'wall_painting.new'|trans }}</a>
+    </div>
+
 {% endblock %}

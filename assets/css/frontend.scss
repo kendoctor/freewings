@@ -23,6 +23,7 @@ body {
 @media (min-width: 1200px) {
   .container {
     width: 960px;
+    padding:0;
   }
 }
 
@@ -199,20 +200,59 @@ body {
 
 }
 
-#customer-recommended .customer {
-  height: 100%;
-  display: flex;
-  background: white;
-}
-
-
-#customer-recommended .customer img
+.customers-recommended
 {
-  display: block;
-  align-self: center;
-  margin: auto;
+  display: flex;
+  flex-wrap: wrap !important;
 }
 
+.customers-recommended .customer
+{
+  margin-right:5px;
+}
+
+.customers-recommended .customer.last
+{
+  margin-right:0px;
+}
+
+.artists-recommended {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.artists-recommended .artist
+{
+  max-width: 120px;
+}
+
+/**customerIndexPage**/
+.customer-index-page
+{
+  background: #222222;
+  padding:1rem 2rem;
+}
+
+.customer-index-page .customers-recommended
+{
+  display: flex;
+}
+
+.customer-index-page .customers-recommended .customer
+{
+  margin-right: 0;
+  margin-bottom: 1rem;
+}
+
+.customer-index-page .customers-recommended-header
+{
+  padding: 4rem;
+  text-align: center;
+  background: #3a3a3a;
+  color:#3c86e6;
+  margin-bottom: 1rem;
+
+}
 
 /**wallPaintingShowPage**/
 .slider-for
@@ -432,7 +472,79 @@ body {
 
 }
 
+/**artistIndexPage**/
+.artist-index-page
+{
+  background: #222222;
+}
+.artist-index-page .team-header
+{
+  background: #989898;
+  text-align: center;
+  padding:1rem;
+}
 
+.artist-index-page .team-description
+{
+  color: #838383;
+  padding: 2rem 3rem;
+}
+
+
+.artist-index-page .artists
+{
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.artist-index-page .artist-highlighted
+{
+  background: #373737;
+
+}
+
+.artist-index-page .artist-highlighted .figure-and-nickname
+{
+  position: relative;
+}
+.artist-index-page .artist-highlighted .figure-and-nickname .nickname
+{
+  position: absolute;
+  bottom: 0;
+  background: #000000;
+  opacity: .7;
+  width: 100%;
+  color: #4086e5;
+  padding:1rem;
+  text-align: center;
+}
+
+
+.artist-index-page .artist-highlighted .position-title
+{
+  background: #161616;
+  color: #bbbbbb;
+  padding:1rem;
+  text-align: center;
+}
+
+.artist-index-page .artist-highlighted .description
+{
+  padding: 1rem 2rem;
+  color: #838383;
+}
+
+.artist-index-page .intro
+{
+  padding:3rem 3rem;
+  color: #828282;
+}
+
+.artist-index-page .intro .content
+{
+  margin-top: 2rem;
+}
 
 $slick-font-path: '~slick-carousel/slick/fonts/';
 $slick-loader-path: '~slick-carousel/slick/';

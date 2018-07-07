@@ -64,3 +64,14 @@
     </div>
 
 {% endblock %}
+
+{% block file_widget %}
+    {% spaceless %}
+
+        {{ block('form_widget') }}
+        {% if media_entity is not null and  upload_field is not null %}
+            <img src="{{ vich_uploader_asset(media_entity, upload_field) }}"/>
+        {% endif %}
+
+    {% endspaceless %}
+{% endblock %}

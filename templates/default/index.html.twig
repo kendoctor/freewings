@@ -38,9 +38,9 @@
       <div id="wall-paintings-recommended" class="row">
           {% for wallPainting in wallPaintingsRecommended %}
               <div class="col-3">
-                  {% if wallPainting.thumbImage and wallPainting.thumbImage.filename %}
+                  {% if wallPainting.cover  %}
                       <div class="wall-painting">
-                          <a href="{{ path('wall_painting_show', {id : wallPainting.id}) }}"><img class="img-fluid" src="{{ vich_uploader_asset(wallPainting.thumbImage, 'file')}}" alt=""></a>
+                          <a href="{{ path('wall_painting_show', {id : wallPainting.id}) }}"><img class="img-fluid" src="{{ vich_uploader_asset(wallPainting.cover, 'file')}}" alt=""></a>
                           <h3>{{ wallPainting.title }}</h3>
                           <p>{{ wallPainting.brief }}</p>
                       </div>
@@ -63,25 +63,31 @@
       </div>
 
       <div class="customer-recommended-header">隐形翅膀提供专业的空间艺术化服务，帮助客户达到更好的艺术体验和传播</div>
-      <div id="customer-recommended" class="row">
+      <div class="customers-recommended">
           {% for customer in customersRecommended %}
-              <div class="col-2">
-                  <div class="customer">
-                      <a href="{{ path('customer_show', { id: customer.id }) }}"><img class="img-fluid" src="{{ vich_uploader_asset(customer.thumbImage, 'file') | imagine_filter('customer_logo')}}" alt="{{ customer.title }}"></a>
-                  </div>
+              <div class="customer{% if loop.index % 5 == 0 %} last{% endif %}">
+                  <a href="{{ path('customer_show', { id: customer.id }) }}">
+                      {% if customer.logo %}
+                      <img class="img-fluid" src="{{ vich_uploader_asset(customer.logo, 'file') | imagine_filter('customer_logo')}}" alt="{{ customer.title }}">
+                      {% else %}
+                      {{ customer.title }}
+                      {% endif %}
+                  </a>
               </div>
           {% endfor %}
       </div>
 
       <div class="customer-recommended-header">隐形翅膀团队只专注做一件事情，在墙上画画</div>
-      <div id="customer-recommended" class="row">
+      <div class="artists-recommended">
           {% for artist in artistsRecommended %}
-              <div class="col-2">
-                  {%  if artist.figureImage %}
-                  <div class="customer">
-                      <a href="{{ path('artist_show', { id: artist.id }) }}"><img class="img-fluid" src="{{ vich_uploader_asset(artist.figureImage, 'file')}}" alt="{{ artist.username }}"></a>
-                  </div>
-                  {% endif %}
+              <div class="artist">
+                  <a href="{{ path('artist_show', { id: artist.id }) }}">
+                      {%  if artist.figure %}
+                      <img class="img-fluid" src="{{ vich_uploader_asset(artist.figure, 'file') | imagine_filter('artist_figure_sm') }}" alt="{{ artist.nickname }}">
+                      {% else %}
+                      {{ artist.nickname }}
+                      {% endif %}
+                  </a>
               </div>
           {% endfor %}
       </div>

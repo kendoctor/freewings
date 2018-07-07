@@ -38,6 +38,11 @@ class WallPainting extends Post
      */
     private $isPublished;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Media", cascade={"persist", "remove"})
+     */
+    private $cover;
+
 
 
     /**
@@ -155,6 +160,18 @@ class WallPainting extends Post
                 return true;
         }
         return false;
+    }
+
+    public function getCover(): ?Media
+    {
+        return $this->cover;
+    }
+
+    public function setCover(?Media $cover): self
+    {
+        $this->cover = $cover;
+
+        return $this;
     }
 
 

@@ -3,7 +3,28 @@ Portfolio: 案例
 Album: 专辑
 About: 关于
 Login: 登录
-category.index: 分类
-category.index_title: 分类管理
+
 menu.homepage: Home
 menu.wall_painting_index: Cases
+
+wall_painting: Root Category Of Wall Painting
+admin.home: Admin Home
+
+category.index: Categories
+category.index_title: Categories Management
+category.new_title: Add Category
+category.new: Add
+category.edit_title: Edit Category
+category.edit: Edit
+category.add_child: Add Child
+category.save: Save
+category.parent_title: Parent
+category.back_to_list: Back To List
+category.new_top_level: Add Top Level Category
+
+category.form.name: Name
+category.form.is_recommended: Is Recommended At Homepage
+category.form.icon: Icon
+category.form.weight: Weight（只有在分类首页推荐时有效）
+
+media.form.file: Upload File
