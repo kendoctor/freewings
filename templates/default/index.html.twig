@@ -52,9 +52,11 @@
       <div id="wall-painting-categroies-recommended" class="row">
           {% for wallPaintingCategory in wallPaintingCategoriesRecommended %}
               <div class="col-3">
-                  {% if wallPaintingCategory.thumbImage and wallPaintingCategory.thumbImage.filename %}
+                  {% if wallPaintingCategory.icon and  wallPaintingCategory.icon.filename %}
                       <div class="wall-painting-category">
-                          <a href="{{ path('wall_painting_index', { category : wallPaintingCategory.id }) }}"><img class="img-fluid" src="{{ vich_uploader_asset(wallPaintingCategory.thumbImage, 'file')}}" alt=""></a>
+                          <a href="{{ path('wall_painting_index', { category : wallPaintingCategory.id }) }}">
+                              <img class="img-fluid" src="{{ vich_uploader_asset(wallPaintingCategory.icon, 'file')|imagine_filter('category_icon')}}" alt="">
+                          </a>
                           <h3>{{ wallPaintingCategory.name }}</h3>
                       </div>
                   {% endif %}
