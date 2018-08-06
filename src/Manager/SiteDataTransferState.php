@@ -13,13 +13,12 @@ class SiteDataTransferState implements \Serializable
 {
     const PHASE_PORTFOLIO_CATEGORY = 1;
     const PHASE_MESSAGE_CATEGORY = 2;
-    const PHASE_ADVERTISEMENT = 3;
-    const PHASE_CUSTOMER = 4;
-    const PHASE_TAG = 5;
-    const PHASE_PORTFOLIO = 6;
-    const PHASE_MESSAGE = 7;
-    const PHASE_STATIC_PAGE = 8;
-
+    const PHASE_CUSTOMER = 3;
+    const PHASE_TAG = 4;
+    const PHASE_PORTFOLIO = 5;
+    const PHASE_MESSAGE = 6;
+    const PHASE_STATIC_PAGE = 7;
+    const PHASE_ADVERTISEMENT = 8;
 
 
     private $phase;
