@@ -67,6 +67,16 @@ class CategoryRepository extends NestedTreeRepository implements ServiceEntityRe
     }
 
 
+    public function getByOldNewsCategoryId($oldId)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.oldNewsCategoryId = :oldId')
+            ->setParameter('oldId' , $oldId)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
+
     public function getByOldId($oldId)
     {
         return $this->createQueryBuilder('c')

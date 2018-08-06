@@ -25,16 +25,23 @@ class MessageRepository extends ServiceEntityRepository
     {
         $message = new Message();
 
-        $tokens = ['cover', 'thumb', 'list'];
-
-        foreach ($tokens as $token) {
-            $image = new PostMedia();
-            $image->setMedia(new Media());
-            $image->setToken($token);
-            $message->addImage($image);
-        }
-
         return $message;
+    }
+
+    public function getByOldId($oldId)
+    {
+        return $this->createQueryBuilder('m')
+            ->where('m.oldId = :oldId')
+            ->setParameter('oldId', $oldId)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
+
+    public function getListQuery()
+    {
+        return $this->createQueryBuilder('m')
+            ->getQuery();
     }
 
     public function persist($entity)

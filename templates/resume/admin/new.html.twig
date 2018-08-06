@@ -1,0 +1,24 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}New Resume{% endblock %}
+
+{% block body %}
+    <div class="page">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ 'admin.home'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'resume.management'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'resume.new'|trans }}</a></li>
+            </ol>
+        </nav>
+
+        <h1 class="page-header">{{ 'resume.new_title'|trans }} </h1>
+
+        {{ include('resume/admin/_form.html.twig') }}
+        <hr>
+        <a class="btn btn-secondary" href="{{ path('admin_resume_index') }}">{{ 'resume.backToList'|trans }}</a>
+    </div>
+
+
+{% endblock %}

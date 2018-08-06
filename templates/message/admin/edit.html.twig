@@ -3,11 +3,24 @@
 {% block title %}Edit Message{% endblock %}
 
 {% block body %}
-    <h1>Edit Message</h1>
 
-    {{ include('message/admin/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="page">
 
-    <a href="{{ path('admin_message_index') }}">back to list</a>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ 'admin.home'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'message.management'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'message.edit'|trans }}</a></li>
+            </ol>
+        </nav>
 
-    {{ include('message/admin/_delete_form.html.twig') }}
+        <h1 class="page-header">{{ 'message.edit_title'|trans }} </h1>
+
+        {{ include('message/admin/_form.html.twig', {'button_label': 'Update'}) }}
+        <hr>
+        <a class="btn btn-secondary" href="{{ path('admin_message_index') }}">{{ 'message.backToList'|trans }}</a>
+
+    </div>
+
+
 {% endblock %}

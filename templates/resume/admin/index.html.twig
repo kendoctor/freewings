@@ -1,0 +1,61 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Resume index{% endblock %}
+
+{% block body %}
+
+    <div class="page">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ 'admin.home'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'resume.management'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'resume.index'|trans }}</a></li>
+            </ol>
+        </nav>
+
+        <h1 class="mb-3">{{ 'resume.index'|trans }}({{ pagination.totalItemCount }})</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>CreatedAt</th>
+                    <th>UpdatedAt</th>
+                    <th>Content</th>
+                    <th>Contact</th>
+                    <th>City</th>
+                    <th>Brief</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for resume in pagination %}
+                <tr>
+                    <td>{{ resume.id }}</td>
+                    <td>{{ resume.title }}</td>
+                    <td>{{ resume.createdAt ? resume.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ resume.updatedAt ? resume.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ resume.content }}</td>
+                    <td>{{ resume.contact }}</td>
+                    <td>{{ resume.city }}</td>
+                    <td>{{ resume.brief }}</td>
+                    <td>
+                        <a href="{{ path('admin_resume_edit', {'id': resume.id}) }}">{{ 'resume.edit'|trans }}</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="9">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <a  class="btn btn-primary"  href="{{ path('admin_resume_new') }}">{{ 'resume.new'|trans }}</a>
+    </div>
+{% endblock %}

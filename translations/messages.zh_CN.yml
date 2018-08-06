@@ -134,3 +134,18 @@ category.form.icon: 图标
 category.form.weight: 权重（只有在分类首页推荐时有效）
 
 media.form.file: 上传文件
+
+
+advertisement.management: 广告管理
+advertisement.index: 广告列表
+advertisement.new: 添加
+
+resume.management: 招聘管理
+resume.index: 招聘列表
+resume.new: 添加
+
+message.management: 新闻管理
+message.index: 新闻列表
+message.new: 添加
+message.category.index: 新闻分类
+message.category.new: 添加

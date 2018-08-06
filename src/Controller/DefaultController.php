@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Entity\Customer;
 use App\Entity\Post;
 use App\Entity\User;
+use App\Repository\AdvertisementRepository;
 use App\Repository\BranchRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\CustomerRepository;
+use App\Repository\ResumeRepository;
 use App\Repository\UserRepository;
 use App\Repository\WallPaintingArtistRepository;
 use App\Repository\WallPaintingRepository;
@@ -31,6 +33,7 @@ class DefaultController extends Controller
                           CategoryRepository $categoryRepository,
                           CustomerRepository $customerRepository,
                           UserRepository $userRepository,
+                          AdvertisementRepository $advertisementRepository,
                           BranchRepository $branchRepository
     )
     {
@@ -38,13 +41,24 @@ class DefaultController extends Controller
         $postsRecommended = $em->getRepository(Post::class)->findRecommended();
         $wallPaintingCategoryRoot = $categoryRepository->getRoot('wall_painting');
         return $this->render('default/index.html.twig', [
+            'advertisementsPublished' => $advertisementRepository->getPublished(),
             'artistsRecommended' => $userRepository->getArtistsRecommended(),
             'messagesRecommended' => [],
             'customersRecommended' => $customerRepository->getRecommended(),
             'wallPaintingCategoriesRecommended' => $categoryRepository->getRecommendedByRootAndOrderByWeight($wallPaintingCategoryRoot->getId()),
             'wallPaintingsRecommended' => $wallPaintingRepository->getRecommended(),
             'branches' => $branchRepository->findAll(),
-            'controller_name' => 'DefaultController',
+
+        ]);
+    }
+
+    /**
+     * @Route("/{_locale}/employment", defaults={"_locale"="zh_CN"}, name="employment")
+     */
+    public function employment(ResumeRepository $resumeRepository )
+    {
+        return $this->render('default/employment.html.twig', [
+            'resumes' => $resumeRepository->getPublished()
         ]);
     }
 
@@ -104,6 +118,14 @@ class DefaultController extends Controller
         ]);
     }
 
+
+    /**
+     * @Route("/{_locale}/news/{id}/show", defaults={"_locale"="zh_CN"}, name="message_show")
+     */
+    public function messageShow()
+    {
+
+    }
 
     public function componentBranches(BranchRepository $branchRepository)
     {

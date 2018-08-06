@@ -88,16 +88,42 @@
                         </div>
                         <div class="menu-item">
                             <div class="panel">
-                                <div class="hd">Message Management</div>
+                                <div class="hd">{{ 'advertisement.management'|trans }}</div>
                                 <div class="bd">
                                     <ul>
                                         <li>
-                                            <a href="{{ path('admin_message_index') }}">Messages</a>
-                                            <a href="{{ path('admin_message_new') }}">New</a>
+                                            <a href="{{ path('admin_advertisement_index') }}">{{ 'advertisement.index'|trans }}</a>
+                                            <a href="{{ path('admin_advertisement_new') }}">{{ 'advertisement.new'|trans }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="panel">
+                                <div class="hd">{{ 'resume.management'|trans }}</div>
+                                <div class="bd">
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('admin_resume_index') }}">{{ 'resume.index'|trans }}</a>
+                                            <a href="{{ path('admin_resume_new') }}">{{ 'resume.new'|trans }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="panel">
+                                <div class="hd">{{ 'message.management'|trans }}</div>
+                                <div class="bd">
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('admin_message_index') }}">{{ 'message.index'|trans }}</a>
+                                            <a href="{{ path('admin_message_new') }}">{{ 'message.new'|trans }}</a>
                                         </li>
                                         <li>
-                                            <a href="{{ path('admin_category_index', {'postType': 'message'}) }}">Categories</a>
-                                            <a href="{{ path('admin_category_new', {'postType': 'message'}) }}">{{ 'messsage.new'|trans }}</a>
+                                            <a href="{{ path('admin_category_index', {'postType': 'message'}) }}">{{ 'message.category.index'|trans }}</a>
+                                            <a href="{{ path('admin_category_new', {'postType': 'message'}) }}">{{ 'message.category.new'|trans }}</a>
                                         </li>
                                     </ul>
                                 </div>

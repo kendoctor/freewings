@@ -25,8 +25,9 @@ class AppDataTransferCommand extends Command
     {
         $this
             ->setDescription('Add a short description for your command')
-            ->addArgument('reset', InputArgument::OPTIONAL, 'Argument description')
-            ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
+            ->addArgument('phase', InputArgument::OPTIONAL, InputOption::VALUE_NONE, 'Transfer data for the specified phase.')
+            ->addOption('reset', 'r', InputArgument::OPTIONAL, 'Reset', false)
+            ->addOption('force', 'f', InputArgument::OPTIONAL, 'Reset', false)
         ;
     }
 
@@ -34,7 +35,12 @@ class AppDataTransferCommand extends Command
     {
         $this->siteDataTransferManager->setupIO($output, $input);
 
-        $this->siteDataTransferManager->process();
+        $phase = $input->getArgument('phase');
+        $reset = $input->getOption('reset');
+        $force = $input->getOption('force');
+
+        $this->siteDataTransferManager->process($phase, $reset, $force);
+
 //        //step phase
 //
 //        $io = new SymfonyStyle($input, $output);

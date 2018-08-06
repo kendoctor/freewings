@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ 'page.title.employment'|trans }} {% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="employment-index-page">
+            <div class="title-image">
+                <img class="img-fluid" src="{{ asset('assets/images/freewings-team-page.jpg') }}" alt="">
+            </div>
+            <div class="highlight-header">我们期待你的加入</div>
+
+            <div class="bd">
+                <div class="intro">
+                    <img src="{{ asset('assets/images/logo-team-page.jpg') }}" alt="">
+                    <p class="content">
+                        隐形翅膀成立于
+                    </p>
+                </div>
+                <div class="resumes row">
+                    {% for resume in resumes %}
+                        <div class="col-6">
+                            <div class="resume">
+                                <div class="title">{{ resume.title }}</div>
+                                <div class="brief">{{ resume.brief }}</div>
+                                <div class="city">{{ resume.city }}</div>
+                                <div class="content">{{ resume.content }}</div>
+                                <hr>
+                                <div class="contact">{{ resume.contact }}</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

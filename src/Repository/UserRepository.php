@@ -46,7 +46,7 @@ class UserRepository extends ServiceEntityRepository
             ;
     }
 
-    public function getCreatorByName($username = 'kendoctor')
+    public function getCreatorByName($username = 'freewings')
     {
 
         $creator = $this->createQueryBuilder('u')
@@ -59,8 +59,9 @@ class UserRepository extends ServiceEntityRepository
         if(null === $creator)
         {
             $creator = $this->create();
-            $creator->setUsername('kendoctor');
-            $creator->setPlainPassword('kendoctor');
+            $creator->setUsername('freewings');
+            $creator->setEmail('freewings@163.com');
+            $creator->setPlainPassword('freewings');
             $password = $this->userPasswordEncoder->encodePassword($creator, $creator->getPlainPassword());
             $creator->setPassword($password);
             $this->_em->persist($creator);

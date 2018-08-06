@@ -12,19 +12,40 @@ namespace App\Manager;
 class SiteDataTransferState implements \Serializable
 {
     const PHASE_PORTFOLIO_CATEGORY = 1;
-    const PHASE_CUSTOMER = 2;
-    const PHASE_TAG = 3;
-    const PHASE_PORTFOLIO = 4;
+    const PHASE_MESSAGE_CATEGORY = 2;
+    const PHASE_ADVERTISEMENT = 3;
+    const PHASE_CUSTOMER = 4;
+    const PHASE_TAG = 5;
+    const PHASE_PORTFOLIO = 6;
+    const PHASE_MESSAGE = 7;
+    const PHASE_STATIC_PAGE = 8;
+
+
 
     private $phase;
     private $page;
-    //category
-    //customer
-    //tag
-    //wallpainting
 
-    //category
-    //message
+    private $locked;
+
+    public static $phaseNames = [
+        self::PHASE_PORTFOLIO_CATEGORY => 'WallPaintingCategory',
+        self::PHASE_MESSAGE_CATEGORY => 'MessageCategory',
+        self::PHASE_ADVERTISEMENT => 'Advertisement',
+        self::PHASE_CUSTOMER => 'Customer',
+        self::PHASE_TAG => 'Tag',
+        self::PHASE_PORTFOLIO => 'WallPainting',
+        self::PHASE_MESSAGE => 'Message',
+        self::PHASE_STATIC_PAGE => 'StaticMessage'
+    ];
+
+    public static function getPhaseByName($name)
+    {
+        if (!isset(array_flip(static::$phaseNames)[$name])) {
+            return null;
+        }
+
+        return array_flip(static::$phaseNames)[$name];
+    }
 
     public static function instance()
     {
@@ -45,8 +66,25 @@ class SiteDataTransferState implements \Serializable
 
     public function __construct()
     {
-        $this->phase = self::PHASE_PORTFOLIO_CATEGORY;
+       $this->reset();
+       $this->locked = false;
+    }
+
+    public function reset()
+    {
+        $this->phase = 1;
         $this->page = 1;
+    }
+
+    public function lock()
+    {
+        $this->locked = true;
+        return $this->locked;
+    }
+
+    public function unlock()
+    {
+        $this->locked = false;
     }
 
     public function save()
@@ -58,6 +96,8 @@ class SiteDataTransferState implements \Serializable
 
     public function nextPhase()
     {
+        $this->resetPage();
+        if($this->locked) return;
         $this->phase ++;
 
     }

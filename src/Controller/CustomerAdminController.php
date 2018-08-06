@@ -22,7 +22,6 @@ class CustomerAdminController extends Controller
     public function index(CustomerRepository $customerRepository, PaginatorInterface $paginator, $page = 1): Response
     {
         return $this->render('customer/admin/index.html.twig', [
-            'customers' => $customerRepository->findAll(),
             'pagination' => $paginator->paginate($customerRepository->getListQuery(), $page)
         ]);
     }

@@ -20,6 +20,11 @@ class Message extends Post
      */
     private $isPublished;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Media", cascade={"persist", "remove"})
+     */
+    private $cover;
+
 
     public function getOldId(): ?int
     {
@@ -41,6 +46,18 @@ class Message extends Post
     public function setIsPublished(bool $isPublished): self
     {
         $this->isPublished = $isPublished;
+
+        return $this;
+    }
+
+    public function getCover(): ?Media
+    {
+        return $this->cover;
+    }
+
+    public function setCover(?Media $cover): self
+    {
+        $this->cover = $cover;
 
         return $this;
     }

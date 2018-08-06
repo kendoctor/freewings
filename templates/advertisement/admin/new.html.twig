@@ -1,0 +1,26 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}New Advertisement{% endblock %}
+
+{% block body %}
+
+    <div class="page">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ 'admin.home'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'advertisement.management'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'advertisement.new'|trans }}</a></li>
+            </ol>
+        </nav>
+
+        <h1 class="page-header">{{ 'advertisement.new_title'|trans }} </h1>
+
+        {{ include('advertisement/admin/_form.html.twig') }}
+        <hr>
+        <a class="btn btn-secondary" href="{{ path('admin_advertisement_index') }}">{{ 'advertisement.backToList'|trans }}</a>
+    </div>
+
+
+
+{% endblock %}

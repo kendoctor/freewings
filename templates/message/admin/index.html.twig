@@ -3,46 +3,59 @@
 {% block title %}Message index{% endblock %}
 
 {% block body %}
-    <h1>Message index</h1>
+    <div class="page">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ 'admin.home'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'message.management'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'message.index'|trans }}</a></li>
+            </ol>
+        </nav>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>TitlePicture</th>
-                <th>Brief</th>
-                <th>Weight</th>
-                <th>OldId</th>
-                <th>IsPublished</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for message in messages %}
-            <tr>
-                <td>{{ message.id }}</td>
-                <td>{{ message.title }}</td>
-                <td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ message.updatedAt ? message.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ message.titlePicture }}</td>
-                <td>{{ message.weight }}</td>
-                <td>{{ message.isPublished ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('admin_message_show', {'id': message.id}) }}">show</a>
-                    <a href="{{ path('admin_message_edit', {'id': message.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <h1 class="mb-3">{{ 'message.index'|trans }}({{ pagination.totalItemCount }})</h1>
 
-    <a href="{{ path('admin_message_new') }}">Create new</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>CreatedAt</th>
+                    <th>UpdatedAt</th>
+                    <th>TitlePicture</th>
+                    <th>Brief</th>
+                    <th>Weight</th>
+                    <th>OldId</th>
+                    <th>IsPublished</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for message in pagination %}
+                <tr>
+                    <td>{{ message.id }}</td>
+                    <td>{{ message.title }}</td>
+                    <td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ message.updatedAt ? message.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ message.titlePicture }}</td>
+                    <td>{{ message.weight }}</td>
+                    <td>{{ message.isPublished ? 'Yes' : 'No' }}</td>
+                    <td>
+                        <a href="{{ path('admin_message_edit', {'id': message.id}) }}">{{ 'message.edit'|trans }}</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="11">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <a  class="btn btn-primary" href="{{ path('admin_message_new') }}">{{ 'message.new'|trans }}</a>
+    </div>
 {% endblock %}

@@ -136,6 +136,17 @@ class Category
      */
     private $token;
 
+    /**
+     * @Gedmo\Translatable
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $oldNewsCategoryId;
+
 
     public function __construct()
     {
@@ -144,6 +155,7 @@ class Category
         $this->translations = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->weight = 0;
+        $this->isRecommended = false;
     }
 
     public function isRoot()
@@ -492,6 +504,30 @@ class Category
     {
 
         $this->token = $token;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getOldNewsCategoryId(): ?int
+    {
+        return $this->oldNewsCategoryId;
+    }
+
+    public function setOldNewsCategoryId(?int $oldNewsCategoryId): self
+    {
+        $this->oldNewsCategoryId = $oldNewsCategoryId;
 
         return $this;
     }

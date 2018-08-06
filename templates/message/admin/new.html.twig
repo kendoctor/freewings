@@ -3,9 +3,24 @@
 {% block title %}New Message{% endblock %}
 
 {% block body %}
-    <h1>Create new Message</h1>
 
-    {{ include('message/admin/_form.html.twig') }}
+    <div class="page">
 
-    <a href="{{ path('admin_message_index') }}">back to list</a>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ 'admin.home'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'message.management'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'message.new'|trans }}</a></li>
+            </ol>
+        </nav>
+
+        <h1 class="page-header">{{ 'message.new_title'|trans }} </h1>
+
+        {{ include('message/admin/_form.html.twig') }}
+        <hr>
+        <a class="btn btn-secondary" href="{{ path('admin_message_index') }}">{{ 'message.backToList'|trans }}</a>
+    </div>
+
+
+
 {% endblock %}
