@@ -499,8 +499,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Manager/SiteDataTransferState.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="100" selection-start-line="100" selection-end-line="100" />
+            <state relative-caret-position="91">
+              <caret line="85" column="5" lean-forward="true" selection-start-line="85" selection-start-column="5" selection-end-line="85" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -975,16 +975,15 @@
       <workItem from="1533101249176" duration="9488000" />
       <workItem from="1533122622564" duration="631000" />
       <workItem from="1533133668207" duration="27241000" />
-      <workItem from="1533446113846" duration="43426000" />
+      <workItem from="1533446113846" duration="43722000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="908437000" />
+    <option name="totallyTimeSpent" value="908733000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="984" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14317302" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1382,8 +1381,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Manager/SiteDataTransferState.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="100" selection-start-line="100" selection-end-line="100" />
+        <state relative-caret-position="91">
+          <caret line="85" column="5" lean-forward="true" selection-start-line="85" selection-start-column="5" selection-end-line="85" selection-end-column="5" />
         </state>
       </provider>
     </entry>
