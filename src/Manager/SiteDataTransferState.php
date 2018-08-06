@@ -79,6 +79,10 @@ class SiteDataTransferState implements \Serializable
     public function lock()
     {
         $this->locked = true;
+    }
+
+    public function isLock()
+    {
         return $this->locked;
     }
 

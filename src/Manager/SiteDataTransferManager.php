@@ -249,7 +249,7 @@ class SiteDataTransferManager
                     exit;
             }
 
-            if($this->state->lock())
+            if($this->state->isLock())
             {
                 $this->state->unlock();
                 exit;
