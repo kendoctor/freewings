@@ -1085,8 +1085,8 @@ class SiteDataTransferManager
         $count = 0;
         $this->buildWallPaintingCategories($root, $tree->children, $count, $forceUpdate);
 
-        //$this->categoryRepository->persist($root);
-        //$this->categoryRepository->flush();
+        $this->categoryRepository->persist($root);
+        $this->categoryRepository->flush();
 
         $this->io->title(sprintf('Finish transferring wallpainting categories, total count %d', $count));
 
