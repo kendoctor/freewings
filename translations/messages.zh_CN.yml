@@ -149,3 +149,16 @@ message.index: 新闻列表
 message.new: 添加
 message.category.index: 新闻分类
 message.category.new: 添加
+
+branch.management: 分公司管理
+branch.index: 分公司列表
+branch.new: 添加
+branch.edit: 编辑
+
+media.management: 上传文件管理
+media.index: 上传文件列表
+media.new: 添加
+
+tag.management: 标签管理
+tag.index: 标签列表
+tag.new: 添加

@@ -3,9 +3,23 @@
 {% block title %}New Branch{% endblock %}
 
 {% block body %}
-    <h1>Create new Branch</h1>
 
-    {{ include('branch/admin/_form.html.twig') }}
+    <div class="page">
 
-    <a href="{{ path('admin_branch_index') }}">back to list</a>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ 'admin.home'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'branch.management'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'branch.new'|trans }}</a></li>
+            </ol>
+        </nav>
+
+        <h1 class="page-header">{{ 'branch.new_title'|trans }} </h1>
+
+        {{ include('branch/admin/_form.html.twig') }}
+        <hr>
+        <a class="btn btn-secondary" href="{{ path('admin_branch_index') }}">{{ 'branch.backToList'|trans }}</a>
+    </div>
+
+
 {% endblock %}

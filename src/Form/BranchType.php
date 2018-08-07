@@ -12,13 +12,27 @@ class BranchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('address')
-            ->add('phone')
-            ->add('mobile')
-            ->add('qq')
-            ->add('email')
-            ->add('map', MediaType::class)
+            ->add('title', null, [
+                'label' => 'branch.form.title'
+            ])
+            ->add('address', null, [
+                'label' => 'branch.form.address'
+            ])
+            ->add('phone', null, [
+                'label' => 'branch.form.phone'
+            ])
+            ->add('mobile', null, [
+                'label' => 'branch.form.mobile'
+            ])
+            ->add('qq', null, [
+                'label' => 'branch.form.qq'
+            ])
+            ->add('email', null, [
+                'label' => 'branch.form.email'
+            ])
+            ->add('map', MediaType::class, [
+                'label' => 'branch.form.map'
+            ])
         ;
     }
 

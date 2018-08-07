@@ -24,6 +24,12 @@ class TagRepository extends ServiceEntityRepository
         return new Tag();
     }
 
+    public function getListQuery()
+    {
+        return $this->createQueryBuilder('t')
+            ->getQuery();
+    }
+
     public function persist(Tag $tag)
     {
         $this->_em->persist($tag);

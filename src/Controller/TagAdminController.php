@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Tag;
 use App\Form\TagType;
 use App\Repository\TagRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,11 +17,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class TagAdminController extends Controller
 {
     /**
-     * @Route("/", name="tag_index", methods="GET")
+     * @Route("/{page}", requirements={"page"="\d+"}, name="tag_index", methods="GET")
      */
-    public function index(TagRepository $tagRepository): Response
+    public function index(TagRepository $tagRepository, PaginatorInterface $paginator, $page = 1): Response
     {
-        return $this->render('tag/admin/index.html.twig', ['tags' => $tagRepository->findAll()]);
+        return $this->render('tag/admin/index.html.twig', [
+            'pagination' => $paginator->paginate($tagRepository->getListQuery(), $page),
+        ]);
     }
 
     /**

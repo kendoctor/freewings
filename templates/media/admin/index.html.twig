@@ -3,39 +3,52 @@
 {% block title %}Media index{% endblock %}
 
 {% block body %}
-    <h1>Media index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>OriginalName</th>
-                <th>Filename</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for medium in media %}
-            <tr>
-                <td>{{ medium.id }}</td>
-                <td>{{ medium.originalName }}</td>
-                <td>{{ medium.filename }}</td>
-                <td>{{ medium.createdAt ? medium.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ medium.updatedAt ? medium.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('admin_media_show', {'id': medium.id}) }}">show</a>
-                    <a href="{{ path('admin_media_edit', {'id': medium.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="page">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ 'admin.home'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'media.management'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'media.index'|trans }}</a></li>
+            </ol>
+        </nav>
 
-    <a href="{{ path('admin_media_new') }}">Create new</a>
+        <h1 class="mb-3">{{ 'media.index'|trans }}({{ pagination.totalItemCount }})</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>OriginalName</th>
+                    <th>Filename</th>
+                    <th>CreatedAt</th>
+                    <th>UpdatedAt</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for medium in pagination %}
+                <tr>
+                    <td>{{ medium.id }}</td>
+                    <td>{{ medium.originalName }}</td>
+                    <td>{{ medium.filename }}</td>
+                    <td>{{ medium.createdAt ? medium.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ medium.updatedAt ? medium.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>
+                        <a href="{{ path('admin_media_edit', {'id': medium.id}) }}">{{ 'media.edit'|trans }}</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    </div>
 {% endblock %}

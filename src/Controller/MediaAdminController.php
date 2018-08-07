@@ -5,22 +5,25 @@ namespace App\Controller;
 use App\Entity\Media;
 use App\Form\MediaType;
 use App\Repository\MediaRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/media", name="admin_")
+ * @Route("/admin/media/{_locale}", name="admin_", defaults={"_locale"="zh_CN"}, requirements={"_locale"="zh_CN|en"})
  */
 class MediaAdminController extends Controller
 {
     /**
-     * @Route("/", name="media_index", methods="GET")
+     * @Route("/{page}", requirements={"page"="\d+"},  name="media_index", methods="GET")
      */
-    public function index(MediaRepository $mediaRepository): Response
+    public function index(MediaRepository $mediaRepository, PaginatorInterface $paginator, $page = 1): Response
     {
-        return $this->render('media/admin/index.html.twig', ['media' => $mediaRepository->findAll()]);
+        return $this->render('media/admin/index.html.twig', [
+            'pagination' => $paginator->paginate($mediaRepository->getListQuery(), $page)
+        ]);
     }
 
     /**

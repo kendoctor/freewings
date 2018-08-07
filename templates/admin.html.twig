@@ -128,58 +128,48 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="panel">
-                                <div class="hd">Album Management</div>
-                                <div class="bd">
-                                    <ul>
-                                        <li>
-                                            <a href="">Albums</a>
-                                            <a href="">New</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                         <div class="menu-item">
                             <div class="panel">
-                                <div class="hd">Branch Management</div>
+                                <div class="hd">{{ 'branch.management'|trans }}</div>
                                 <div class="bd">
                                     <ul>
                                         <li>
-                                            <a href="{{ path('admin_branch_index') }}">Branches</a>
-                                            <a href="{{ path('admin_branch_new') }}">New</a>
+                                            <a href="{{ path('admin_branch_index') }}">{{ 'branch.index'|trans }}</a>
+                                            <a href="{{ path('admin_branch_new') }}">{{ 'branch.new'|trans }}</a>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="panel">
-                                <div class="hd">Media Management</div>
+                                <div class="hd">{{ 'media.management'|trans }}</div>
                                 <div class="bd">
                                     <ul>
                                         <li>
-                                            <a href="{{ path('admin_media_index') }}">Images & Files</a>
-                                            <a href="{{ path('admin_media_new') }}">New</a>
+                                            <a href="{{ path('admin_media_index') }}">{{ 'media.index'|trans }}</a>
+                                            {#<a href="{{ path('admin_media_new') }}">{{ 'media.new'|trans }}</a>#}
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="panel">
-                                <div class="hd">Tag Management</div>
+                                <div class="hd">{{ 'tag.management'|trans }}</div>
                                 <div class="bd">
                                     <ul>
                                         <li>
-                                            <a href="{{ path('admin_tag_index') }}">Tags</a>
+                                            <a href="{{ path('admin_tag_index') }}">{{ 'tag.index'|trans }}</a>
+                                            <a href="{{ path('admin_tag_new') }}">{{ 'tag.new'|trans }}</a>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="panel">
-                                <div class="hd">User Management</div>
+                                <div class="hd">{{ 'user.management'|trans }}</div>
                                 <div class="bd">
                                     <ul>
                                         <li>
-                                            <a href="{{ path('admin_user_index') }}">Users</a>
-                                            <a href="{{ path('admin_user_new') }}">new</a>
+                                            <a href="{{ path('admin_user_index') }}">{{ 'user.index'|trans }}</a>
+                                            <a href="{{ path('admin_user_new') }}">{{ 'user.new'|trans }}</a>
                                         </li>
                                     </ul>
                                 </div>

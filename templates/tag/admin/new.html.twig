@@ -3,9 +3,22 @@
 {% block title %}New Tag{% endblock %}
 
 {% block body %}
-    <h1>Create new Tag</h1>
 
-    {{ include('tag/admin/_form.html.twig') }}
+    <div class="page">
 
-    <a href="{{ path('admin_tag_index') }}">back to list</a>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ 'admin.home'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'tag.management'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ 'tag.new'|trans }}</a></li>
+            </ol>
+        </nav>
+
+        <h1 class="page-header">{{ 'tag.new_title'|trans }} </h1>
+
+        {{ include('tag/admin/_form.html.twig') }}
+        <hr>
+        <a class="btn btn-secondary" href="{{ path('admin_tag_index') }}">{{ 'tag.backToList'|trans }}</a>
+    </div>
+
 {% endblock %}

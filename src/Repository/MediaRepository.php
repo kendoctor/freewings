@@ -19,6 +19,11 @@ class MediaRepository extends ServiceEntityRepository
         parent::__construct($registry, Media::class);
     }
 
+    public function getListQuery()
+    {
+        return $this->createQueryBuilder('m')
+            ->getQuery();
+    }
 
     public function persist($entity)
     {
