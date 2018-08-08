@@ -68,7 +68,7 @@
 {% block file_row %}
     {% spaceless %}
 
-        {{ block('form_row') }}
+        {{ form_row(form) }}
         {% if media_entity is not null and  upload_field is not null %}
             <img src="{{ vich_uploader_asset(media_entity, upload_field) }}"/>
         {% endif %}
