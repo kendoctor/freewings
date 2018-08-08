@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1f42ab2e-5a47-487e-b05d-a996d95af6cd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/admin.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/admin.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/dashboard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/dashboard.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/frontend.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/frontend.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/form/fields.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/form/fields.html.twig" afterDir="false" />
     </list>
@@ -31,7 +33,7 @@
         <counts>
           <entry key="dummy" value="9" />
           <entry key="php" value="10248" />
-          <entry key="scss" value="530" />
+          <entry key="scss" value="536" />
           <entry key="twig" value="1304" />
           <entry key="yaml" value="66" />
           <entry key="yml" value="323" />
@@ -41,7 +43,7 @@
         <counts>
           <entry key="PHP" value="10248" />
           <entry key="PLAIN_TEXT" value="9" />
-          <entry key="SCSS" value="530" />
+          <entry key="SCSS" value="536" />
           <entry key="Twig" value="1304" />
           <entry key="YAML" value="389" />
         </counts>
@@ -50,7 +52,7 @@
         <counts>
           <entry key="log" value="1" />
           <entry key="php" value="54" />
-          <entry key="scss" value="2" />
+          <entry key="scss" value="4" />
           <entry key="twig" value="48" />
           <entry key="yaml" value="1" />
           <entry key="yml" value="4" />
@@ -60,7 +62,7 @@
         <counts>
           <entry key="PHP" value="54" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="SCSS" value="2" />
+          <entry key="SCSS" value="4" />
           <entry key="Twig" value="48" />
           <entry key="YAML" value="5" />
         </counts>
@@ -111,16 +113,34 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/form/fields.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
+            <state relative-caret-position="650">
               <caret line="70" column="24" selection-start-line="70" selection-start-column="24" selection-end-line="70" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/css/frontend.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
+            <state relative-caret-position="-1995">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/css/admin.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/css/dashboard.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-345">
               <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
@@ -202,8 +222,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/advertisement/admin/new.html.twig" />
-        <option value="$PROJECT_DIR$/templates/advertisement/admin/_form.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/CustomerAdminController.php" />
         <option value="$PROJECT_DIR$/templates/advertisement/admin/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/AdvertisementAdminController.php" />
@@ -252,7 +270,9 @@
         <option value="$PROJECT_DIR$/templates/admin.html.twig" />
         <option value="$PROJECT_DIR$/src/Form/TagType.php" />
         <option value="$PROJECT_DIR$/templates/form/fields.html.twig" />
+        <option value="$PROJECT_DIR$/assets/css/dashboard.scss" />
         <option value="$PROJECT_DIR$/assets/css/frontend.scss" />
+        <option value="$PROJECT_DIR$/assets/css/admin.scss" />
       </list>
     </option>
   </component>
@@ -581,12 +601,12 @@
       <workItem from="1533122622564" duration="631000" />
       <workItem from="1533133668207" duration="27241000" />
       <workItem from="1533446113846" duration="55450000" />
-      <workItem from="1533693940525" duration="2156000" />
+      <workItem from="1533693940525" duration="2481000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="922617000" />
+    <option name="totallyTimeSpent" value="922942000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="984" extended-state="6" />
@@ -642,20 +662,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Entity/WallPainting.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/UserRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="48" column="59" selection-start-line="48" selection-start-column="59" selection-end-line="48" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/CategoryRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="945">
@@ -969,15 +975,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/form/fields.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
+        <state relative-caret-position="650">
           <caret line="70" column="24" selection-start-line="70" selection-start-column="24" selection-end-line="70" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/frontend.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
+        <state relative-caret-position="-1995">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/dashboard.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-345">
           <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/admin.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
