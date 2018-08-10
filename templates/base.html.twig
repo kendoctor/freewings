@@ -11,19 +11,23 @@
 
     <div class="sticky-top" style="background: #474747;">
         <div class="container">
-            <div class="topbar d-flex">
-                <img class="" src="{{ asset('assets/freewings/freewings_logo.gif') }}"/>
-                <div class="slogan">墙绘壁画的创作与绘画</div>
-                {{ knp_menu_render('main') }}
-                <div class="locale-switch">
-                {% set params = app.request.attributes.get('_route_params')|merge(app.request.query.all()) %}
-                {% if app.request.locale == 'en' %}
-                    {% set params = params|merge({'_locale': 'zh_CN'}) %}
-                    <a  href="{{ path(app.request.attributes.get('_route'), params) }}">中文</a>
-                {% else %}
-                    {% set params = params|merge({'_locale': 'en'}) %}
-                    <a  href="{{ path(app.request.attributes.get('_route'), params) }}">En</a>
-                {% endif %}
+            <div class="topbar d-flex flex-md-row flex-sm-column">
+                <div class="caption">
+                    <img class="" src="{{ asset('assets/images/freewings_logo.gif') }}"/>
+                    <span class="slogan">{{ 'base.slogan'|trans }}</span>
+                </div>
+                <div class="main-menu-wrapper">
+                    {{ knp_menu_render('main') }}
+                    <div class="locale-switch">
+                        {% set params = app.request.attributes.get('_route_params')|merge(app.request.query.all()) %}
+                        {% if app.request.locale == 'en' %}
+                            {% set params = params|merge({'_locale': 'zh_CN'}) %}
+                            <a  href="{{ path(app.request.attributes.get('_route'), params) }}">中文</a>
+                        {% else %}
+                            {% set params = params|merge({'_locale': 'en'}) %}
+                            <a  href="{{ path(app.request.attributes.get('_route'), params) }}">En</a>
+                        {% endif %}
+                    </div>
                 </div>
 
             </div>
@@ -38,21 +42,40 @@
     <div class="container">
         {{ render(controller('App\\Controller\\DefaultController::componentBranches')) }}
     </div>
-    <div class="bottom-bar">
+
+    <div class="bottom-bar-wrapper">
         <div class="container">
-            <ul class="bottom-menu">
-                <li><a href="{{ path('customer_index') }}">客户</a></li>
-                <li><a href="{{ path('employment') }}">招聘</a></li>
-                <li><a href="">彩绘培训</a></li>
-                <li><a href="{{ path('artist_index') }}">团队</a></li>
-                <li class="last"><a href="">新闻</a></li>
-            </ul>
+            <div class="bottom-bar">
+                <ul class="bottom-menu">
+                    <li><a href="{{ path('customer_index') }}">客户</a></li>
+                    <li><a href="{{ path('employment') }}">招聘</a></li>
+                    <li><a href="">彩绘培训</a></li>
+                    <li><a href="{{ path('artist_index') }}">团队</a></li>
+                    <li class="last"><a href="">新闻</a></li>
+                </ul>
+                <div class="qr-codes">
+                    <div class="row ">
+                        <div class="qr-code col">
+                            <img class="code" src="{{ asset('assets/images/weixin_xie.jpg') }}"/>
+                            <div class="title">{{ 'base.weixin_xie_title'|trans }}</div>
+                        </div>
+
+                        <div class="qr-code col">
+                            <img class="code" src="{{ asset('assets/images/weixin_public.jpg') }}"/>
+                            <div class="title">{{ 'base.weixin_public_title'|trans }}</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="copyright">
+    <div class="registration-copyright-wrapper">
         <div class="container">
-            <p>版权所有：隐形翅膀艺术设计 苏ICP备09026912号 Site by freewings arts & design studio copyright 2015-2019</p>
+            <div class="registration-copyright">
+                {{ 'base.registration_and_copyright'|trans }}
+            </div>
         </div>
     </div>
 

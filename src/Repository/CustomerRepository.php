@@ -47,7 +47,7 @@ class CustomerRepository extends ServiceEntityRepository
         $this->_em->flush();
     }
 
-    public function getRecommended($limit = 15)
+    public function getRecommended($limit = 12)
     {
         $qb = $this->createQueryBuilder('c')
             ->where('c.isRecommended = true');
