@@ -17,21 +17,22 @@
                 </div>
             </div>
         </div>
-        <div id="wall-paintings-recommended" class="row">
-            {% for wallPainting in customer.wallPaintings %}
-                <div class="col-3">
-                    <div class="wall-painting">
-                        <a href="{{ path('wall_painting_show', {id : wallPainting.id}) }}">
-                            {% if wallPainting.cover %}
-                            <img class="img-fluid" src="{{ vich_uploader_asset(wallPainting.cover, 'file')}}" alt="">
-                            {% endif %}
-                        </a>
-                        <h3>{{ wallPainting.title }}</h3>
-                        <p>{{ wallPainting.brief }}</p>
+        <div class="wall-paintings-recommended">
+            <div class="bd row no-gutters">
+                {% for wallPainting in  customer.wallPaintings %}
+                    <div class="col-md-3 col-sm-6">
+                        {% if wallPainting.cover  %}
+                            <div class="wall-painting">
+                                <a href="{{ path('wall_painting_show', {id : wallPainting.id}) }}"><img class="img-fluid" src="{{ vich_uploader_asset(wallPainting.cover, 'file')}}" alt=""></a>
+                                <div class="title"><a href="{{ path('wall_painting_show', {id : wallPainting.id}) }}">{{ wallPainting.title }}</a></div>
+                                <div class="brief">{{ wallPainting.brief|nl2br }}</div>
+                            </div>
+                        {% endif %}
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
+
     </div>
 </div>
 {% endblock %}

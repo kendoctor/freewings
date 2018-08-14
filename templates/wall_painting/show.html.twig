@@ -15,7 +15,7 @@
                         </div>
                     {% for wallPaintingArtist in wallPainting.wallPaintingArtists %}
                         <div class="col-1">
-                            <img class="img-fluid" src="{{ vich_uploader_asset(wallPaintingArtist.artist.figureImage, 'file')}}" alt="{{ wallPaintingArtist.artist.username }}">
+                            <img class="img-fluid" src="{{ vich_uploader_asset(wallPaintingArtist.artist.figure, 'file')}}" alt="{{ wallPaintingArtist.artist.username }}">
                         </div>
                     {% endfor %}
                     </div>
