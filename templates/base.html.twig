@@ -11,12 +11,16 @@
 
     <div class="sticky-top" style="background: #474747;">
         <div class="container">
-            <div class="topbar d-flex flex-md-row flex-sm-column">
+            <div class="topbar navbar-expand-lg navbar-dark">
                 <div class="caption">
-                    <img class="" src="{{ asset('assets/images/freewings_logo.gif') }}"/>
+                    <a class="logo-link" href="{{ path('home') }}"><img class="logo" src="{{ asset('assets/images/freewings_logo.gif') }}"/></a>
                     <span class="slogan">{{ 'base.slogan'|trans }}</span>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                 </div>
-                <div class="main-menu-wrapper">
+
+                <div id="mainMenu" class="main-menu-wrapper collapse navbar-collapse">
                     {{ knp_menu_render('main') }}
                     <div class="locale-switch">
                         {% set params = app.request.attributes.get('_route_params')|merge(app.request.query.all()) %}
@@ -81,9 +85,9 @@
 
 
         <script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
-        <script src="{{ asset('assets/popper/popper.min.js') }}"></script>
+        <script src="{{ asset('assets/popper/umd/popper.js') }}"></script>
         <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('build/js/app.js') }}"></script>
+
         {% block javascripts %}{% endblock %}
     </body>
 </html>

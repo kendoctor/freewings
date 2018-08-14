@@ -11,18 +11,48 @@ body {
 }
 
 .topbar {
+  display:flex;
+  flex-flow:column;
+}
+.topbar>*
+{
+  -webkit-flex: 1; /* Safari 6.1+ */
+  -ms-flex: 1; /* IE 10 */
+  flex: 1;
 }
 
 .topbar .caption
 {
+  display:flex;
   background: #515151;
+  align-items: center;
 }
+
+.topbar .caption>a
+{
+  display: inline-block;
+}
+
+.topbar .caption>button
+{
+  margin:0  .5rem;
+}
+
 .topbar .slogan {
   color: #adadad;
   font-size: large;
   font-weight: bold;
-  padding:0 ($spacer)
+  -webkit-flex: 1; /* Safari 6.1+ */
+  -ms-flex: 1; /* IE 10 */
+  flex: 1;
+  display: inline-block;
+}
 
+@media (min-width: 992px){
+  .topbar
+  {
+    flex-flow:row;
+  }
 }
 
 @media (max-width: 768px){
@@ -216,23 +246,32 @@ body {
 
 /**homepage**/
 
-.wall-paintings-recommended  .no-gutters
+.carousel-item img
+{
+  width: 100%;
+}
+.wall-paintings-recommended  .no-gutters,
+.wall-paintings  .no-gutters
 {
   margin-right: -10px;
   margin-left: -10px;
 }
 
-.wall-paintings-recommended  .no-gutters > .col, .wall-paintings-recommended  .no-gutters > [class*="col-"] {
+.wall-paintings-recommended  .no-gutters > .col, .wall-paintings-recommended  .no-gutters > [class*="col-"] ,
+.wall-paintings  .no-gutters > .col, .wall-paintings  .no-gutters > [class*="col-"]
+{
   padding-right: 10px;
   padding-left: 10px;
 }
 
-.wall-paintings-recommended .col-md-3, .wall-paintings-recommended .col-sm-6
+.wall-paintings-recommended .col-md-3, .wall-paintings-recommended .col-sm-6,
+.wall-paintings .col-md-3, .wall-paintings .col-sm-6
 {
   margin-bottom:  5px;
 }
 
-.wall-paintings-recommended .wall-painting
+.wall-paintings-recommended .wall-painting,
+.wall-paintings .wall-painting
 {
   background:#222222;
   text-align: center;
@@ -245,26 +284,29 @@ body {
 .wall-paintings-recommended .wall-painting .title {
 }
 
-.wall-paintings-recommended .wall-painting .title a
+.wall-paintings-recommended .wall-painting .title a,
+.wall-paintings .wall-painting .title a
 {
   color:#a8a8a8;
   font-size:14px;
 }
 
-.wall-paintings-recommended .wall-painting .brief
+.wall-paintings-recommended .wall-painting .brief,
+.wall-paintings .wall-painting .brief
 {
   color:#6f6f6f;
   padding-bottom: 8px;
 }
 
-.wall-paintings-recommended .wall-painting .title, .wall-paintings-recommended .wall-painting .brief
+.wall-paintings-recommended .wall-painting .title, .wall-paintings-recommended .wall-painting .brief,
+.wall-paintings .wall-painting .title, .wall-paintings .wall-painting .brief
 {
 
   padding-left: 1rem;
   padding-right: 1rem;
 }
 
-.wall-paintings-recommended .wall-painting img
+.wall-paintings-recommended .wall-painting img, .wall-paintings .wall-painting img
 {
   width: 100%;
   margin-bottom: 6px;
@@ -366,6 +408,11 @@ body {
 
 .artists-recommended .artist
 {
+}
+
+.artists-recommended .artist img
+{
+  width: 100%;
 }
 
 /**customerIndexPage**/
@@ -473,6 +520,63 @@ body {
 }
 
 /**wallPaintingIndexPage**/
+
+
+.sidebar
+{
+  flex-basis: 180px;
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+
+.main {
+  margin-top: 10px;
+}
+
+.page
+{
+  display: flex;
+  align-items: stretch;
+}
+
+.sidebar.collapse:not(.show) {
+  display: block;
+}
+
+.navbar .categories
+{
+  display: none;
+}
+
+@media (max-width: 991.98px) {
+  .navbar .categories
+  {
+    display: inline-block;
+  }
+
+  .sidebar
+  {
+    display:none;
+  }
+
+  .sidebar.collapse:not(.show) {
+    display: none;
+  }
+  .sidebar.show
+  {
+    display: block;
+
+    background:#1d2124;
+  }
+}
+
+
+
+.action-bar
+{
+  background:#222222;
+}
+
 .wall-painting-categories-root
 {
 

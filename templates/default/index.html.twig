@@ -4,6 +4,7 @@
 
 {% block body %}
 
+
   <div class="container">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -14,7 +15,7 @@
             <div class="carousel-inner">
                 {% for advertisement in advertisementsPublished %}
                     <div class="carousel-item{% if loop.first %} active{% endif %}">
-                        <a href="{{ advertisement.link }}"><img class="img-fluid" src="{{ vich_uploader_asset(advertisement.cover, 'file')|imagine_filter('advertisement_cover')}}" alt=""></a>
+                        <a href="{{ advertisement.link }}"><img  src="{{ vich_uploader_asset(advertisement.cover, 'file')|imagine_filter('advertisement_cover')}}" alt=""></a>
                     </div>
                 {% endfor %}
             </div>
@@ -39,7 +40,7 @@
                           <div class="wall-painting">
                               <a href="{{ path('wall_painting_show', {id : wallPainting.id}) }}"><img class="img-fluid" src="{{ vich_uploader_asset(wallPainting.cover, 'file')}}" alt=""></a>
                               <div class="title"><a href="{{ path('wall_painting_show', {id : wallPainting.id}) }}">{{ wallPainting.title }}</a></div>
-                              <div class="brief">{{ wallPainting.brief }}</div>
+                              <div class="brief">{{ wallPainting.brief|nl2br }}</div>
                           </div>
                       {% endif %}
                   </div>

@@ -1,30 +1,59 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col-3 d-flex">
+
+    <div class="container clearfix">
+        <div class="d-flex navbar navbar-expand-sm navbar-dark bg-dark" id="navbarSupportedContent">
+            <ul class="d-flex navbar-nav mr-auto ">
+                <li class="nav-item dropdown categories">
+                    <a class="nav-link dropdown-toggle" href="#sidebar" role="button" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                        分类
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link  dropdown-toggle"   href="#"  role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        标签
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            </ul>
+
+
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="page">
+            <div class="sidebar" id="sidebar">
                 {% include 'wall_painting/_render_category.html.twig' with { 'categories' : categories } %}
             </div>
-            <div class="col-9">
-                <div id="wall-paintings-recommended" class="row">
-                    {% for wallPainting in pagination %}
-                        <div class="col-3">
+            <div class="main">
+
+
+                <div class="wall-paintings">
+                    <div class="row no-gutters">
+                        {% for wallPainting in pagination %}
+                            <div class="col-md-3 col-sm-6">
                                 <div class="wall-painting">
                                     {% if wallPainting.cover %}
                                     <a href="{{ path('wall_painting_show', {id : wallPainting.id}) }}"><img class="img-fluid" src="{{ vich_uploader_asset(wallPainting.cover, 'file')}}" alt=""></a>
                                     {% endif %}
-                                    <h3>{{ wallPainting.title }}</h3>
-                                    <p>{{ wallPainting.brief }}</p>
+                                    <div class="title"><a href="{{ path('wall_painting_show', {id : wallPainting.id}) }}">{{ wallPainting.title }}</a></div>
+                                    <div class="brief">{{ wallPainting.brief|nl2br }}</div>
                                 </div>
-                        </div>
-                    {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
                 <div class="navigation">
                     {{ knp_pagination_render(pagination) }}
                 </div>
             </div>
         </div>
-
     </div>
 {% endblock %}
