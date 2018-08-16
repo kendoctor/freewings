@@ -5,14 +5,14 @@
     <div class="customer-show-page">
         <div class="customer-intro">
             <div class="row">
-                <div class="col-3">
+                <div class="col-md-3 col-sm-12">
                     <div class="customer-intro-logo">
                         <img class="img-fluid" src="{{ vich_uploader_asset(customer.logo, 'file') | imagine_filter('customer_logo')}} " alt="">
                         <div class="customer-title">{{ customer.title }}</div>
                         <p>{{ customer.description }}</p>
                     </div>
                 </div>
-                <div class="col-9">
+                <div class="col-md-9 d-md-block d-sm-none">
                     <img class="img-fluid" src="{{ vich_uploader_asset(customer.cover, 'file')}}" alt="">
                 </div>
             </div>

@@ -47,8 +47,8 @@
           <entry key="dummy" value="9" />
           <entry key="js" value="1" />
           <entry key="php" value="11738" />
-          <entry key="scss" value="2689" />
-          <entry key="twig" value="3459" />
+          <entry key="scss" value="2748" />
+          <entry key="twig" value="3498" />
           <entry key="yaml" value="66" />
           <entry key="yml" value="464" />
         </counts>
@@ -58,8 +58,8 @@
           <entry key="JavaScript" value="1" />
           <entry key="PHP" value="11738" />
           <entry key="PLAIN_TEXT" value="9" />
-          <entry key="SCSS" value="2689" />
-          <entry key="Twig" value="3459" />
+          <entry key="SCSS" value="2748" />
+          <entry key="Twig" value="3498" />
           <entry key="YAML" value="530" />
         </counts>
       </usages-collector>
@@ -70,7 +70,7 @@
           <entry key="log" value="1" />
           <entry key="php" value="64" />
           <entry key="scss" value="6" />
-          <entry key="twig" value="61" />
+          <entry key="twig" value="62" />
           <entry key="yaml" value="1" />
           <entry key="yml" value="6" />
         </counts>
@@ -82,7 +82,7 @@
           <entry key="PHP" value="64" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SCSS" value="6" />
-          <entry key="Twig" value="61" />
+          <entry key="Twig" value="62" />
           <entry key="YAML" value="7" />
         </counts>
       </usages-collector>
@@ -95,6 +95,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
               <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/default/customer_show.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -113,15 +122,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="514">
               <caret line="174" lean-forward="true" selection-start-line="174" selection-end-line="174" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Repository/CategoryRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="89" column="20" selection-start-line="89" selection-start-column="20" selection-end-line="89" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -153,11 +153,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/css/frontend.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="159" column="14" selection-start-line="159" selection-start-column="14" selection-end-line="159" selection-end-column="14" />
+            <state relative-caret-position="114">
+              <caret line="685" lean-forward="true" selection-start-line="685" selection-end-line="685" />
             </state>
           </provider>
         </entry>
@@ -191,8 +191,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>spacer</find>
-      <find>$spacer</find>
       <find>icon</find>
       <find>weight</find>
       <find>customer-recommended</find>
@@ -221,6 +219,8 @@
       <find>customer</find>
       <find>.pl</find>
       <find>branch</find>
+      <find>side</find>
+      <find>customer-intro</find>
     </findStrings>
     <replaceStrings>
       <replace>category/admin/</replace>
@@ -287,7 +287,6 @@
         <option value="$PROJECT_DIR$/assets/js/app.js" />
         <option value="$PROJECT_DIR$/templates/default/index.html.twig" />
         <option value="$PROJECT_DIR$/templates/wall_painting/index.html.twig" />
-        <option value="$PROJECT_DIR$/templates/default/customer_show.html.twig" />
         <option value="$PROJECT_DIR$/templates/default/artist_show.html.twig" />
         <option value="$PROJECT_DIR$/templates/wall_painting/show.html.twig" />
         <option value="$PROJECT_DIR$/src/Repository/CategoryRepository.php" />
@@ -298,6 +297,7 @@
         <option value="$PROJECT_DIR$/src/Menu/Builder.php" />
         <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/assets/css/frontend.scss" />
+        <option value="$PROJECT_DIR$/templates/default/customer_show.html.twig" />
       </list>
     </option>
   </component>
@@ -680,15 +680,15 @@
       <workItem from="1533802183790" duration="13469000" />
       <workItem from="1533885692350" duration="1267000" />
       <workItem from="1533887316501" duration="11522000" />
-      <workItem from="1533972061345" duration="34516000" />
+      <workItem from="1533972061345" duration="37534000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="991666000" />
+    <option name="totallyTimeSpent" value="994684000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="81" y="24" width="1392" height="948" extended-state="4" />
+    <frame x="214" y="24" width="1392" height="948" extended-state="4" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24888559" />
@@ -704,8 +704,8 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4966216" visible="true" weight="0.25487804" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5033784" side_tool="true" weight="0.22195122" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49554235" visible="true" weight="0.44634145" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50445765" side_tool="true" weight="0.44634145" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="Command Line Tools Console" order="12" sideWeight="0.49973047" weight="0.42380953" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -976,13 +976,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/default/customer_show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="33" column="14" lean-forward="true" selection-start-line="19" selection-start-column="6" selection-end-line="33" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/default/artist_show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
@@ -1060,6 +1053,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/frontend.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="685" lean-forward="true" selection-start-line="685" selection-end-line="685" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1067,10 +1067,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/frontend.scss">
+    <entry file="file://$PROJECT_DIR$/templates/default/customer_show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="159" column="14" selection-start-line="159" selection-start-column="14" selection-end-line="159" selection-end-column="14" />
+        <state relative-caret-position="210">
+          <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
         </state>
       </provider>
     </entry>

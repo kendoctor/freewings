@@ -302,7 +302,9 @@ body {
   margin: auto;
   font-size:12px;
   padding:0;
+  height:100%;
 }
+
 
 .wall-paintings-recommended .wall-painting .title {
 }
@@ -568,6 +570,7 @@ body {
   flex-shrink: 0;
   margin-right: 10px;
   background:#1d2124;
+  display: none;
 }
 
 .main {
@@ -580,13 +583,16 @@ body {
   align-items: stretch;
 }
 
-.sidebar.collapse:not(.show) {
+
+
+.sidebar.show
+{
   display: block;
 }
 
 .navbar .categories
 {
-  display: none;
+
 }
 
 @media (max-width: 991.98px) {
@@ -600,15 +606,8 @@ body {
     display:none;
   }
 
-  .sidebar.collapse:not(.show) {
-    display: none;
-  }
-  .sidebar.show
-  {
-    display: block;
 
-    background:#1d2124;
-  }
+
 }
 
 
@@ -684,11 +683,20 @@ body {
 }
 
 /**customer show page**/
+
+@media (max-width: 991.98px) {
+
+}
 .customer-intro
 {
   background: #222222;
   margin-bottom: 10px;
   color:#adadad;
+}
+
+.customer-intro img
+{
+  width: 100%;
 }
 
 .customer-intro-logo
