@@ -38,6 +38,21 @@ class MessageRepository extends ServiceEntityRepository
             ;
     }
 
+    public function getByCategory($categoryId, $only=true)
+    {
+        $query = $this->createQueryBuilder('m')
+            ->where('IDENTITY(m.category) = :categoryId')
+            ->setParameter('categoryId', $categoryId)
+            ->getQuery()
+        ;
+
+        if($only)
+            $query->setMaxResults(1);
+
+        return $query->getResult();
+
+    }
+
     public function getListQuery()
     {
         return $this->createQueryBuilder('m')
@@ -55,32 +70,5 @@ class MessageRepository extends ServiceEntityRepository
         $this->_em->flush();
     }
 
-//    /**
-//     * @return Message[] Returns an array of Message objects
-//     */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Message
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

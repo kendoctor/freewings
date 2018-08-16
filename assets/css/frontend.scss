@@ -1,5 +1,9 @@
 @import '~bootstrap/scss/bootstrap.scss';
 
+html {
+  font-family: 微软雅黑, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;;
+}
+
 body {
   background:black;
 }
@@ -14,18 +18,14 @@ body {
   display:flex;
   flex-flow:column;
 }
-.topbar>*
-{
-  -webkit-flex: 1; /* Safari 6.1+ */
-  -ms-flex: 1; /* IE 10 */
-  flex: 1;
-}
 
 .topbar .caption
 {
   display:flex;
   background: #515151;
   align-items: center;
+  padding-right: 1rem;
+  margin-right: auto;
 }
 
 .topbar .caption>a
@@ -42,10 +42,8 @@ body {
   color: #adadad;
   font-size: large;
   font-weight: bold;
-  -webkit-flex: 1; /* Safari 6.1+ */
-  -ms-flex: 1; /* IE 10 */
-  flex: 1;
   display: inline-block;
+  margin-right: auto;
 }
 
 @media (min-width: 992px){
@@ -55,10 +53,11 @@ body {
   }
 }
 
-@media (max-width: 768px){
-  .locale-switch
+@media (max-width: 991.98px) {
+  .topbar .caption
   {
-
+    flex:1;
+    margin-right: 0;
   }
 }
 
@@ -71,10 +70,9 @@ body {
   }
 }
 
-.main-menu-wrapper
+.main-menu-wrapper.navbar-collapse
 {
-  flex-grow: 1;
-  position: relative;
+  flex:none;
 }
 
 .main-menu {
@@ -110,31 +108,56 @@ body {
 .locale-switch
 {
 
-  line-height: 68px;
-  background: #474747;
-  position: absolute;
-  right:0;
-  top:0;
 }
 
-.locale-switch a
+.main-menu li
 {
+  line-height: 68px;
+  height: 68px;
+}
+
+.main-menu li.locale-switch
+{
+  margin-left: 10px;
+}
+.main-menu li.locale-switch a
+{
+
+  line-height: normal;
+  height:auto;
+  border-radius: 5px;
   color:#7a7a7a;
   background: #1c1c1c;
   padding:5px;
   //display: inline-block;
 }
 
+.main-menu li.locale-switch a:hover {
+  background:#006dbc;
+  color:#aaaaaa;
+  text-decoration: none;
+  border-bottom: 0;
+}
+
 .branches .branch {
   background: #232323;
   color:white;
-  padding:2rem;
   height:100%;
-  text-align: center;
+  display: flex;
 }
 
 .branches .branch  a {
   color:#a3a3a3;
+  padding:2rem;
+  flex:1;
+  text-align: center;
+}
+
+.branches .branch  a:hover
+{
+  background:#006dbc;
+  text-decoration: none;
+  color:white;
 }
 
 .branches-header {
@@ -267,7 +290,7 @@ body {
 .wall-paintings-recommended .col-md-3, .wall-paintings-recommended .col-sm-6,
 .wall-paintings .col-md-3, .wall-paintings .col-sm-6
 {
-  margin-bottom:  5px;
+  margin-bottom: 20px;
 }
 
 .wall-paintings-recommended .wall-painting,
@@ -324,13 +347,14 @@ body {
   color:#a8a8a8;
 }
 
-.pl.wall-painting-categories-recommended
+.pl.wall-painting-categories-recommended, .pl.branches
 {
   margin-bottom: 0;
 }
+
 .wall-painting-categories-recommended .col-md-3
 {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .wall-painting-categories-recommended  .no-gutters
@@ -372,14 +396,30 @@ body {
   text-align: center;
   margin-bottom: 10px;
 }
-#customer-recommended
+
+.customers-recommended  .no-gutters
+{
+  margin-right: -5px;
+  margin-left: -5px;
+}
+
+.customers-recommended  .no-gutters > .col, .customers-recommended  .no-gutters > [class*="col-"] {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.pl.customers-recommended
+{
+  margin-bottom: 0;
+}
+
+.customers-recommended .col-md-2,.customers-recommended .col-sm-3
 {
   margin-bottom: 10px;
 }
-
-#customer-recommended .col-2
+.customers-recommended .hd
 {
-
+  margin-bottom: 10px;
 }
 
 .customers-recommended
@@ -399,7 +439,7 @@ body {
 }
 
 .pl {
-  margin-bottom: .5rem;
+  margin-bottom: 10px;
 }
 
 .artists-recommended {
@@ -855,6 +895,46 @@ body {
   padding:1rem 2rem;
 }
 
+/** staticPageShow */
+
+.static-page-show
+{
+  background: #222222;
+}
+
+@media (max-width: 991.98px) {
+  .raw-content
+  {
+    padding:0 2rem;
+  }
+}
+
+.messages-menu
+{
+  position: -webkit-sticky;
+  position: sticky;
+  top:68px;
+}
+
+
+.raw-content
+{
+  color: #adadad;
+  max-width: 850px;
+  margin: auto;
+
+}
+
+.raw-content img
+{
+  max-width: 100%;
+}
+
+.raw-content table
+{
+  width:100%;
+  table-layout: fixed;
+}
 
 $slick-font-path: '~slick-carousel/slick/fonts/';
 $slick-loader-path: '~slick-carousel/slick/';

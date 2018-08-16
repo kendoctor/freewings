@@ -34,6 +34,19 @@ class Builder
         $menu->addChild('menu.homepage', ['route' => 'home']);
         $menu->addChild('menu.wall_painting_index' , ['route'=>'wall_painting_index']);
 
+        $params = array_merge($request->attributes->get('_route_params'), $request->query->all());
+        $route = $request->attributes->get('_route');
+
+        if ($request->getLocale() == 'en') {
+            $params = array_merge($params, ['_locale' => 'zh_CN']);
+            $menu->addChild('base.locale.zh_CN', ['route' => $route, 'routeParameters'=> $params, 'attributes' => ['class' => 'locale-switch']] );
+        }
+        else
+        {
+            $params = array_merge($params, ['_locale' => 'en']);
+            $menu->addChild('base.locale.en', ['route' => $route, 'routeParameters'=> $params, 'attributes' => ['class' => 'locale-switch']] );
+        }
+
         return $menu;
 
     }

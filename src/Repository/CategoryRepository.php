@@ -87,6 +87,15 @@ class CategoryRepository extends NestedTreeRepository implements ServiceEntityRe
             ;
     }
 
+    public function getByToken($token)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.token = :token')
+            ->setParameter('token', $token)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
     /**
      * 通过帖子类型获取其分类根节点
      * 如果根节点不存在，初始化节点

@@ -3,16 +3,19 @@
 namespace App\Controller;
 
 use App\Entity\Customer;
+use App\Entity\Message;
 use App\Entity\Post;
 use App\Entity\User;
 use App\Repository\AdvertisementRepository;
 use App\Repository\BranchRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\CustomerRepository;
+use App\Repository\MessageRepository;
 use App\Repository\ResumeRepository;
 use App\Repository\UserRepository;
 use App\Repository\WallPaintingArtistRepository;
 use App\Repository\WallPaintingRepository;
+use Doctrine\Common\Collections\Collection;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -49,6 +52,38 @@ class DefaultController extends Controller
             'wallPaintingsRecommended' => $wallPaintingRepository->getRecommended(),
             'branches' => $branchRepository->findAll(),
 
+        ]);
+    }
+
+    /**
+     * @Route("/{_locale}/static-message-category/{token}", defaults={"_locale"="zh_CN"}, name="static_message_category")
+     */
+    public function staticMessageCategory(CategoryRepository $categoryRepository, MessageRepository $messageRepository, $token)
+    {
+        $category = $categoryRepository->getByToken($token);
+
+        if(!$category)
+            throw  $this->createNotFoundException(sprintf('Category with token %s not found', $token));
+
+        /** @var Collection $messages */
+        $messages = $messageRepository->getByCategory($category->getId());
+
+        if(empty($messages))
+        {
+            throw  $this->createNotFoundException(sprintf('No messages in category %s', $category->getName()));
+        }
+
+        return $this->redirectToRoute('static_page_show', ['id' => $messages[0]->getId()]);
+    }
+
+    /**
+     * @Route("/{_locale}/static/{id}", defaults={"_locale"="zh_CN"}, name="static_page_show")
+     */
+    public function staticPageShow(MessageRepository $messageRepository, Message $message)
+    {
+        return $this->render('default/static_page_show.html.twig', [
+            'messages' => $messageRepository->getByCategory($message->getCategory()->getId(), false),
+            'message' => $message
         ]);
     }
 

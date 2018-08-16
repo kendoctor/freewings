@@ -22,16 +22,6 @@
 
                 <div id="mainMenu" class="main-menu-wrapper collapse navbar-collapse">
                     {{ knp_menu_render('main') }}
-                    <div class="locale-switch">
-                        {% set params = app.request.attributes.get('_route_params')|merge(app.request.query.all()) %}
-                        {% if app.request.locale == 'en' %}
-                            {% set params = params|merge({'_locale': 'zh_CN'}) %}
-                            <a  href="{{ path(app.request.attributes.get('_route'), params) }}">中文</a>
-                        {% else %}
-                            {% set params = params|merge({'_locale': 'en'}) %}
-                            <a  href="{{ path(app.request.attributes.get('_route'), params) }}">En</a>
-                        {% endif %}
-                    </div>
                 </div>
 
             </div>
@@ -53,7 +43,7 @@
                 <ul class="bottom-menu">
                     <li><a href="{{ path('customer_index') }}">客户</a></li>
                     <li><a href="{{ path('employment') }}">招聘</a></li>
-                    <li><a href="">彩绘培训</a></li>
+                    <li><a href="{{ path('static_message_category', {'token':'training'}) }}">彩绘培训</a></li>
                     <li><a href="{{ path('artist_index') }}">团队</a></li>
                     <li class="last"><a href="">新闻</a></li>
                 </ul>
