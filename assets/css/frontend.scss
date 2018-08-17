@@ -563,6 +563,27 @@ body {
 
 /**wallPaintingIndexPage**/
 
+.navigation
+{
+  display: flex;
+  justify-content: center;
+}
+
+.navigation>nav
+{
+
+}
+
+.navigation .page-item .page-link
+{
+  margin-left:3px;
+  border-radius: 3px;
+}
+
+.navigation .page-item .page-link:hover
+{
+  border: 1px solid #dee2e6;
+}
 
 .sidebar
 {
@@ -575,6 +596,7 @@ body {
 
 .main {
   margin-top: 10px;
+  flex-grow: 1;
 }
 
 .page
