@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="1f42ab2e-5a47-487e-b05d-a996d95af6cd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/frontend.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/frontend.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menu/Builder.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/Builder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/translations/messages.zh_CN.yml" beforeDir="false" afterPath="$PROJECT_DIR$/translations/messages.zh_CN.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,21 +36,21 @@
         <counts>
           <entry key="dummy" value="9" />
           <entry key="js" value="1" />
-          <entry key="php" value="11738" />
-          <entry key="scss" value="2895" />
-          <entry key="twig" value="3498" />
+          <entry key="php" value="11914" />
+          <entry key="scss" value="2907" />
+          <entry key="twig" value="3637" />
           <entry key="yaml" value="66" />
-          <entry key="yml" value="464" />
+          <entry key="yml" value="564" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="1" />
-          <entry key="PHP" value="11738" />
+          <entry key="PHP" value="11914" />
           <entry key="PLAIN_TEXT" value="9" />
-          <entry key="SCSS" value="2895" />
-          <entry key="Twig" value="3498" />
-          <entry key="YAML" value="530" />
+          <entry key="SCSS" value="2907" />
+          <entry key="Twig" value="3637" />
+          <entry key="YAML" value="630" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -81,8 +83,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+            <state relative-caret-position="165">
+              <caret line="47" column="69" selection-start-line="47" selection-start-column="69" selection-end-line="47" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -99,8 +101,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Menu/Builder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="45" column="46" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="46" />
+            <state relative-caret-position="177">
+              <caret line="38" column="35" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -108,8 +110,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/translations/messages.zh_CN.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2610">
-              <caret line="174" selection-start-line="174" selection-end-line="174" />
+            <state relative-caret-position="240">
+              <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -144,8 +146,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/css/frontend.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="573" lean-forward="true" selection-start-line="573" selection-end-line="573" />
+            <state relative-caret-position="84">
+              <caret line="101" column="22" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -179,9 +181,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>customer-recommended</find>
-      <find>container</find>
-      <find>wrap</find>
       <find>nowrap</find>
       <find>SELECTOR_ADVERTISEMENT_EDIT_LINK</find>
       <find>token</find>
@@ -209,6 +208,9 @@
       <find>customer-intro</find>
       <find>main</find>
       <find>pagination</find>
+      <find>navigation</find>
+      <find>menu</find>
+      <find>main-menu</find>
     </findStrings>
     <replaceStrings>
       <replace>category/admin/</replace>
@@ -281,10 +283,10 @@
         <option value="$PROJECT_DIR$/src/Repository/MessageRepository.php" />
         <option value="$PROJECT_DIR$/src/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/templates/default/static_page_show.html.twig" />
-        <option value="$PROJECT_DIR$/translations/messages.zh_CN.yml" />
-        <option value="$PROJECT_DIR$/src/Menu/Builder.php" />
-        <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/templates/default/customer_show.html.twig" />
+        <option value="$PROJECT_DIR$/templates/base.html.twig" />
+        <option value="$PROJECT_DIR$/src/Menu/Builder.php" />
+        <option value="$PROJECT_DIR$/translations/messages.zh_CN.yml" />
         <option value="$PROJECT_DIR$/assets/css/frontend.scss" />
       </list>
     </option>
@@ -661,12 +663,12 @@
       <workItem from="1533885692350" duration="1267000" />
       <workItem from="1533887316501" duration="11522000" />
       <workItem from="1533972061345" duration="38251000" />
-      <workItem from="1534481818883" duration="1973000" />
+      <workItem from="1534481818883" duration="3898000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="997374000" />
+    <option name="totallyTimeSpent" value="999299000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="81" y="24" width="1392" height="948" extended-state="4" />
@@ -985,27 +987,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Menu/Builder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="46" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/translations/messages.zh_CN.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2610">
-          <caret line="174" selection-start-line="174" selection-end-line="174" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/MessageRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
@@ -1048,10 +1029,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="47" column="69" selection-start-line="47" selection-start-column="69" selection-end-line="47" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Menu/Builder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="38" column="35" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/translations/messages.zh_CN.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/frontend.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="573" lean-forward="true" selection-start-line="573" selection-end-line="573" />
+        <state relative-caret-position="84">
+          <caret line="101" column="22" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
         </state>
       </provider>
     </entry>

@@ -34,6 +34,10 @@ class Builder
         $menu->addChild('menu.homepage', ['route' => 'home']);
         $menu->addChild('menu.wall_painting_index' , ['route'=>'wall_painting_index']);
 
+        $menu->addChild('menu.services', ['route'=> 'static_message_category', 'routeParameters' => ['token'=>'services']]);
+        $menu->addChild('menu.training', ['route'=> 'static_message_category', 'routeParameters' => ['token'=>'training']]);
+        $menu->addChild('menu.about', ['route'=> 'static_message_category', 'routeParameters' => ['token'=>'about']]);
+
         $params = array_merge($request->attributes->get('_route_params'), $request->query->all());
         $route = $request->attributes->get('_route');
 

@@ -41,11 +41,11 @@
         <div class="container">
             <div class="bottom-bar">
                 <ul class="bottom-menu">
-                    <li><a href="{{ path('customer_index') }}">客户</a></li>
-                    <li><a href="{{ path('employment') }}">招聘</a></li>
-                    <li><a href="{{ path('static_message_category', {'token':'training'}) }}">彩绘培训</a></li>
-                    <li><a href="{{ path('artist_index') }}">团队</a></li>
-                    <li class="last"><a href="">新闻</a></li>
+                    <li><a href="{{ path('customer_index') }}">{{ 'bmenu.customer_index'|trans }}</a></li>
+                    <li><a href="{{ path('employment') }}">{{ 'bmenu.employment'|trans }}</a></li>
+                    <li><a href="{{ path('static_message_category', {'token':'training'}) }}">{{ 'bmenu.training'|trans }}</a></li>
+                    <li><a href="{{ path('artist_index') }}">{{ 'bmenu.team'|trans }}</a></li>
+                    <li class="last"><a href="">{{ 'bmenu.news'|trans }}</a></li>
                 </ul>
                 <div class="qr-codes">
                     <div class="row ">

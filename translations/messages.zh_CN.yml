@@ -7,6 +7,15 @@ category.index: 分类
 category.index_title: 分类管理
 menu.homepage: 首页
 menu.wall_painting_index: 案例
+menu.services: 服务
+menu.training: 培训
+menu.about: 联系
+bmenu.training: 彩绘培训
+bmenu.customer_index: 客户
+bmenu.team: 团队
+bmenu.news: 新闻
+bmenu.employment: 招聘
+
 
 admin.actions: 操作
 admin.yes: 是
