@@ -2,17 +2,19 @@
 
 {% block body %}
     <div class="container ">
-        <div class="static-page-show">
-            <div class="messages-menu navbar navbar-expand-sm navbar-dark bg-dark ">
+        <div class="messages-menu navbar navbar-expand-sm navbar-dark bg-dark ">
+            <ul class="sidemenu navbar-nav">
+                {% for message2 in messages  %}
+                    <li class="nav-item"><a class="nav-link" href="{{ path('static_page_show', {id: message2.id }) }}">{{ message2.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
 
-                <ul class="sidemenu navbar-nav">
-                    {% for message2 in messages  %}
-                        <li class="nav-item"><a class="nav-link" href="{{ path('static_page_show', {id: message2.id }) }}">{{ message2.title }}</a></li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="raw-content">
-                {{ message.content | raw }}
+        <div class="page-wrapper">
+            <div class="static-page-show">
+                <div class="raw-content">
+                    {{ message.content | raw }}
+                </div>
             </div>
         </div>
     </div>

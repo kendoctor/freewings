@@ -9,15 +9,15 @@
             <div class="intro">
                 <img src="{{ asset('assets/images/logo-team-page.jpg') }}" alt="">
                 <p class="content">
-                    隐形翅膀成立于
+                    {{ 'page.team.company_description'|trans|nl2br }}
                 </p>
             </div>
-            <div class="team-header">灵感空间和画室</div>
+            <div class="team-header">{{ 'page.team.office'|trans }}</div>
             <div class="room-image">
                 <img class="img-fluid" src="{{ asset('assets/images/room-team-page.jpg') }}" alt="">
             </div>
-            <div class="team-header">我们的团队</div>
-            <div class="team-description">11年来...</div>
+            <div class="team-header">{{ 'page.team.our_team'|trans }}</div>
+            <div class="team-description">{{ 'page.team.description'|trans|nl2br }}</div>
             <div class="artists">
                 {% for artist in artists %}
                     {% if loop.index <= 6 %}

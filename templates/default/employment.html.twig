@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{ 'page.title.employment'|trans }} {% endblock %}
+{% block title %} {{ 'page.employment.title'|trans }} {% endblock %}
 
 {% block body %}
 
@@ -9,13 +9,13 @@
             <div class="title-image">
                 <img class="img-fluid" src="{{ asset('assets/images/freewings-team-page.jpg') }}" alt="">
             </div>
-            <div class="highlight-header">我们期待你的加入</div>
+            <div class="highlight-header">{{ 'page.employment.title'|trans }}</div>
 
             <div class="bd">
                 <div class="intro">
                     <img src="{{ asset('assets/images/logo-team-page.jpg') }}" alt="">
-                    <p class="content">
-                        隐形翅膀成立于
+                    <p class="description">
+                        {{ 'page.employment.description'|trans|nl2br }}
                     </p>
                 </div>
                 <div class="resumes row">

@@ -502,6 +502,7 @@ body {
   color: #adadad;
 }
 
+
 .wall-painting-page {
   background: #222222;
   padding-top:2rem;
@@ -532,13 +533,21 @@ body {
   margin-bottom: 20px;
 }
 
-.wall-painting-artists .header
+.wall-painting-artists .caption-wrapper
 {
+  display: flex;
+  align-items: center;
   background: #006dbc;
+}
+
+.wall-painting-artists .caption
+{
+
   color: white;
   font-size:14px;
   padding:.5rem;
   text-align: center;
+
 }
 
 .wall-painting-tags
@@ -876,9 +885,16 @@ body {
 {
   background: #222222;
 }
+
 .employment-index-page .bd
 {
   padding:2rem;
+}
+
+.employment-index-page .description
+{
+  color:#828282;
+  margin-top: 1rem;
 }
 
 .employment-index-page .resumes .resume
@@ -925,17 +941,49 @@ body {
   padding:1rem 2rem;
 }
 
+/** messageShowPage**/
+.page-wrapper
+{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background: #222222;
+}
+
+.message-show-page
+{
+  margin: 0 auto;
+  max-width: 850px;
+}
+
+.message-show-page .title
+{
+  color:#a5a5a5;
+}
+
+.message-show-page>hr
+{
+  background:#a5a5a5;
+}
+
+
 /** staticPageShow */
 
 .static-page-show
 {
-  background: #222222;
+  margin: 0 auto;
+  max-width: 850px;
 }
 
 @media (max-width: 991.98px) {
   .raw-content
   {
-    padding:0 2rem;
+    //padding:0 2rem;
+  }
+
+  .message-show-page, .static-page-show, .wall-painting-show-page
+  {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 
@@ -950,12 +998,15 @@ body {
 .raw-content
 {
   color: #adadad;
-  max-width: 850px;
-  margin: auto;
 
 }
 
 .raw-content img
+{
+  max-width: 100%;
+}
+
+.raw-content embed
 {
   max-width: 100%;
 }

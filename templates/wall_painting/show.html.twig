@@ -2,29 +2,37 @@
 
 {% block body %}
     <div class="container">
-        <div class="wall-painting-page">
-            <div class="wall-painting-show">
-                <h3>{{ wallPainting.title }}</h3>
-                <hr>
-                {{ wallPainting.content | raw }}
-
-                <div class="wall-painting-artists">
-                    <div class="row no-gutters">
-                        <div class="col-1 header">
-                            本案例艺术家
-                        </div>
-                    {% for wallPaintingArtist in wallPainting.wallPaintingArtists %}
-                        <div class="col-1">
-                            <img class="img-fluid" src="{{ vich_uploader_asset(wallPaintingArtist.artist.figure, 'file')}}" alt="{{ wallPaintingArtist.artist.username }}">
-                        </div>
-                    {% endfor %}
+        <div class="page-wrapper">
+            <div class="wall-painting-show-page">
+                <div class="wall-painting-show">
+                    <h3 class="title">{{ wallPainting.title }}</h3>
+                    <hr>
+                    <div class="raw-content">
+                        {{ wallPainting.content | raw }}
                     </div>
+
+                    <div class="wall-painting-artists">
+                        <div class="row no-gutters">
+                            <div class="col-lg-1 col-md-2 col-sm-3 caption-wrapper">
+                                <div class="caption">
+                                    本案例艺术家
+                                </div>
+                            </div>
+                            {% for wallPaintingArtist in wallPainting.wallPaintingArtists %}
+                            <div class="col-lg-1 col-md-2 col-sm-3">
+                                <a href="{{ path('artist_show', { id: wallPaintingArtist.artist.id }) }}">
+                                <img class="img-fluid" src="{{ vich_uploader_asset(wallPaintingArtist.artist.figure, 'file')}}" alt="{{ wallPaintingArtist.artist.username }}">
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <ul class="wall-painting-tags">
+                        {% for postTag in wallPainting.postTags %}
+                            <li><a href="">{{ postTag.tag.name }}</a></li>
+                        {% endfor %}
+                    </ul>
                 </div>
-                <ul class="dwall-painting-tags">
-                    {% for postTag in wallPainting.postTags %}
-                        <li><a href="">{{ postTag.tag.name }}</a></li>
-                    {% endfor %}
-                </ul>
             </div>
         </div>
     </div>
@@ -37,25 +45,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('assets/slick/slick.min.js') }}"></script>
-    <script>
-        $('.slider-for').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
 
-            fade: true,
-            asNavFor: '.slider-nav'
-        });
-        $('.slider-nav').slick({
-            slidesToShow: 8,
-            slidesToScroll: 1,
-            arrows: false,
-            asNavFor: '.slider-for',
-            dots: false,
-            centerMode: true,
-            focusOnSelect: true
-        });
-    </script>
 
 {% endblock %}
 

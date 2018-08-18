@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="page-wrapper">
+            <div class="message-show-page">
+                <h3 class="title">{{ message.title }}</h3>
+                <hr>
+                <div class="raw-content">
+                    {{ message.content | raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

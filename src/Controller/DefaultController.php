@@ -157,9 +157,11 @@ class DefaultController extends Controller
     /**
      * @Route("/{_locale}/news/{id}/show", defaults={"_locale"="zh_CN"}, name="message_show")
      */
-    public function messageShow()
+    public function messageShow(Message $message)
     {
-
+        return $this->render('default/message_show.html.twig', [
+            'message' => $message
+        ]);
     }
 
     public function componentBranches(BranchRepository $branchRepository)
