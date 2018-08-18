@@ -965,6 +965,42 @@ body {
   background:#a5a5a5;
 }
 
+/** messageIndexPage**/
+
+.message-index-page
+{
+  margin: 0 auto;
+  max-width: 850px;
+  color:#a5a5a5;
+}
+
+.message-index-page a
+{
+  color:#a5a5a5;
+}
+
+.message-index-page .image
+{
+  float:left;
+  width:120px;
+}
+
+.message-index-page .message
+{
+  @include clearfix;
+  margin-bottom: 1rem;
+}
+
+.message .left
+{
+  margin-left:120px;
+}
+
+.message .right .brief
+{
+  color:#707070;
+}
+
 
 /** staticPageShow */
 
@@ -980,7 +1016,7 @@ body {
     //padding:0 2rem;
   }
 
-  .message-show-page, .static-page-show, .wall-painting-show-page
+  .message-show-page, .static-page-show, .wall-painting-show-page, .message-index-page
   {
     padding-left: 2rem;
     padding-right: 2rem;

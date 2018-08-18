@@ -56,6 +56,7 @@ class MessageRepository extends ServiceEntityRepository
     public function getListQuery()
     {
         return $this->createQueryBuilder('m')
+            ->addOrderBy('m.updatedAt', 'DESC')
             ->getQuery();
     }
 

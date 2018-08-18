@@ -164,6 +164,18 @@ class DefaultController extends Controller
         ]);
     }
 
+
+    /**
+     * @Route("/{_locale}/news/{page}", defaults={"_locale"="zh_CN"}, name="message_index")
+     */
+    public function messageIndex(MessageRepository $messageRepository, PaginatorInterface $paginator, $page = 1)
+    {
+        return $this->render('default/message_index.html.twig', [
+            'pagination' => $paginator->paginate($messageRepository->getListQuery(), $page)
+        ]);
+    }
+
+
     public function componentBranches(BranchRepository $branchRepository)
     {
         return $this->render('components/branches.html.twig', [

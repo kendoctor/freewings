@@ -89,6 +89,9 @@ liip_imagine:
         artist_figure_lg:
             filters:
                 thumbnail: { size: [320, 320], mode: outbound }
+        message_cover:
+            filters:
+                thumbnail: { size: [110, 76], mode: outbound }
 
 vich_uploader:
     db_driver: orm
