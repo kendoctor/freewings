@@ -6,7 +6,7 @@
         {% for branch in branches %}
             <div class="col-md col-sm-12">
                 <div class="branch">
-                    <a href="{{ path('contact') ~ '#' ~ branch.id }}">{{ branch.title }}</a>
+                    <a href="{{ path('contact') ~ '#branch' ~ branch.id }}">{{ branch.title }}</a>
                 </div>
             </div>
         {% endfor %}

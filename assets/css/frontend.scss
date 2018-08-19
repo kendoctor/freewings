@@ -696,21 +696,52 @@ body {
 .contact-page
 {
   background: #222222;
+  max-width: 850px;
+  margin: 0 auto;
+  padding-top:2rem;
 }
 
-.branch-list
+.contact-page .branches
 {
-  padding:1rem 0;
-  color: #adadad;
-  max-width:850px;
-  margin:auto;
+
 }
 
-
-.contact-page .branch-list .branch
+.contact-page .branches .branch
 {
-  margin-bottom: 10px;
+  display: block;
+  margin-bottom: 1rem;
+  position: relative;
+}
 
+.contact-page .branches .branch a
+{
+  overflow: hidden;
+  font-size: 0;
+  width:0;
+  display: inline-block;
+  padding:0;
+  position: absolute;
+  top:-86px;
+}
+
+.contact-page .branches .branch hr
+{
+  background: #aaaaaa;
+}
+.contact-page .branches .branch h3
+{
+  font-size:20px;
+  color: #c0c0c0;
+}
+
+.contact-page .branches .branch p
+{
+  color: #c0c0c0;
+}
+
+.contact-page .branches .branch img
+{
+  width:100%;
 }
 
 /**customer show page**/
@@ -1035,6 +1066,7 @@ body {
   margin: 0 auto;
   max-width: 850px;
   color:#a5a5a5;
+  align-items: stretch;
 }
 
 .message-index-page a
@@ -1079,7 +1111,7 @@ body {
   {
   }
 
-  .message-show-page, .static-page-show, .wall-painting-show-page, .message-index-page
+  .message-show-page, .static-page-show, .wall-painting-show-page, .message-index-page, .contact-page
   {
     padding-left: 2rem;
     padding-right: 2rem;

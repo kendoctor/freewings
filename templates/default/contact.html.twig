@@ -2,31 +2,34 @@
 
 {% block body %}
     <div class="container">
-        <div class="contact-page">
-            <div class="branch-list">
-                {% for branch in branches %}
-                    <div class="branch">
-                        <div class="row">
-                            <div class="col-6">
-                                <h3>{{ branch.title }} 隐形翅膀艺术设计中心</h3>
-                                <p>地址：{{ branch.address }}</p>
-                                <p>手机：{{ branch.mobile }}</p>
-                                {% if branch.phone %}
-                                    <p>电话：{{ branch.phone }}</p>
-                                {% endif %}
-                                {% for qq in branch.qqs %}
-                                   <p>客服QQ{{ loop.index }}: {{ qq }} </p>
-                                {% endfor %}
-                                {% if branch.email %}
-                                    <p>Email： {{ branch.email }}</p>
-                                {% endif %}
-                            </div>
-                            <div class="col-6">
-                                <img class="img-fluid" src="{{ vich_uploader_asset(branch.map, 'file')}}" >
+        <div class="page-wrapper">
+            <div class="contact-page">
+                <div class="branches">
+                    {% for branch in branches %}
+                        <div class="branch" >
+                            <a id="branch{{ loop.index }}" >ReadOnly</a>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12">
+                                    <h3>{{ branch.title }} 隐形翅膀艺术设计中心</h3>
+                                    <p>地址：{{ branch.address }}</p>
+                                    <p>手机：{{ branch.mobile }}</p>
+                                    {% if branch.phone %}
+                                        <p>电话：{{ branch.phone }}</p>
+                                    {% endif %}
+                                    {% for qq in branch.qqs %}
+                                       <p>客服QQ{{ loop.index }}: {{ qq }} </p>
+                                    {% endfor %}
+                                    {% if branch.email %}
+                                        <p>Email： {{ branch.email }}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <img class="img-fluid" src="{{ vich_uploader_asset(branch.map, 'file')}}" >
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
