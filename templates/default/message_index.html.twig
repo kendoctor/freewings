@@ -1,31 +1,46 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <a  href="javascript:void(0);" onclick="switchSidebar();" class="message-categories-sidebar-switch">
+        >>
+    </a>
+
+    <script>
+        function switchSidebar()
+        {
+            $('#sidebar').toggleClass('open');
+        }
+    </script>
     <div class="container">
         <div class="page-wrapper">
             <div class="message-index-page">
-                <div class="messages">
-                    {% for message in pagination %}
-                        <div class="message">
-                            <div class="image">
-                                <a href="{{ path('message_show', { id: message.id }) }}">
-                            {% if message.cover and message.cover.filename %}
-                                <img class="img-fluid" src="{{ vich_uploader_asset(message.cover, 'file')|imagine_filter('message_cover') }}" alt="">
-                            {% else %}
-                                <img class="img-fluid" src="{{ asset('assets/images/message_cover_placeholder.gif') }}" alt="">
-                            {% endif %}
-                                </a>
-                            </div>
-                            <div class="right">
-                                <div class="title"><a href="{{ path('message_show', { id: message.id }) }}">{{ message.title }}</a></div>
-                                <div class="brief">{{ message.brief[:50] ~ '...'}}</div>
-                            </div>
-                        </div>
-                    {% endfor %}
+                <div id="sidebar" class="message-categories-sidebar">
+                    {% include 'default/_render_category.html.twig' with { 'categories' : categories } %}
                 </div>
+                <div class="message-index-main">
+                    <div class="messages">
+                        {% for message in pagination %}
+                            <div class="message">
+                                <div class="image">
+                                    <a href="{{ path('message_show', { id: message.id }) }}">
+                                {% if message.cover and message.cover.filename %}
+                                    <img class="img-fluid" src="{{ vich_uploader_asset(message.cover, 'file')|imagine_filter('message_cover') }}" alt="">
+                                {% else %}
+                                    <img class="img-fluid" src="{{ asset('assets/images/message_cover_placeholder.gif') }}" alt="">
+                                {% endif %}
+                                    </a>
+                                </div>
+                                <div class="right">
+                                    <div class="title"><a href="{{ path('message_show', { id: message.id }) }}">{{ message.title }}</a></div>
+                                    <div class="brief">{{ message.brief[:50] ~ '...'}}</div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
 
-                <div class="navigation">
-                    {{ knp_pagination_render(pagination) }}
+                    <div class="navigation">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
                 </div>
             </div>
         </div>

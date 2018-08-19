@@ -166,12 +166,13 @@ class DefaultController extends Controller
 
 
     /**
-     * @Route("/{_locale}/news/{page}", defaults={"_locale"="zh_CN"}, name="message_index")
+     * @Route("/{_locale}/news/{category}_{page}", defaults={"_locale"="zh_CN"}, name="message_index")
      */
-    public function messageIndex(MessageRepository $messageRepository, PaginatorInterface $paginator, $page = 1)
+    public function messageIndex(CategoryRepository $categoryRepository, MessageRepository $messageRepository, PaginatorInterface $paginator, $page = 1, $category = 'all')
     {
         return $this->render('default/message_index.html.twig', [
-            'pagination' => $paginator->paginate($messageRepository->getListQuery(), $page)
+            'categories' => $categoryRepository->getMessageCategoryTree(),
+            'pagination' => $paginator->paginate($messageRepository->getIndexQuery($category), $page)
         ]);
     }
 

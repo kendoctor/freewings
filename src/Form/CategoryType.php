@@ -47,6 +47,9 @@ class CategoryType extends AbstractType
             ->add('weight', IntegerType::class, [
                 'label' => 'category.form.weight'
             ])
+            ->add('isStatic', null, [
+                'label' => 'category.form.isStatic'
+            ])
 
 //            ->add('images', CollectionExType::class, [
 //                'entry_type' => CategoryMediaType::class,

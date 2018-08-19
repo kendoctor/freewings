@@ -53,6 +53,30 @@ class MessageRepository extends ServiceEntityRepository
 
     }
 
+    public function getIndexQuery($category = 'all', $excludeStatic = true)
+    {
+        $builder = $this->createQueryBuilder('m')
+            ->addOrderBy('m.updatedAt', 'DESC')
+            ->addOrderBy('m.createdAt', 'DESC')
+            ->leftJoin('m.category', 'c')
+        ;
+
+        if($excludeStatic)
+        {
+            $builder->andWhere('c.isStatic = false');
+        }
+
+        if(is_numeric($category))
+        {
+            $builder->andWhere('c.id = :category')
+                ->setParameter('category', $category)
+            ;
+
+        }
+
+        return $builder->getQuery();
+    }
+
     public function getListQuery()
     {
         return $this->createQueryBuilder('m')

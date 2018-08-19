@@ -101,8 +101,11 @@ class CategoryRepository extends NestedTreeRepository implements ServiceEntityRe
      * 如果根节点不存在，初始化节点
      *
      * @param string $postType
+     * @param null $creator
      * @return mixed
      * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function getRoot($postType = 'post', $creator = null)
     {
@@ -183,6 +186,21 @@ class CategoryRepository extends NestedTreeRepository implements ServiceEntityRe
 
         return $tree;
 
+    }
+
+    public function getMessageCategoryTree()
+    {
+        $root = $this->getRoot('message');
+        $this->_em->getConfiguration()->addCustomHydrationMode('tree', 'Gedmo\Tree\Hydrator\ORM\TreeObjectHydrator');
+
+        $tree = $this->getChildrenQueryBuilder($root)
+            ->andWhere('node.isStatic = false')
+            ->getQuery()
+            ->setHint(\Doctrine\ORM\Query::HINT_INCLUDE_META_COLUMNS, true)
+            ->getResult('tree')
+        ;
+
+        return $tree;
     }
 
     public function getCategoryTreeByType($type = 'wall_painting')

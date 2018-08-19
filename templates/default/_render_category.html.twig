@@ -1,0 +1,10 @@
+<ul class="message-categories">
+    {% for category in categories %}
+        <li>
+                <a href="{{ path('message_index', { category : category.id } ) }}">{{ category.name }}</a>
+            {% if category.children | length > 0 %}
+                {% include 'wall_painting/_render_category.html.twig' with { 'categories' : category.children } %}
+            {% endif  %}
+        </li>
+    {% endfor %}
+</ul>

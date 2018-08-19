@@ -147,6 +147,11 @@ class Category
      */
     private $oldNewsCategoryId;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isStatic;
+
 
     public function __construct()
     {
@@ -156,6 +161,7 @@ class Category
         $this->images = new ArrayCollection();
         $this->weight = 0;
         $this->isRecommended = false;
+        $this->isStatic = false;
     }
 
     public function isRoot()
@@ -528,6 +534,18 @@ class Category
     public function setOldNewsCategoryId(?int $oldNewsCategoryId): self
     {
         $this->oldNewsCategoryId = $oldNewsCategoryId;
+
+        return $this;
+    }
+
+    public function getIsStatic(): ?bool
+    {
+        return $this->isStatic;
+    }
+
+    public function setIsStatic(bool $isStatic): self
+    {
+        $this->isStatic = $isStatic;
 
         return $this;
     }

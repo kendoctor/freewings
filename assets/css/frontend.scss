@@ -586,7 +586,7 @@ body {
 .navigation .page-item .page-link
 {
   margin-left:3px;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 .navigation .page-item .page-link:hover
@@ -967,8 +967,71 @@ body {
 
 /** messageIndexPage**/
 
+.message-categories-sidebar-switch
+{
+  display: inline-block;
+  background:#1b1e21;
+  color:#aaaaaa;
+  position: fixed;
+  top:68px;
+  left:0;
+  padding:.5rem;
+  display: none;
+  border:0;
+}
+
+
+.message-categories-sidebar-switch:hover
+{
+  color:#aaaaaa;
+}
+
+.message-categories-sidebar
+{
+  flex-basis: 200px;
+  min-width: 140px;
+  border-right: 1px solid #333333;
+  margin-right: 1rem;
+  padding-right:1rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 84px;
+  align-self: flex-start;
+}
+
+.message-categories-sidebar ul
+{
+  list-style: none;
+  margin:0;
+  padding:0;
+}
+
+@media (max-width: 767.98px) {
+  .message-categories-sidebar
+  {
+    display: none;
+  }
+
+  .message-categories-sidebar-switch
+  {
+    display: inline-block;
+  }
+
+  .message-categories-sidebar.open
+  {
+    display: inline-block;
+  }
+
+}
+
+.message-index-main
+{
+  flex-grow: 1;
+}
+
 .message-index-page
 {
+  display: flex;
   margin: 0 auto;
   max-width: 850px;
   color:#a5a5a5;
@@ -996,6 +1059,7 @@ body {
   margin-left:120px;
 }
 
+
 .message .right .brief
 {
   color:#707070;
@@ -1013,7 +1077,6 @@ body {
 @media (max-width: 991.98px) {
   .raw-content
   {
-    //padding:0 2rem;
   }
 
   .message-show-page, .static-page-show, .wall-painting-show-page, .message-index-page
