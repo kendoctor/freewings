@@ -102,3 +102,54 @@ vich_uploader:
             upload_destination: '%kernel.project_dir%/public/media'
             namer: Vich\UploaderBundle\Naming\UniqidNamer
             directory_namer: vich.date_directory_namer
+
+phpmob_settings:
+    schemas:
+        homepage:
+            label: section.homepage.label
+            settings:
+                page_title_zh_CN:
+                    label: page.title.zh_CN
+                page_meta_description_zh_CN:
+                    label: page.meta.description.zh_CN
+                page_meta_keywords_zh_CN:
+                    label: page.meta.keywords.zh_CN
+                page_title_en:
+                    label: page.title.en
+                page_meta_description_en:
+                    label: page.meta.description.en
+                page_meta_keywords_en:
+                    label: page.meta.keywords.en
+                advertisement_limit:
+                    label: advertisement.limit
+                    value: 6
+                wall_painting_row_limit:
+                    label: wallPainting.rowLimit
+                    value: 4
+                wall_painting_category_row_limit:
+                    label: wallPaintingCategory.rowLimit
+                    value: 2
+                customer_row_limit:
+                    label: customer.rowLimit
+                    value: 2
+                message_row_limit:
+                    label: message.rowLimit
+                    value: 2
+                artist_row_limit:
+                    label: artist.rowLimit
+                    value: 1
+        wall_painting_index:
+            label: section.wallPaintingIndex.label
+            settings:
+                page_title_zh_CN:
+                    label: page.title.zh_CN
+                page_meta_description_zh_CN:
+                    label: page.meta.description.zh_CN
+                page_meta_keywords_zh_CN:
+                    label: page.meta.keywords.zh_CN
+                page_title_en:
+                    label: page.title.en
+                page_meta_description_en:
+                    label: page.meta.description.en
+                page_meta_keywords_en:
+                    label: page.meta.keywords.en

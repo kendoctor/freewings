@@ -24,6 +24,18 @@ class TagRepository extends ServiceEntityRepository
         return new Tag();
     }
 
+    public function getRecommend($limit = 20)
+    {
+        $q = $this->createQueryBuilder('t')
+        ->where('t.isTop = true')
+        ->addOrderBy('t.updatedAt', 'DESC')
+        ->addOrderBy('t.createdAt', 'DESC')
+        ->setMaxResults($limit)
+        ->getQuery();
+
+        return $q->getResult();
+    }
+
     public function getListQuery()
     {
         return $this->createQueryBuilder('t')

@@ -69,10 +69,12 @@ class WallPaintingRepository extends ServiceEntityRepository
 
     }
 
-    public function getList($category = 'all', $limit = 18)
+    public function getList($category = 'all', $tag = 'none', $limit = 18)
     {
         $qb = $this->createQueryBuilder('w')
             ->leftJoin('w.category', 'c')
+            ->leftJoin('w.postTags', 'pt')
+            ->leftJoin('pt.tag', 't')
             ->setMaxResults($limit)
             ->orderBy('w.createdBy','DESC')
             ;
@@ -82,6 +84,13 @@ class WallPaintingRepository extends ServiceEntityRepository
                $qb->where($qb->expr()->gte('c.lft', $category->getLft()))
                    ->andWhere($qb->expr()->lte('c.rgt', $category->getRgt()))
                ;
+        }
+
+        if($tag != 'none')
+        {
+            $qb->andWhere('t.id IN (:tag)')
+                ->setParameter('tag', $tag)
+            ;
         }
 
         return $qb->getQuery();

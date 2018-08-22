@@ -567,10 +567,28 @@ body {
 
 .wall-painting-tags li a
 {
+  text-align: center;
   color: white;
 }
 
 /**wallPaintingIndexPage**/
+
+.tags-recommended
+{
+  margin:0;
+  padding:0;
+  list-style: none;
+}
+
+.tags-recommended a
+{
+  display:inline-block;
+  word-wrap: normal;
+}
+
+.popover{
+  min-width:300px !important;
+}
 
 .navigation
 {

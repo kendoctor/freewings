@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="{% block metaDescription %}{% endblock %}" />
+        <meta name="keywords" content="{% block metaKeywords %}{% endblock %}" >
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="{{ asset('build/css/frontend.css') }}">
         {% block stylesheets %}{% endblock %}
@@ -27,7 +29,6 @@
             </div>
         </div>
     </div>
-
 
 
 

@@ -7,7 +7,7 @@ $(document).ready(function(){
         slidesToScroll: 3
     });
 
-    $('#post_postTags').select2({
+    $('#wall_painting_postTags').select2({
         tags: true
     });
 

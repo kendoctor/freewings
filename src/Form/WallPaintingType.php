@@ -3,10 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Category;
+use App\Entity\Post;
 use App\Entity\WallPainting;
 use App\Entity\WallPaintingArtist;
 use App\Form\DataTransformer\ArrayToCollectionExTransformer;
+use App\Form\DataTransformer\IntegerToBitsTransformer;
 use App\Form\Type\CollectionExType;
+use App\Form\Type\Select2Type;
 use App\Repository\CategoryRepository;
 use App\Repository\UserRepository;
 use App\Repository\WallPaintingArtistRepository;
@@ -74,6 +77,9 @@ class WallPaintingType extends AbstractType
             ->add('weight', IntegerType::class, [
                 'label' => 'wall_painting.form.weight'
             ])
+            ->add('postTags', Select2Type::class, [
+                'label' => 'wall_painting.form.tags'
+            ])
             ->add('wallPaintingArtists', ChoiceType::class, [
                 'choices' => $this->userRepository->getArtists(),
                 'choice_label' => 'username',
@@ -85,18 +91,23 @@ class WallPaintingType extends AbstractType
                     return $artist->getId();
                 }
             ])
-//            ->add('photos', CollectionExType::class, [
-//                'entry_type' => WallPaintPhotoType::class,
-//                'by_reference' => false,
-//                'label' => 'wall_painting.photos',
-//                'allow_add' => true,
-//                'allow_delete' => true
-//            ])
+            ->add('recommendType', ChoiceType::class, [
+                'label' => 'wall_painting.form.recommendType',
+                'expanded' => true,
+                'multiple' => true,
+                'choices' => Post::getAvailableRecommendTypes(),
+                'choice_label' => function($choice)
+                {
+                    return Post::getRecommendTypeName($choice);
+                }
+
+            ])
             ->add('isPublished', null, [
                 'label' => 'wall_painting.form.isPublished'
             ])
         ;
         $builder->get('wallPaintingArtists')->addModelTransformer(new ArrayToCollectionExTransformer());
+        $builder->get('recommendType')->addModelTransformer(new IntegerToBitsTransformer(Post::getAvailableRecommendTypes()));
     }
 
     public function configureOptions(OptionsResolver $resolver)

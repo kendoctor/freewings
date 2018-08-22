@@ -70,11 +70,16 @@ class UserRepository extends ServiceEntityRepository
         return $creator;
     }
 
+    /**
+     * @param int $limit
+     * @return mixed
+     */
     public function getArtistsRecommended($limit = 8)
     {
         return $this->createQueryBuilder('u')
             ->where('BIT_AND(u.type, :type) > 0')
             ->setParameter('type', User::TYPE_ARTIST)
+            ->addOrderBy('u.weight', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult()

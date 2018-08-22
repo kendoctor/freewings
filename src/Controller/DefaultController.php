@@ -23,16 +23,28 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
+
+    private function getSettingManager()
+    {
+        return $this->get('phpmob.settings.manager');
+    }
+
+
     /**
      * @Route("/{_locale}", defaults={"_locale"="zh_CN"}, name="home")
      * @param WallPaintingRepository $wallPaintingRepository
      * @param CategoryRepository $categoryRepository
      * @param CustomerRepository $customerRepository
      * @param UserRepository $userRepository
+     * @param AdvertisementRepository $advertisementRepository
+     * @param BranchRepository $branchRepository
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function index(WallPaintingRepository $wallPaintingRepository,
+                          MessageRepository $messageRepository,
                           CategoryRepository $categoryRepository,
                           CustomerRepository $customerRepository,
                           UserRepository $userRepository,
@@ -41,15 +53,17 @@ class DefaultController extends Controller
     )
     {
         $em = $this->getDoctrine()->getManager();
+        $settingManager = $this->getSettingManager();
+
         $postsRecommended = $em->getRepository(Post::class)->findRecommended();
         $wallPaintingCategoryRoot = $categoryRepository->getRoot('wall_painting');
         return $this->render('default/index.html.twig', [
-            'advertisementsPublished' => $advertisementRepository->getPublished(),
-            'artistsRecommended' => $userRepository->getArtistsRecommended(),
-            'messagesRecommended' => [],
-            'customersRecommended' => $customerRepository->getRecommended(),
-            'wallPaintingCategoriesRecommended' => $categoryRepository->getRecommendedByRootAndOrderByWeight($wallPaintingCategoryRoot->getId()),
-            'wallPaintingsRecommended' => $wallPaintingRepository->getRecommended(),
+            'advertisementsPublished' => $advertisementRepository->getPublished($settingManager->get('homepage.advertisement_limit')),
+            'artistsRecommended' => $userRepository->getArtistsRecommended($settingManager->get('homepage.artist_row_limit') * 12),
+            'messagesRecommended' => $messageRepository->getRecommend($settingManager->get('homepage.message_row_limit') * 4),
+            'customersRecommended' => $customerRepository->getRecommended($settingManager->get('homepage.customer_row_limit') * 6),
+            'wallPaintingCategoriesRecommended' => $categoryRepository->getRecommendedByRootAndOrderByWeight($wallPaintingCategoryRoot->getId(), $settingManager->get('homepage.wall_painting_category_row_limit') * 4),
+            'wallPaintingsRecommended' => $wallPaintingRepository->getRecommended($settingManager->get('homepage.wall_painting_row_limit') * 4),
             'branches' => $branchRepository->findAll(),
 
         ]);

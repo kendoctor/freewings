@@ -4,11 +4,14 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Message;
+use App\Entity\Post;
+use App\Form\DataTransformer\IntegerToBitsTransformer;
 use App\Form\Type\CollectionExType;
 use App\Repository\CategoryRepository;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -49,11 +52,23 @@ class MessageType extends AbstractType
             ->add('weight', IntegerType::class, [
                 'label' => 'message.form.weight'
             ])
+            ->add('recommendType', ChoiceType::class, [
+                'label' => 'message.form.recommendType',
+                'expanded' => true,
+                'multiple' => true,
+                'choices' => Post::getAvailableRecommendTypes(),
+                'choice_label' => function($choice)
+                {
+                    return Post::getRecommendTypeName($choice);
+                }
+
+            ])
             ->add('isPublished', null , [
                 'label' => 'message.form.isPublished'
             ])
-
         ;
+
+        $builder->get('recommendType')->addModelTransformer(new IntegerToBitsTransformer(Post::getAvailableRecommendTypes()));
     }
 
     public function configureOptions(OptionsResolver $resolver)

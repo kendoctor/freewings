@@ -1,5 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+    <script>
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        })
+    </script>
+{% endblock %}
+
+{% block title %}{{ settings_get('wall_painting_index.page_title_'~app.request.locale) }}{% endblock %}
+{% block metaDescription %}{{ settings_get('wall_painting_index.page_meta_description_'~app.request.locale) }}{% endblock %}
+{% block metaKeywords %}{{ settings_get('wall_painting_index.page_meta_keywords_'~app.request.locale) }}{% endblock %}
+
+
 {% block body %}
 
     <div class="container clearfix">
@@ -10,16 +23,10 @@
                         分类
                     </a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link  dropdown-toggle"   href="#"  role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        标签
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-dark" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="{{ include('wall_painting/_recommended_tags.html.twig', { category: category, tags: tagsRecommended })|escape }}" data-html="true">标签</button>
                 </li>
+
             </ul>
 
 

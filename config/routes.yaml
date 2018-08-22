@@ -4,3 +4,16 @@
 
 logout:
     path: /logout
+
+phpmob_settings:
+    resource: "@PhpMobSettingsBundle/Resources/config/routing.xml"
+
+my_phpmob_settings:
+    path: /admin/settings/{section}
+    defaults:
+        _controller: PhpMobSettingsBundle:Update:globalUpdate
+        _template: "settings/default.html.twig"
+        _flash: "flash"
+        _redirect:
+            route: my_phpmob_settings
+            parameters: { section: homepage }

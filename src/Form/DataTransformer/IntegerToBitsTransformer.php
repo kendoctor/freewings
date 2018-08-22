@@ -16,11 +16,17 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 class IntegerToBitsTransformer implements DataTransformerInterface
 {
 
+    private $availableTypes;
+
+    public function __construct($availableTypes)
+    {
+        $this->availableTypes = $availableTypes;
+    }
 
     public function transform($intValue)
     {
         $bits = [];
-        foreach(User::getAvailableTypes() as $bitType)
+        foreach($this->availableTypes as $bitType)
         {
             if($bitType & $intValue)
                 $bits[] = $bitType;

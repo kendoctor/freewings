@@ -53,7 +53,7 @@ class UserEditType extends AbstractType
             ])
         ;
 
-        $builder->get('type')->addModelTransformer(new IntegerToBitsTransformer());
+        $builder->get('type')->addModelTransformer(new IntegerToBitsTransformer(User::getAvailableTypes()));
     }
 
     public function configureOptions(OptionsResolver $resolver)

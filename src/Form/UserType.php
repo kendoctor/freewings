@@ -59,7 +59,7 @@ class UserType extends AbstractType
                 'label' => 'user.form.isActive'
             ])
         ;
-        $builder->get('type')->addModelTransformer(new IntegerToBitsTransformer());
+        $builder->get('type')->addModelTransformer(new IntegerToBitsTransformer(User::getAvailableTypes()));
     }
 
     public function configureOptions(OptionsResolver $resolver)

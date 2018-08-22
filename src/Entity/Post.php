@@ -24,6 +24,10 @@ class Post
     const POST_TYPE_LINK = 'link';
     const POST_TYPE_WALL_PAINTING = 'wall_painting';
 
+    const RECOMMEND_TYPE_AT_HOMEPAGE = 128;
+    const RECOMMEND_TYPE_IN_CATEGORY = 32;
+
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -114,8 +118,19 @@ class Post
      */
     private $translations;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $recommendType;
+
+    protected static $recommendTypeName = [
+        self::RECOMMEND_TYPE_IN_CATEGORY => 'post.recommend_type.in_category',
+        self::RECOMMEND_TYPE_AT_HOMEPAGE => 'post.recommend_type.at_homepage'
+    ];
+
     public function __construct()
     {
+        $this->recommendType = 0;
         $this->weight = 0;
         $this->brief = "";
 
@@ -123,6 +138,22 @@ class Post
         $this->images = new ArrayCollection();
         $this->translations = new ArrayCollection();
 
+    }
+
+    public static function getRecommendTypeName($type)
+    {
+        if (!isset(static::$recommendTypeName[$type])) {
+            return "Unknown type ($type)";
+        }
+        return static::$recommendTypeName[$type];
+    }
+
+    public static function getAvailableRecommendTypes()
+    {
+        return [
+            self::RECOMMEND_TYPE_IN_CATEGORY,
+            self::RECOMMEND_TYPE_AT_HOMEPAGE,
+        ];
     }
 
     public function setTranslatableLocale($locale)
@@ -387,6 +418,18 @@ class Post
             $this->translations[] = $translation;
             $translation->setObject($this);
         }
+    }
+
+    public function getRecommendType(): ?int
+    {
+        return $this->recommendType;
+    }
+
+    public function setRecommendType(int $recommendType): self
+    {
+        $this->recommendType = $recommendType;
+
+        return $this;
     }
 
 

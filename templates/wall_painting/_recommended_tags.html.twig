@@ -1,0 +1,6 @@
+<ul class="tags-recommended row no-gutters">
+            <li class="col-2"><a href="{{ path('wall_painting_index', { category : category, tag : 'none'}) }}">{{ 'tag.reset'|trans }}</a></li>
+    {% for tag in tags %}
+            <li class="col-2"><a href="{{ path('wall_painting_index', { category : category, tag : tag.id}) }}">{{ tag.name }}</a></li>
+    {% endfor %}
+</ul>

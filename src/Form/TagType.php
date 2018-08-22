@@ -15,6 +15,9 @@ class TagType extends AbstractType
             ->add('name', null, [
                 'label' => 'tag.form.name'
             ])
+            ->add('isTop', null, [
+                'label' => 'tag.form.isTop'
+            ])
         ;
     }
 

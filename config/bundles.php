@@ -21,4 +21,5 @@ return [
     EasyCorp\Bundle\EasyDeployBundle\EasyDeployBundle::class => ['dev' => true, 'test' => true],
     FOS\CKEditorBundle\FOSCKEditorBundle::class => ['all' => true],
     Knp\Bundle\MenuBundle\KnpMenuBundle::class => ['all' => true],
+    PhpMob\SettingsBundle\PhpMobSettingsBundle::class => ['all' => true],
 ];

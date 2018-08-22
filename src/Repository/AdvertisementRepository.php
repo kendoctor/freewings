@@ -57,7 +57,9 @@ class AdvertisementRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('ad')
             ->where('ad.isPublished = true')
-            ->setMaxResults($limit);
+            ->setMaxResults($limit)
+            ->addOrderBy('ad.weight', 'DESC')
+        ;
 
         return $qb->getQuery()->getResult();
     }

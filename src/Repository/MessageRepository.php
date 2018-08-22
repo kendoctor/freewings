@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Media;
 use App\Entity\Message;
+use App\Entity\Post;
 use App\Entity\PostMedia;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -36,6 +37,23 @@ class MessageRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult()
             ;
+    }
+
+    public function getRecommend($limit = 8)
+    {
+        $q = $this->createQueryBuilder('m')
+            ->where('BIT_AND(m.recommendType, :recommendType) > 0')
+            ->andWhere('m.isPublished = true')
+            ->addOrderBy('m.weight', 'DESC')
+            ->addOrderBy('m.updatedAt', 'DESC')
+            ->addOrderBy('m.createdAt', 'DESC')
+            ->setParameter('recommendType', Post::RECOMMEND_TYPE_AT_HOMEPAGE )
+            ->setMaxResults($limit)
+            ->getQuery()
+        ;
+
+        return $q->getResult();
+
     }
 
     public function getByCategory($categoryId, $only=true)

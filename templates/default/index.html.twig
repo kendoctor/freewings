@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {% endblock %}
+{% block title %}{{ settings_get('homepage.page_title_'~app.request.locale) }}{% endblock %}
+{% block metaDescription %}{{ settings_get('homepage.page_meta_description_'~app.request.locale) }}{% endblock %}
+{% block metaKeywords %}{{ settings_get('homepage.page_meta_keywords_'~app.request.locale) }}{% endblock %}
 
 {% block body %}
 
@@ -48,6 +50,24 @@
           </div>
       </div>
 
+      <div class="wall-paintings-recommended">
+          <div class="bd row no-gutters">
+              {% for message in messagesRecommended %}
+                  <div class="col-md-3 col-sm-6">
+                      <div class="wall-painting">
+                          {% if message.cover and message.cover.filename %}
+                          <a href="{{ path('message_show', {id : message.id}) }}">
+                              <img class="img-fluid" src="{{ vich_uploader_asset(message.cover, 'file')}}" alt="">
+                          </a>
+                          {% endif %}
+                          <div class="title"><a href="{{ path('message_show', {id : message.id}) }}">{{ message.title }}</a></div>
+                          <div class="brief">{{ message.brief|nl2br }}</div>
+                      </div>
+                  </div>
+              {% endfor %}
+          </div>
+      </div>
+
       <div class="pl wall-painting-categories-recommended">
           <div class="bd row no-gutters">
               {% for wallPaintingCategory in wallPaintingCategoriesRecommended %}
@@ -69,7 +89,7 @@
           <div class="hd highlight-header">{{ 'base.customer_panel_title'|trans }}</div>
           <div class="bd row no-gutters">
               {% for customer in customersRecommended %}
-                  <div class="col-md-2 col-sm-3">
+                  <div class="col-md-2 col-sm-4">
                       <div class="customer">
                           <a href="{{ path('customer_show', { id: customer.id }) }}">
                               {% if customer.logo %}

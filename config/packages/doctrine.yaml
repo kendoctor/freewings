@@ -27,7 +27,11 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
                 alias: App
-
+            PhpMobSettings:
+                type: xml
+                is_bundle: false
+                prefix: PhpMob\Settings\Model
+                dir: '%kernel.project_dir%/vendor/phpmob/settings-bundle/src/Resources/config/doctrine/model'
             gedmo_translatable:
                 type: annotation
                 prefix: Gedmo\Translatable\Entity
