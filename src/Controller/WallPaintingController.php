@@ -15,6 +15,7 @@ use App\Repository\TagRepository;
 use App\Repository\WallPaintingRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -36,6 +37,7 @@ class WallPaintingController extends Controller
                           WallPaintingRepository $wallPaintingRepository,
                           TagRepository $tagRepository,
                           PaginatorInterface $paginator,
+                          Request $request,
                           $category = 'all',
                           $tag = 'none',
                           $page = 1)
@@ -49,7 +51,7 @@ class WallPaintingController extends Controller
         }
 
         $pagination = $paginator->paginate(
-            $wallPaintingRepository->getList($c, $tag),
+            $wallPaintingRepository->getList($c, $tag, $request->query->get('word')),
             $page,
             12
         );

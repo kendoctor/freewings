@@ -29,7 +29,7 @@
                     </div>
                     <ul class="wall-painting-tags">
                         {% for postTag in wallPainting.postTags %}
-                            <li><a href="">{{ postTag.tag.name }}</a></li>
+                            <li><a href="{{ path('wall_painting_index', { category: 'all', tag: postTag.tag.id }) }}">{{ postTag.tag.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>

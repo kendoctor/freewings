@@ -69,13 +69,12 @@ class WallPaintingRepository extends ServiceEntityRepository
 
     }
 
-    public function getList($category = 'all', $tag = 'none', $limit = 18)
+    public function getList($category = 'all', $tag = 'none', $word = '')
     {
         $qb = $this->createQueryBuilder('w')
             ->leftJoin('w.category', 'c')
             ->leftJoin('w.postTags', 'pt')
             ->leftJoin('pt.tag', 't')
-            ->setMaxResults($limit)
             ->orderBy('w.createdBy','DESC')
             ;
         if($category instanceof Category)
@@ -92,6 +91,18 @@ class WallPaintingRepository extends ServiceEntityRepository
                 ->setParameter('tag', $tag)
             ;
         }
+
+        if(!empty($word))
+        {
+            $qb->andWhere('w.title LIKE :word OR w.brief LIKE :word OR w.content LIKE :word')
+            ->setParameter('word', '%'.$word.'%')
+            ;
+
+        }
+
+        $qb->addOrderBy('w.weight', 'DESC');
+        $qb->addOrderBy('w.updatedAt', 'DESC');
+        $qb->addOrderBy('w.createdAt', 'DESC');
 
         return $qb->getQuery();
     }
