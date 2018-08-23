@@ -101,8 +101,9 @@ class WallPaintingRepository extends ServiceEntityRepository
         }
 
         $qb->addOrderBy('w.weight', 'DESC');
-        $qb->addOrderBy('w.updatedAt', 'DESC');
         $qb->addOrderBy('w.createdAt', 'DESC');
+        $qb->addOrderBy('w.updatedAt', 'DESC');
+
 
         return $qb->getQuery();
     }

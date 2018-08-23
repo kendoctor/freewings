@@ -40,7 +40,7 @@
           <entry key="dummy" value="9" />
           <entry key="js" value="15" />
           <entry key="json" value="4" />
-          <entry key="php" value="14628" />
+          <entry key="php" value="14630" />
           <entry key="scss" value="4441" />
           <entry key="twig" value="6169" />
           <entry key="yaml" value="1160" />
@@ -51,7 +51,7 @@
         <counts>
           <entry key="JSON" value="4" />
           <entry key="JavaScript" value="15" />
-          <entry key="PHP" value="14628" />
+          <entry key="PHP" value="14630" />
           <entry key="PLAIN_TEXT" value="9" />
           <entry key="SCSS" value="4441" />
           <entry key="Twig" value="6169" />
@@ -64,7 +64,7 @@
           <entry key="js" value="6" />
           <entry key="json" value="1" />
           <entry key="log" value="1" />
-          <entry key="php" value="111" />
+          <entry key="php" value="112" />
           <entry key="scss" value="8" />
           <entry key="twig" value="101" />
           <entry key="xml" value="3" />
@@ -77,7 +77,7 @@
           <entry key="CSS" value="1" />
           <entry key="JSON" value="1" />
           <entry key="JavaScript" value="6" />
-          <entry key="PHP" value="111" />
+          <entry key="PHP" value="112" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SCSS" value="8" />
           <entry key="Twig" value="101" />
@@ -103,15 +103,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="345">
               <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/default/index.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" selection-start-line="2" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -164,8 +155,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Repository/WallPaintingRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="96" column="91" selection-start-line="96" selection-start-column="91" selection-end-line="96" selection-end-column="91" />
+            <state relative-caret-position="316">
+              <caret line="103" column="47" selection-start-line="103" selection-start-column="47" selection-end-line="103" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Repository/MessageRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-277">
+              <caret line="41" column="20" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -782,12 +782,12 @@
       <workItem from="1534579640165" duration="23537000" />
       <workItem from="1534741635649" duration="765000" />
       <workItem from="1534744216872" duration="35369000" />
-      <workItem from="1535026773206" duration="1506000" />
+      <workItem from="1535026773206" duration="2009000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1073424000" />
+    <option name="totallyTimeSpent" value="1073927000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="81" y="24" width="1135" height="948" extended-state="4" />
@@ -806,7 +806,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49554235" visible="true" weight="0.2195122" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49554235" visible="true" weight="0.43536586" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50445765" side_tool="true" weight="0.44634145" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="Command Line Tools Console" order="12" sideWeight="0.49973047" weight="0.42380953" />
@@ -1040,13 +1040,6 @@
     <entry file="file://$PROJECT_DIR$/src/Form/UserRegisterType.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/MessageRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="41" column="20" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/UserRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="398">
@@ -1157,10 +1150,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/MessageRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-277">
+          <caret line="41" column="20" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/WallPaintingRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="96" column="91" selection-start-line="96" selection-start-column="91" selection-end-line="96" selection-end-column="91" />
+        <state relative-caret-position="316">
+          <caret line="103" column="47" selection-start-line="103" selection-start-column="47" selection-end-line="103" selection-end-column="47" />
         </state>
       </provider>
     </entry>
