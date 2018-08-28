@@ -12,7 +12,7 @@
             </ol>
         </nav>
 
-        <h1 class="mb-3">{{ 'wall_painting.index'|trans }}({{ pagination.totalItemCount }})</h1>
+        <h3 class="mb-3">{{ 'wall_painting.index'|trans }}({{ pagination.totalItemCount }})</h3>
 
         <table class="table">
             <thead>
@@ -22,22 +22,54 @@
                 <th>{{ knp_pagination_sortable(pagination, 'wall_painting.index.createdAt'|trans, 'w.createdAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'wall_painting.index.updatedAt'|trans, 'w.updatedAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'wall_painting.index.weight'|trans, 'w.weight') }}</th>
-                <th>{{ 'admin.actions' | trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'wall_painting.index.isPublished'|trans, 'w.isPublished') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'wall_painting.index.recommendType'|trans, 'w.recommendType') }}</th>
             </tr>
             </thead>
             <tbody>
             {% for wall_painting in pagination %}
                 <tr>
-                    <td>{{ wall_painting.id }}</td>
-                    <td>
-                        <h3>{{ wall_painting.title }}</h3>
+                    <td >
+                        {% if wall_painting.cover and wall_painting.cover.filename %}
+                        <a class="image-link" href=""><img src="{{ vich_uploader_asset(wall_painting.cover, 'file')|imagine_filter('wall_painting_cover') }}" alt=""></a>
+                        {% endif %}
                     </td>
-                    <td>{{ wall_painting.createdAt ? wall_painting.createdAt|date('Y-m-d') : '' }}</td>
-                    <td>{{ wall_painting.updatedAt ? wall_painting.updatedAt|date('Y-m-d') : '' }}</td>
-                    <td>{{ wall_painting.weight }}</td>
-                    <td>
-                        {#<a href="{{ path('admin_wall_painting_show', {'id': wall_painting.id}) }}">show</a>#}
-                        <a href="{{ path('admin_wall_painting_edit', {'id': wall_painting.id}) }}">{{ 'wall_painting.edit' | trans }}</a>
+                    <td colspan="5">
+                        <div class="detail">
+                            <h5>【编号（{{ wall_painting.id }}）】- {{ wall_painting.title }}</h5>
+                            <p>
+                                【分类】 <span class="category">{{ wall_painting.category.name }}</span>
+                                【客户】 <span class="customer">{{ wall_painting.customer.title }}</span>
+                            </p>
+                            <div class="brief">
+                                {{ wall_painting.brief|raw }}
+                            </div>
+                            <hr>
+                            <p>
+                                【创建时间】 <span class="createdAt">{{ wall_painting.createdAt | date('Y-m-d h:i') }}</span>
+                                【更新时间】 <span class="category">{{ wall_painting.updatedAt | date('Y-m-d h:i')  }}</span>
+                            </p>
+                        </div>
+                    </td>
+                    <td colspan="1">
+                        <p>
+                            【权重】{{ wall_painting.weight }}
+                            【是否发布] {{ wall_painting.isPublished ? '发布' : '草稿' }}
+                        </p>
+                        <p>
+                            【标签】{% for postTag in wall_painting.postTags %} {{ postTag.tag.name }} {% endfor %}
+                        </p>
+                        <p>
+                            【艺术家】{% for wallPaintingArtist in wall_painting.wallPaintingArtists %} {{ wallPaintingArtist.artist.nickname }}{% endfor %}
+                        </p>
+                        <p>
+                            【推荐类型】{{ (wall_painting.recommendType b-and constant('App\\Entity\\Post::RECOMMEND_TYPE_AT_HOMEPAGE')) ? '首页推荐':'' }} {{ (wall_painting.recommendType b-and constant('App\\Entity\\Post::RECOMMEND_TYPE_IN_CATEGORY')) ? '分类推荐':'' }}
+                        </p>
+                        <p>
+                            <a href="{{ path('admin_wall_painting_edit', {'id': wall_painting.id}) }}">{{ 'wall_painting.edit' | trans }}</a>
+                            <a href="{{ path('admin_wall_painting_edit', {'id': wall_painting.id}) }}">{{ 'wall_painting.delete' | trans }}</a>
+                        </p>
+
                     </td>
                 </tr>
             {% else %}

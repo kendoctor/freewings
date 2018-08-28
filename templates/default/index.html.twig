@@ -7,8 +7,10 @@
 {% block body %}
 
 
-  <div class="container">
+  <div class="advertisement-container">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div class="gradient-left"></div>
+            <div class="gradient-right"></div>
             <ol class="carousel-indicators">
                 {% for advertisement in advertisementsPublished %}
                 <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index0 }}" {% if loop.first %} class="active"{% endif %}></li>

@@ -74,9 +74,12 @@ liip_imagine:
                 # create a 2px black border: center the thumbnail on a black background
                 # 4px larger to create a 2px border around the final image
                 background: { size: [124, 94], position: center, color: '#555555' }
+        wall_painting_cover:
+            filters:
+                thumbnail: { size: [225, 148], mode: outbound  }
         advertisement_cover:
             filters:
-                thumbnail: { size: [755, 354] }
+                thumbnail: { size: [1600, 500] }
         category_icon:
             filters:
                 thumbnail: { size: [200, 132] }

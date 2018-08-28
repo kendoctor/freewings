@@ -29,6 +29,7 @@ wall_painting.new: 添加
 wall_painting.new_title: 添加墙画
 wall_painting.edit_title: 编辑墙画
 wall_painting.edit: 编辑
+wall_painting.delete: 删除
 wall_painting.save: 保存
 wall_painting.back_to_list: 返回墙画列表
 wall_painting.category.index: 墙画分类
@@ -38,6 +39,8 @@ wall_painting.index.title: 标题
 wall_painting.index.createdAt: 创建时间
 wall_painting.index.updatedAt: 更新时间
 wall_painting.index.weight: 权重
+wall_painting.index.isPublished: 是否发布
+wall_painting.index.recommendType: 推荐类型
 
 wall_painting.form.title: 标题
 wall_painting.form.category: 分类
